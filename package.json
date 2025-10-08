@@ -12,10 +12,7 @@
     "@storybook/addon-essentials": "^8.6.14",
     "@storybook/react": "^8.6.14",
     "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
@@ -32,7 +29,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "test:storybook": "storybook test-runner",
+    "test:all": "npm run test:ci && npm run test:e2e && npm run test:storybook",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
@@ -40,6 +44,7 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -62,17 +67,25 @@
     ]
   },
   "devDependencies": {
+    "@cypress/react": "^9.0.1",
     "@storybook/addon-interactions": "^8.6.14",
     "@storybook/addon-onboarding": "^8.6.14",
     "@storybook/blocks": "^8.6.14",
     "@storybook/preset-create-react-app": "^8.6.14",
     "@storybook/react-webpack5": "^8.6.14",
     "@storybook/test": "^8.6.14",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "cypress": "^14.5.4",
     "eslint-plugin-storybook": "^9.0.7",
     "husky": "^9.1.7",
+    "jest-environment-jsdom": "^30.2.0",
+    "jest-watch-typeahead": "^3.0.1",
     "lint-staged": "^15.5.2",
     "prettier": "^3.6.2",
     "storybook": "^8.6.14",
+    "ts-jest": "^29.4.4",
     "webpack": "^5.102.1"
   }
 }
