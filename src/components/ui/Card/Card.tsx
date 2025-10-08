@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { CardProps } from '../../../types';
-import { CardContainer, CardHeader, CardContent, CardFooter } from './Card.styles';
+import { CardContainer, CardHeader as CardHeaderStyled, CardContent as CardContentStyled, CardFooter as CardFooterStyled } from './Card.styles';
 
 export const Card: React.FC<CardProps> = ({
   variant = 'default',
@@ -29,25 +29,23 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
-export const CardHeaderComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({
-  children,
-  className,
-}) => {
-  return <CardHeader className={className}>{children}</CardHeader>;
-};
+// Export subcomponents
+export const CardHeaderComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <CardHeaderStyled className={className}>
+    {children}
+  </CardHeaderStyled>
+);
 
-export const CardContentComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({
-  children,
-  className,
-}) => {
-  return <CardContent className={className}>{children}</CardContent>;
-};
+export const CardContentComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <CardContentStyled className={className}>
+    {children}
+  </CardContentStyled>
+);
 
-export const CardFooterComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({
-  children,
-  className,
-}) => {
-  return <CardFooter className={className}>{children}</CardFooter>;
-};
+export const CardFooterComponent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
+  <CardFooterStyled className={className}>
+    {children}
+  </CardFooterStyled>
+);
 
 export default Card;

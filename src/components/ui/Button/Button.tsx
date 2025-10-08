@@ -24,6 +24,8 @@ export const Button: React.FC<ButtonProps> = ({
   'data-testid': testId,
   ...props
 }) => {
+  // Filter out non-DOM props
+  const { loading: _, ...domProps } = { loading, ...props };
   const handleClick = () => {
     if (!disabled && !loading && onClick) {
       onClick();
@@ -49,7 +51,7 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       data-testid={testId}
       aria-disabled={disabled || loading}
-      {...props}
+      {...domProps}
     >
       <ButtonContent>
         {loading && <LoadingSpinner size={size} />}

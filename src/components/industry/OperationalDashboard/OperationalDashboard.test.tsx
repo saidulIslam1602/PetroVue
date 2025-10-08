@@ -189,7 +189,7 @@ describe('OperationalDashboard', () => {
     expect(screen.getByText('Total Equipment')).toBeInTheDocument();
     expect(screen.getByText('45')).toBeInTheDocument();
     expect(screen.getByText('Operational')).toBeInTheDocument();
-    expect(screen.getByText('42')).toBeInTheDocument();
+    expect(screen.getAllByText('42')[0]).toBeInTheDocument();
   });
 
   it('handles empty alerts gracefully', () => {

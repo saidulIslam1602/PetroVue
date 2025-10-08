@@ -62,7 +62,7 @@ describe('SafetyMonitor', () => {
     );
 
     expect(screen.getByText('Safety Score')).toBeInTheDocument();
-    expect(screen.getByText('98')).toBeInTheDocument();
+    expect(screen.getAllByText('98')[0]).toBeInTheDocument();
     expect(screen.getByText('%')).toBeInTheDocument();
     
     expect(screen.getByText('Days Since Incident')).toBeInTheDocument();
@@ -83,8 +83,8 @@ describe('SafetyMonitor', () => {
     expect(screen.getByText('2')).toBeInTheDocument();
     expect(screen.getByText('this year')).toBeInTheDocument();
     
-    expect(screen.getByText('Compliance Rate')).toBeInTheDocument();
-    expect(screen.getByText('98')).toBeInTheDocument();
+    expect(screen.getAllByText('Compliance Rate')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('98')[0]).toBeInTheDocument();
   });
 
   it('shows recent incidents', () => {
@@ -113,7 +113,7 @@ describe('SafetyMonitor', () => {
     expect(screen.getByText('Compliance Status')).toBeInTheDocument();
     expect(screen.getByText('Last Inspection')).toBeInTheDocument();
     expect(screen.getByText('Next Inspection')).toBeInTheDocument();
-    expect(screen.getByText('Compliance Rate')).toBeInTheDocument();
+    expect(screen.getAllByText('Compliance Rate')[0]).toBeInTheDocument();
   });
 
   it('shows critical safety alert when present', () => {

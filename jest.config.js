@@ -18,6 +18,7 @@ module.exports = {
     '^@types/(.*)$': '<rootDir>/src/types/$1',
     '^@themes/(.*)$': '<rootDir>/src/themes/$1',
     '^@constants/(.*)$': '<rootDir>/src/constants/$1',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   
   // File extensions to consider
