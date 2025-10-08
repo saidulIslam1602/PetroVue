@@ -367,3 +367,131 @@ export interface ValidationRule {
   pattern?: RegExp;
   custom?: (value: unknown) => string | undefined;
 }
+
+// Additional Industry-Specific Types for Phase 4
+export interface SafetyMetrics {
+  overallScore: number;
+  daysSinceIncident: number;
+  totalIncidents: number;
+  criticalAlerts: number;
+  complianceRate: number;
+  lastInspection: string;
+  nextInspection: string;
+}
+
+export interface SafetyIncident {
+  id: string;
+  type: 'injury' | 'equipment' | 'environmental' | 'process';
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  description: string;
+  location: string;
+  timestamp: string;
+  status: 'open' | 'investigating' | 'resolved';
+  assignedTo?: string;
+}
+
+export interface WellData {
+  id: string;
+  name: string;
+  type: 'oil' | 'gas' | 'water' | 'injection';
+  status: 'active' | 'inactive' | 'maintenance' | 'shut-in';
+  production: {
+    rate: number;
+    unit: string;
+    efficiency: number;
+  };
+  pressure: {
+    current: number;
+    target: number;
+    unit: string;
+  };
+  lastUpdate: string;
+  location: {
+    platform: string;
+    zone: string;
+  };
+}
+
+export interface ProductionMetrics {
+  totalOil: number;
+  totalGas: number;
+  totalWater: number;
+  efficiency: number;
+  activeWells: number;
+  totalWells: number;
+  dailyTarget: number;
+  monthlyTarget: number;
+}
+
+export interface EnvironmentalMetrics {
+  emissions: {
+    co2: number;
+    methane: number;
+    nox: number;
+    sox: number;
+    unit: string;
+  };
+  waste: {
+    hazardous: number;
+    nonHazardous: number;
+    recycled: number;
+    unit: string;
+  };
+  water: {
+    consumption: number;
+    discharge: number;
+    treatment: number;
+    unit: string;
+  };
+  compliance: {
+    airQuality: number;
+    waterQuality: number;
+    wasteManagement: number;
+    overall: number;
+  };
+  sustainability: {
+    energyEfficiency: number;
+    renewableEnergy: number;
+    carbonIntensity: number;
+  };
+}
+
+export interface EnvironmentalAlert {
+  id: string;
+  type: 'emission' | 'waste' | 'water' | 'compliance';
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  message: string;
+  location: string;
+  timestamp: string;
+  status: 'active' | 'investigating' | 'resolved';
+}
+
+export interface EquipmentItem {
+  id: string;
+  name: string;
+  type: 'pump' | 'compressor' | 'generator' | 'valve' | 'sensor' | 'turbine';
+  status: 'operational' | 'maintenance' | 'critical' | 'offline';
+  health: number;
+  location: string;
+  lastMaintenance: string;
+  nextMaintenance: string;
+  performance: {
+    efficiency: number;
+    uptime: number;
+    load: number;
+  };
+  alerts: number;
+}
+
+export interface MaintenanceTask {
+  id: string;
+  equipmentId: string;
+  equipmentName: string;
+  type: 'preventive' | 'corrective' | 'emergency';
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  description: string;
+  scheduledDate: string;
+  estimatedDuration: number;
+  assignedTo?: string;
+  status: 'scheduled' | 'in-progress' | 'completed' | 'overdue';
+}
