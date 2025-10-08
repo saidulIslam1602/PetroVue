@@ -72,7 +72,7 @@ export const InputLabel = styled.label<{ hasError: boolean }>`
 `;
 
 export const InputField = styled.input<{
-  size: 'sm' | 'md' | 'lg';
+  inputSize: 'sm' | 'md' | 'lg';
   variant: 'default' | 'outlined' | 'filled';
   hasError: boolean;
   hasStartIcon: boolean;
@@ -84,7 +84,7 @@ export const InputField = styled.input<{
   transition: all 0.2s ease-in-out;
   outline: none;
   
-  ${({ size }) => sizeVariants[size]}
+  ${({ inputSize }) => sizeVariants[inputSize]}
   ${({ variant }) => variantStyles[variant]}
   
   ${({ hasStartIcon, hasEndIcon }) => {

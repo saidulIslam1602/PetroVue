@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SafetyMonitor } from './SafetyMonitor';
 
@@ -148,10 +148,11 @@ describe('SafetyMonitor', () => {
     );
 
     const incidentCard = screen.getByText('Minor valve leak detected in Zone A').closest('div');
+    expect(incidentCard).toBeInTheDocument();
     if (incidentCard) {
       await user.click(incidentCard);
-      expect(handleIncidentClick).toHaveBeenCalledWith(mockIncidents[0]);
     }
+    expect(handleIncidentClick).toHaveBeenCalledWith(mockIncidents[0]);
   });
 
   it('handles refresh functionality', async () => {

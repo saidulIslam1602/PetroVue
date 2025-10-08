@@ -12,7 +12,7 @@ import { ButtonContainer, ButtonContent, LoadingSpinner, ButtonGroupContainer } 
  * Button component with multiple variants and sizes
  * Supports loading states and accessibility features
  */
-export const Button: React.FC<ButtonProps> = ({
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   size = 'md',
   disabled = false,
@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   'data-testid': testId,
   ...props
-}) => {
+}, ref) => {
   // Filter out non-DOM props
   const { loading: _, ...domProps } = { loading, ...props };
   const handleClick = () => {
@@ -41,6 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <ButtonContainer
+      ref={ref}
       variant={variant}
       size={size}
       disabled={disabled || loading}
@@ -59,7 +60,7 @@ export const Button: React.FC<ButtonProps> = ({
       </ButtonContent>
     </ButtonContainer>
   );
-};
+});
 
 // Button Group Component
 export const ButtonGroup: React.FC<{ children: React.ReactNode; className?: string }> = ({

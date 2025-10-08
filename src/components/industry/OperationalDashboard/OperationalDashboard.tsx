@@ -65,6 +65,7 @@ const generateRealTimeData = () => {
 
   return baseData.map(item => ({
     ...item,
+    value: item.oil,
     oil: item.oil + Math.floor(Math.random() * 100 - 50),
     gas: item.gas + Math.floor(Math.random() * 200 - 100),
     water: item.water + Math.floor(Math.random() * 50 - 25),

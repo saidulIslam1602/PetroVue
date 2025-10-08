@@ -1,7 +1,25 @@
 /**
  * EquipmentStatus Component
  * Equipment monitoring and maintenance tracking for oil & gas facilities
- * Displays equipment health, maintenance schedules, and performance metrics
+ * Displays equipment he  // Generate performance trend data based on current equipment
+  const performanceData = React.useMemo(() => {
+    const avgEfficiency = equipment.reduce((sum, item) => sum + (item.performance?.efficiency || 85), 0) / equipment.length;
+    const avgUptime = equipment.reduce((sum, item) => sum + (item.performance?.uptime || 90), 0) / equipment.length;
+    const avgLoad = equipment.reduce((sum, item) => sum + (item.performance?.load || 75), 0) / equipment.length;
+    
+    return Array.from({ length: 6 }, (_, index) => {
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+      const trend = 1 + (index * 0.01); // Slight upward trend
+      
+      return {
+        name: monthNames[index],
+        value: Math.round(avgEfficiency * trend),
+        efficiency: Math.round(avgEfficiency * trend),
+        uptime: Math.round(Math.min(99, avgUptime * trend)),
+        load: Math.round(avgLoad * (0.9 + Math.random() * 0.2))
+      };
+    });
+  }, [equipment]);intenance schedules, and performance metrics
  */
 
 import React, { useState } from 'react';
@@ -130,20 +148,21 @@ export const EquipmentStatus: React.FC<EquipmentStatusProps> = ({
 
   // Equipment performance trend data
   const performanceData = [
-    { name: 'Jan', efficiency: 92, uptime: 98, load: 85 },
-    { name: 'Feb', efficiency: 94, uptime: 97, load: 88 },
-    { name: 'Mar', efficiency: 91, uptime: 96, load: 82 },
-    { name: 'Apr', efficiency: 93, uptime: 98, load: 86 },
-    { name: 'May', efficiency: 95, uptime: 99, load: 89 },
-    { name: 'Jun', efficiency: 94, uptime: 98, load: 87 },
+    { name: 'Jan', value: 92, efficiency: 92, uptime: 98, load: 85 },
+    { name: 'Feb', value: 94, efficiency: 94, uptime: 97, load: 88 },
+    { name: 'Mar', value: 91, efficiency: 91, uptime: 96, load: 82 },
+    { name: 'Apr', value: 93, efficiency: 93, uptime: 98, load: 86 },
+    { name: 'May', value: 95, efficiency: 95, uptime: 99, load: 89 },
+    { name: 'Jun', value: 94, efficiency: 94, uptime: 98, load: 87 },
   ];
 
-  const getOverallStatus = () => {
-    if (criticalEquipment > 0) return 'critical';
-    if (maintenanceEquipment > totalEquipment * 0.2) return 'warning';
-    if (averageHealth < 85) return 'warning';
-    return 'success';
-  };
+  // Utility function for calculating overall status (can be used for future enhancements)
+  // const getOverallStatus = () => {
+  //   if (criticalEquipment > 0) return 'critical';
+  //   if (maintenanceEquipment > totalEquipment * 0.2) return 'warning';
+  //   if (averageHealth < 85) return 'warning';
+  //   return 'success';
+  // };
 
 
   return (

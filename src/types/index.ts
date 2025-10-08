@@ -125,6 +125,7 @@ export interface ButtonProps extends BaseComponentProps {
 export interface CardProps extends BaseComponentProps {
   variant?: 'default' | 'elevated' | 'outlined';
   padding?: keyof SpacingScale;
+  style?: React.CSSProperties;
 }
 
 export interface HeaderProps {
@@ -188,8 +189,8 @@ export interface TableProps<T = Record<string, unknown>> {
 
 export interface ChartData {
   name: string;
-  value: number;
-  [key: string]: string | number;
+  value?: number;
+  [key: string]: string | number | undefined;
 }
 
 export interface ChartProps {

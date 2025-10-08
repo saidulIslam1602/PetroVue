@@ -1,6 +1,28 @@
 /**
  * EnvironmentalMonitor Component
- * Environmental monitoring and sustainability tracking for oil & gas facilities
+ * Environmental monitoring and sustainability tracki  // Generate trend data based on current metrics
+  const environmentalTrendData = React.useMemo(() => {
+    const baseValues = {
+      co2: metrics.emissions.co2,
+      methane: metrics.emissions.methane,
+      nox: metrics.emissions.nox,
+      sox: metrics.emissions.sox
+    };
+    
+    return Array.from({ length: 6 }, (_, index) => {
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+      const variation = 0.9 + (Math.random() * 0.2); // 90-110% variation
+      
+      return {
+        name: monthNames[index],
+        value: Math.round(baseValues.co2 * variation),
+        co2: Math.round(baseValues.co2 * variation),
+        methane: Math.round(baseValues.methane * variation),
+        nox: Math.round(baseValues.nox * variation),
+        sox: Math.round(baseValues.sox * variation)
+      };
+    });
+  }, [metrics.emissions]);il & gas facilities
  * Tracks emissions, waste management, and environmental compliance
  */
 
@@ -90,23 +112,24 @@ export const EnvironmentalMonitor: React.FC<EnvironmentalMonitorProps> = ({
 
   // Environmental trend data
   const environmentalTrendData = [
-    { name: 'Jan', co2: 1200, methane: 45, nox: 25, sox: 15 },
-    { name: 'Feb', co2: 1180, methane: 42, nox: 23, sox: 14 },
-    { name: 'Mar', co2: 1150, methane: 40, nox: 22, sox: 13 },
-    { name: 'Apr', co2: 1120, methane: 38, nox: 21, sox: 12 },
-    { name: 'May', co2: 1100, methane: 36, nox: 20, sox: 11 },
-    { name: 'Jun', co2: 1080, methane: 35, nox: 19, sox: 10 },
+    { name: 'Jan', value: 1200, co2: 1200, methane: 45, nox: 25, sox: 15 },
+    { name: 'Feb', value: 1180, co2: 1180, methane: 42, nox: 23, sox: 14 },
+    { name: 'Mar', value: 1150, co2: 1150, methane: 40, nox: 22, sox: 13 },
+    { name: 'Apr', value: 1120, co2: 1120, methane: 38, nox: 21, sox: 12 },
+    { name: 'May', value: 1100, co2: 1100, methane: 36, nox: 20, sox: 11 },
+    { name: 'Jun', value: 1080, co2: 1080, methane: 35, nox: 19, sox: 10 },
   ];
 
-  const getOverallStatus = () => {
-    const criticalAlerts = alerts.filter(alert => alert.severity === 'critical').length;
-    const highAlerts = alerts.filter(alert => alert.severity === 'high').length;
-    
-    if (criticalAlerts > 0) return 'critical';
-    if (highAlerts > 0) return 'warning';
-    if (metrics.compliance.overall < 90) return 'warning';
-    return 'success';
-  };
+  // Utility function for calculating overall status (can be used for future enhancements)
+  // const getOverallStatus = () => {
+  //   const criticalAlerts = alerts.filter(alert => alert.severity === 'critical').length;
+  //   const highAlerts = alerts.filter(alert => alert.severity === 'high').length;
+  //   
+  //   if (criticalAlerts > 0) return 'critical';
+  //   if (highAlerts > 0) return 'warning';
+  //   if (metrics.compliance.overall < 90) return 'warning';
+  //   return 'success';
+  // };
 
 
   return (

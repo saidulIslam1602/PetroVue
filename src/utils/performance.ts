@@ -3,7 +3,8 @@
  * Tools for monitoring and optimizing application performance
  */
 
-import React, { ComponentType, lazy, Suspense } from 'react';
+import * as React from 'react';
+import { ComponentType, lazy, Suspense } from 'react';
 
 // Lazy loading utility for code splitting
 export const lazyLoad = <T extends ComponentType<any>>(
@@ -176,14 +177,14 @@ export class PerformanceMetrics {
   getAllMetrics() {
     const result: Record<string, { average: number; max: number; min: number; count: number }> = {};
     
-    for (const [name, values] of this.metrics) {
+    Array.from(this.metrics.entries()).forEach(([name, values]) => {
       result[name] = {
         average: this.getAverage(name),
         max: this.getMax(name),
         min: this.getMin(name),
         count: values.length,
       };
-    }
+    });
     
     return result;
   }

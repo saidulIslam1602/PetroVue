@@ -22,6 +22,17 @@ import { ProductionTracker } from './components/industry/ProductionTracker';
 import { EnvironmentalMonitor } from './components/industry/EnvironmentalMonitor';
 import { EquipmentStatus } from './components/industry/EquipmentStatus';
 import { APP_CONFIG } from './constants';
+import {
+  useFacilities,
+  useOperationalMetrics,
+  useAlerts,
+  useSafetyMetrics,
+  useSafetyIncidents,
+  useWells,
+  useEquipment,
+  useEnvironmentalMetrics,
+  useProductionData
+} from './hooks/useData';
 import './styles/globals.css';
 
 // Create Material-UI theme based on our design system
@@ -39,6 +50,90 @@ const muiTheme = createTheme({
 const App: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [activeView, setActiveView] = React.useState('dashboard');
+  const [selectedFacilityId, setSelectedFacilityId] = React.useState('PLT-001');
+  
+  // Data hooks
+  const { data: facilities } = useFacilities();
+  const { data: operationalData } = useOperationalMetrics(selectedFacilityId);
+  const { data: alertsData } = useAlerts(selectedFacilityId);
+  const { data: safetyData } = useSafetyMetrics(selectedFacilityId);
+  const { data: incidentsData } = useSafetyIncidents(selectedFacilityId);
+  const { data: wellsData } = useWells(selectedFacilityId);
+  const { data: equipmentData } = useEquipment(selectedFacilityId);
+  const { data: envData } = useEnvironmentalMetrics(selectedFacilityId);
+  const { data: prodData } = useProductionData(selectedFacilityId);
+
+  // Transform production data for charts
+  const chartData = React.useMemo(() => {
+    if (!prodData || prodData.length === 0) {
+      // Fallback chart data
+      return [
+        { name: 'Jan', value: 1200, oil: 1200, gas: 2100, water: 850 },
+        { name: 'Feb', value: 1350, oil: 1350, gas: 2300, water: 920 },
+        { name: 'Mar', value: 1280, oil: 1280, gas: 2200, water: 880 },
+        { name: 'Apr', value: 1420, oil: 1420, gas: 2400, water: 950 },
+        { name: 'May', value: 1380, oil: 1380, gas: 2350, water: 900 },
+        { name: 'Jun', value: 1500, oil: 1500, gas: 2500, water: 1000 },
+      ];
+    }
+    return prodData.slice(-6).map((item, index) => ({
+      name: new Date(item.timestamp).toLocaleDateString('en-US', { month: 'short' }),
+      value: item.oil,
+      oil: item.oil,
+      gas: item.gas,
+      water: item.water
+    }));
+  }, [prodData]);
+
+  // Create fallback metrics for dashboard
+  const dashboardMetrics = React.useMemo(() => {
+    return {
+      oil: operationalData?.production.oil || 1250,
+      gas: operationalData?.production.gas || 2100,
+      water: operationalData?.production.water || 850,
+      safety: safetyData?.overallScore || 98.5
+    };
+  }, [operationalData, safetyData]);
+
+  // Type adapters to convert between data service types and component types
+  const adaptSafetyIncidents = (incidents: typeof incidentsData) => {
+    if (!incidents) return [];
+    return incidents.map(incident => ({
+      ...incident,
+      type: incident.type === 'personnel' ? 'injury' as const : incident.type
+    }));
+  };
+
+  const adaptWellData = (wells: typeof wellsData) => {
+    if (!wells) return [];
+    return wells.map(well => ({
+      ...well,
+      status: well.status === 'abandoned' ? 'shut-in' as const : well.status
+    }));
+  };
+
+  const adaptEquipmentData = (equipment: typeof equipmentData) => {
+    if (!equipment) return [];
+    return equipment.map(item => ({
+      ...item,
+      type: item.type === 'heat_exchanger' ? 'sensor' as const : item.type,
+      status: item.status === 'failed' ? 'critical' as const : 
+              item.status === 'standby' ? 'offline' as const : item.status
+    }));
+  };
+
+  const adaptAlertsToEnvironmental = (alerts: typeof alertsData) => {
+    if (!alerts) return [];
+    return alerts.filter(alert => alert.type === 'warning').map(alert => ({
+      id: alert.id,
+      type: 'emission' as const,
+      severity: 'medium' as const,
+      message: alert.message,
+      location: 'Platform Alpha',
+      timestamp: alert.timestamp,
+      status: 'active' as const
+    }));
+  };
   
   const navigationItems = [
     { label: 'Dashboard', href: '/dashboard', active: activeView === 'dashboard' },
@@ -50,12 +145,12 @@ const App: React.FC = () => {
   ];
 
   const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
-    { id: 'operations', label: 'Operations', badge: 3, active: activeView === 'operations', onClick: () => setActiveView('operations') },
-    { id: 'safety', label: 'Safety Monitor', active: activeView === 'safety', onClick: () => setActiveView('safety') },
-    { id: 'production', label: 'Production', active: activeView === 'production', onClick: () => setActiveView('production') },
-    { id: 'environmental', label: 'Environmental', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
-    { id: 'equipment', label: 'Equipment', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
+    { id: 'dashboard', icon: '🏠', label: 'Dashboard', href: '#', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
+    { id: 'operations', icon: '⚙️', label: 'Operations', href: '#', active: activeView === 'operations', onClick: () => setActiveView('operations') },
+    { id: 'safety', icon: '🛡️', label: 'Safety', href: '#', active: activeView === 'safety', onClick: () => setActiveView('safety') },
+    { id: 'production', icon: '📊', label: 'Production', href: '#', active: activeView === 'production', onClick: () => setActiveView('production') },
+    { id: 'environmental', icon: '🌱', label: 'Environmental', href: '#', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
+    { id: 'equipment', icon: '🔧', label: 'Equipment', href: '#', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
   ];
 
   const user = {
@@ -63,252 +158,81 @@ const App: React.FC = () => {
     role: 'Operations Manager',
   };
 
-  // Sample chart data
-  const productionData = [
-    { name: 'Jan', oil: 1200, gas: 2100, water: 850 },
-    { name: 'Feb', oil: 1350, gas: 2300, water: 920 },
-    { name: 'Mar', oil: 1280, gas: 2200, water: 880 },
-    { name: 'Apr', oil: 1420, gas: 2400, water: 950 },
-    { name: 'May', oil: 1380, gas: 2350, water: 900 },
-    { name: 'Jun', oil: 1500, gas: 2500, water: 1000 },
-  ];
+  // Transform facilities data for Select component
+  const facilityOptions = React.useMemo(() => {
+    if (!facilities) return [];
+    return facilities.map(facility => ({
+      value: facility.id,
+      label: facility.name
+    }));
+  }, [facilities]);
 
-  const facilityOptions = [
-    { value: 'platform-a', label: 'Platform Alpha' },
-    { value: 'platform-b', label: 'Platform Beta' },
-    { value: 'refinery-1', label: 'Refinery North' },
-    { value: 'refinery-2', label: 'Refinery South' },
-  ];
-
-  // Sample data for industry components
-  const operationalMetrics = {
-    production: {
-      oil: 1250,
-      gas: 2100,
-      water: 850,
-      efficiency: 92
-    },
-    safety: {
-      score: 98,
-      incidents: 0,
-      lastInspection: '2024-01-15'
-    },
-    equipment: {
-      totalUnits: 45,
-      operational: 42,
-      maintenance: 2,
-      critical: 1
-    },
-    environmental: {
-      emissions: 1200,
-      waste: 85,
-      compliance: 96
-    }
-  };
-
-  const operationalAlerts = [
-    {
-      id: '1',
-      type: 'critical' as const,
-      title: 'High Pressure Alert',
-      message: 'Pressure reading exceeds safety threshold in Platform Alpha.',
-      timestamp: new Date().toISOString()
-    },
-    {
-      id: '2',
-      type: 'warning' as const,
-      title: 'Maintenance Due',
-      message: 'Scheduled maintenance for Refinery North is due in 48 hours.',
-      timestamp: new Date().toISOString()
-    }
-  ];
-
-  const safetyMetrics = {
-    overallScore: 98,
-    daysSinceIncident: 45,
-    totalIncidents: 2,
-    criticalAlerts: 0,
-    complianceRate: 98,
-    lastInspection: '2024-01-15',
-    nextInspection: '2024-04-15'
-  };
-
-  const safetyIncidents = [
-    {
-      id: '1',
-      type: 'equipment' as const,
-      severity: 'low' as const,
-      description: 'Minor valve leak detected in Zone A',
-      location: 'Platform Alpha - Zone A',
-      timestamp: '2024-01-10T10:30:00Z',
-      status: 'resolved' as const
-    }
-  ];
-
-  const wells = [
-    {
-      id: '1',
-      name: 'Well A-001',
-      type: 'oil' as const,
-      status: 'active' as const,
-      production: { rate: 150, unit: 'bbl/day', efficiency: 95 },
-      pressure: { current: 850, target: 900, unit: 'PSI' },
-      lastUpdate: '2024-01-20T14:30:00Z',
-      location: { platform: 'Alpha', zone: 'A' }
-    },
-    {
-      id: '2',
-      name: 'Well B-002',
-      type: 'gas' as const,
-      status: 'maintenance' as const,
-      production: { rate: 0, unit: 'mcf/day', efficiency: 0 },
-      pressure: { current: 0, target: 1200, unit: 'PSI' },
-      lastUpdate: '2024-01-20T12:00:00Z',
-      location: { platform: 'Beta', zone: 'B' }
-    }
-  ];
-
-  const productionMetrics = {
-    totalOil: 1250,
-    totalGas: 2100,
-    totalWater: 850,
-    efficiency: 92,
-    activeWells: 8,
-    totalWells: 10,
-    dailyTarget: 1200,
-    monthlyTarget: 36000
-  };
-
-  const environmentalMetrics = {
-    emissions: {
-      co2: 1080,
-      methane: 35,
-      nox: 19,
-      sox: 10,
-      unit: 'tonnes/month'
-    },
-    waste: {
-      hazardous: 15,
-      nonHazardous: 45,
-      recycled: 25,
-      unit: 'tonnes/month'
-    },
-    water: {
-      consumption: 1200,
-      discharge: 800,
-      treatment: 1000,
-      unit: 'm³/day'
-    },
-    compliance: {
-      airQuality: 98,
-      waterQuality: 96,
-      wasteManagement: 94,
-      overall: 96
-    },
-    sustainability: {
-      energyEfficiency: 92,
-      renewableEnergy: 15,
-      carbonIntensity: 12.5
-    }
-  };
-
-  const environmentalAlerts = [
-    {
-      id: '1',
-      type: 'emission' as const,
-      severity: 'medium' as const,
-      message: 'CO2 emissions approaching monthly limit',
-      location: 'Platform Alpha',
-      timestamp: '2024-01-20T09:00:00Z',
-      status: 'active' as const
-    }
-  ];
-
-  const equipment = [
-    {
-      id: '1',
-      name: 'Main Pump A',
-      type: 'pump' as const,
-      status: 'operational' as const,
-      health: 95,
-      location: 'Platform Alpha - Engine Room',
-      lastMaintenance: '2024-01-10',
-      nextMaintenance: '2024-04-10',
-      performance: { efficiency: 92, uptime: 98, load: 85 },
-      alerts: 0
-    },
-    {
-      id: '2',
-      name: 'Compressor B',
-      type: 'compressor' as const,
-      status: 'maintenance' as const,
-      health: 75,
-      location: 'Platform Beta - Compressor Room',
-      lastMaintenance: '2024-01-15',
-      nextMaintenance: '2024-01-25',
-      performance: { efficiency: 88, uptime: 95, load: 0 },
-      alerts: 1
-    }
-  ];
-
-  const maintenanceTasks = [
-    {
-      id: '1',
-      equipmentId: '2',
-      equipmentName: 'Compressor B',
-      type: 'preventive' as const,
-      priority: 'high' as const,
-      description: 'Routine maintenance and inspection',
-      scheduledDate: '2024-01-25',
-      estimatedDuration: 8,
-      assignedTo: 'Maintenance Team A',
-      status: 'scheduled' as const
-    }
-  ];
+  // Get selected facility data
+  const selectedFacility = React.useMemo(() => {
+    return facilities?.find(f => f.id === selectedFacilityId) || null;
+  }, [facilities, selectedFacilityId]);
 
   const renderActiveView = () => {
+    if (!selectedFacility) {
+      return <div style={{ padding: '2rem', textAlign: 'center' }}>Loading facility data...</div>;
+    }
+
     switch (activeView) {
       case 'operations':
-        return (
+        return operationalData && alertsData ? (
           <OperationalDashboard
-            facilityId="PLT-001"
-            facilityName="Platform Alpha"
-            metrics={operationalMetrics}
-            alerts={operationalAlerts}
+            facilityId={selectedFacilityId}
+            facilityName={selectedFacility.name}
+            metrics={operationalData}
+            alerts={alertsData}
           />
-        );
+        ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading operational data...</div>;
+        
       case 'safety':
-        return (
+        return safetyData && incidentsData ? (
           <SafetyMonitor
-            facilityId="PLT-001"
-            metrics={safetyMetrics}
-            incidents={safetyIncidents}
+            facilityId={selectedFacilityId}
+            metrics={safetyData}
+            incidents={adaptSafetyIncidents(incidentsData)}
           />
-        );
+        ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading safety data...</div>;
+        
       case 'production':
-        return (
+        return wellsData ? (
           <ProductionTracker
-            facilityId="PLT-001"
-            wells={wells}
-            metrics={productionMetrics}
+            facilityId={selectedFacilityId}
+            wells={adaptWellData(wellsData)}
+            metrics={{
+              totalOil: operationalData?.production.oil || 0,
+              totalGas: operationalData?.production.gas || 0,
+              totalWater: operationalData?.production.water || 0,
+              efficiency: operationalData?.production.efficiency || 0,
+              activeWells: wellsData.filter(w => w.status === 'active').length,
+              totalWells: wellsData.length,
+              dailyTarget: 1200,
+              monthlyTarget: 36000
+            }}
           />
-        );
+        ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading production data...</div>;
+        
       case 'environmental':
-        return (
+        return envData ? (
           <EnvironmentalMonitor
-            facilityId="PLT-001"
-            metrics={environmentalMetrics}
-            alerts={environmentalAlerts}
+            facilityId={selectedFacilityId}
+            metrics={envData}
+            alerts={adaptAlertsToEnvironmental(alertsData)}
           />
-        );
+        ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading environmental data...</div>;
+        
       case 'equipment':
-        return (
+        return equipmentData ? (
           <EquipmentStatus
-            facilityId="PLT-001"
-            equipment={equipment}
-            maintenanceTasks={maintenanceTasks}
+            facilityId={selectedFacilityId}
+            equipment={adaptEquipmentData(equipmentData)}
+            maintenanceTasks={[]} // TODO: Add maintenance tasks to data service
           />
-        );
+        ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading equipment data...</div>;
+        
       default:
         return renderDashboard();
     }
@@ -502,7 +426,7 @@ const App: React.FC = () => {
           }}>
             <MetricCard
               title="Oil Production"
-              value={1250}
+              value={dashboardMetrics.oil}
               unit="bbl/day"
               change={{ value: 5.2, type: 'increase', period: 'vs last month' }}
               status="success"
@@ -510,7 +434,7 @@ const App: React.FC = () => {
             />
             <MetricCard
               title="Gas Production"
-              value={2100}
+              value={dashboardMetrics.gas}
               unit="mcf/day"
               change={{ value: 2.1, type: 'increase', period: 'vs last month' }}
               status="normal"
@@ -518,7 +442,7 @@ const App: React.FC = () => {
             />
             <MetricCard
               title="Water Production"
-              value={850}
+              value={dashboardMetrics.water}
               unit="bbl/day"
               change={{ value: 1.5, type: 'decrease', period: 'vs last month' }}
               status="warning"
@@ -526,7 +450,7 @@ const App: React.FC = () => {
             />
             <MetricCard
               title="Safety Score"
-              value={98.5}
+              value={dashboardMetrics.safety}
               unit="%"
               change={{ value: 0.8, type: 'increase', period: 'vs last month' }}
               status="success"
@@ -543,7 +467,7 @@ const App: React.FC = () => {
             <CardContent>
               <Chart
                 type="line"
-                data={productionData}
+                data={chartData}
                 height={300}
                 showLegend
                 showGrid
@@ -562,17 +486,22 @@ const App: React.FC = () => {
                   options={facilityOptions}
                   placeholder="Choose a facility"
                   searchable
+                  value={selectedFacilityId}
+                  onChange={(value) => setSelectedFacilityId(String(value))}
                 />
                 <Input
                   label="Production Rate"
                   placeholder="Enter daily production"
                   helperText="Production rate in barrels per day"
+                  value={dashboardMetrics.oil.toString()}
+                  readOnly
                 />
                 <Input
                   label="Pressure Reading"
                   placeholder="Enter pressure"
-                  error="Pressure must be between 0-1000 PSI"
-                  defaultValue="1500"
+                  helperText="Current system pressure"
+                  value="850 PSI"
+                  readOnly
                 />
               </div>
             </CardContent>

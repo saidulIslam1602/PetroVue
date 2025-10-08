@@ -31,6 +31,9 @@ const paddingVariants = {
   md: theme.spacing.md,
   lg: theme.spacing.lg,
   xl: theme.spacing.xl,
+  '2xl': theme.spacing['2xl'],
+  '3xl': theme.spacing['3xl'],
+  '4xl': theme.spacing['4xl'],
 };
 
 export const CardContainer = styled.div<CardProps>`

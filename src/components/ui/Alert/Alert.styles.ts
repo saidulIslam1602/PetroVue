@@ -13,18 +13,21 @@ const alertStyles = {
     borderColor: '#0ea5e9',
     textColor: '#0c4a6e',
     iconColor: '#059669',
+    animation: undefined,
   },
   warning: {
     backgroundColor: '#fffbeb',
     borderColor: '#f59e0b',
     textColor: '#92400e',
     iconColor: '#d97706',
+    animation: undefined,
   },
   error: {
     backgroundColor: '#fef2f2',
     borderColor: '#ef4444',
     textColor: '#991b1b',
     iconColor: '#dc2626',
+    animation: undefined,
   },
   critical: {
     backgroundColor: '#fef2f2',
@@ -38,6 +41,7 @@ const alertStyles = {
     borderColor: '#3b82f6',
     textColor: '#1e40af',
     iconColor: '#2563eb',
+    animation: undefined,
   },
 };
 

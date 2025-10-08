@@ -63,7 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <InputField
             ref={ref}
             id={inputId}
-            size={size}
+            inputSize={size}
             variant={variant}
             hasError={hasError}
             hasStartIcon={!!startIcon}

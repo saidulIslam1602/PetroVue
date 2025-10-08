@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button, ButtonGroup } from './Button';
 
@@ -105,6 +105,7 @@ describe('ButtonGroup Component', () => {
     );
     
     const group = screen.getByRole('button').parentElement;
+    expect(group).toBeInTheDocument();
     expect(group).toHaveClass('custom-group');
   });
 });

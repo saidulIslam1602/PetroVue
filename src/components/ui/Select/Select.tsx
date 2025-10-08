@@ -205,7 +205,7 @@ export const Select: React.FC<SelectProps> = ({
                 <SelectOption
                   key={option.value}
                   size={size}
-                  disabled={option.disabled}
+                  disabled={option.disabled ?? false}
                   focused={index === focusedIndex}
                   onClick={() => handleSelect(option)}
                   onMouseEnter={() => setFocusedIndex(index)}

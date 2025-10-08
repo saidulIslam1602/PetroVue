@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Card, CardHeader, CardContent, CardFooter } from './Card';
+import { Card, CardHeaderComponent as CardHeader, CardContentComponent as CardContent, CardFooterComponent as CardFooter } from './Card';
 
 describe('Card Component', () => {
   it('renders with default props', () => {

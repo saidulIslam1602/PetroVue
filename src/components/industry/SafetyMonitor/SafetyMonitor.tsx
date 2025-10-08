@@ -96,12 +96,12 @@ export const SafetyMonitor: React.FC<SafetyMonitorProps> = ({
 
   // Safety trend data for chart
   const safetyTrendData = [
-    { name: 'Jan', score: 95, incidents: 2 },
-    { name: 'Feb', score: 97, incidents: 1 },
-    { name: 'Mar', score: 94, incidents: 3 },
-    { name: 'Apr', score: 96, incidents: 1 },
-    { name: 'May', score: 98, incidents: 0 },
-    { name: 'Jun', score: metrics.overallScore, incidents: metrics.totalIncidents },
+    { name: 'Jan', value: 95, score: 95, incidents: 2 },
+    { name: 'Feb', value: 97, score: 97, incidents: 1 },
+    { name: 'Mar', value: 94, score: 94, incidents: 3 },
+    { name: 'Apr', value: 96, score: 96, incidents: 1 },
+    { name: 'May', value: 98, score: 98, incidents: 0 },
+    { name: 'Jun', value: metrics.overallScore, score: metrics.overallScore, incidents: metrics.totalIncidents },
   ];
 
   const getOverallStatus = () => {

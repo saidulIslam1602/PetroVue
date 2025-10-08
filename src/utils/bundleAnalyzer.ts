@@ -14,8 +14,8 @@ export const analyzeBundleSize = () => {
   const scripts = document.querySelectorAll('script[src]');
   const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
   
-  let totalScriptSize = 0;
-  let totalStyleSize = 0;
+  const totalScriptSize = 0;
+  const totalStyleSize = 0;
   
   scripts.forEach(script => {
     const src = script.getAttribute('src');
@@ -93,7 +93,12 @@ export const checkPerformanceBudget = () => {
   };
   
   // This would be populated with actual performance metrics
-  const violations = [];
+  const violations: Array<{
+    metric: string;
+    threshold: number;
+    current: number;
+    severity: 'critical' | 'warning';
+  }> = [];
   
   Object.entries(budget).forEach(([metric, threshold]) => {
     const current = currentMetrics[metric as keyof typeof currentMetrics];

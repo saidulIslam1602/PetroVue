@@ -88,8 +88,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
     return (
       <SidebarItem
         key={item.id}
-        active={item.active}
-        disabled={item.disabled}
+        active={item.active || false}
+        disabled={item.disabled || false}
         collapsed={collapsed}
         onClick={() => handleItemClick(item)}
       >

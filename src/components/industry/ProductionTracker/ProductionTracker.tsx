@@ -125,6 +125,7 @@ export const ProductionTracker: React.FC<ProductionTrackerProps> = ({
       
       data.push({
         name: selectedTimeframe === '24h' ? `${i}:00` : `Day ${i + 1}`,
+        value: baseOil + Math.floor(Math.random() * 200 - 100),
         oil: baseOil + Math.floor(Math.random() * 200 - 100),
         gas: baseGas + Math.floor(Math.random() * 300 - 150),
         water: baseWater + Math.floor(Math.random() * 100 - 50),

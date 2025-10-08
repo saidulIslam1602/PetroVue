@@ -40,14 +40,23 @@ export const Table = <T extends Record<string, unknown>>({
   className,
   'data-testid': testId,
 }: TableProps<T>) => {
-  const renderCell = (column: TableColumn<T>, record: T, index: number) => {
+  const renderCell = (column: TableColumn<T>, record: T, index: number): React.ReactNode => {
     const value = column.dataIndex ? record[column.dataIndex] : record[column.key];
     
     if (column.render) {
       return column.render(value, record, index);
     }
     
-    return value;
+    // Convert unknown value to ReactNode
+    if (value === null || value === undefined) {
+      return '';
+    }
+    
+    if (typeof value === 'object') {
+      return JSON.stringify(value);
+    }
+    
+    return String(value);
   };
 
   return (
