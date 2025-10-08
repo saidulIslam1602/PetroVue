@@ -186,6 +186,104 @@ export interface TableProps<T = Record<string, unknown>> {
   'data-testid'?: string;
 }
 
+export interface ChartData {
+  name: string;
+  value: number;
+  [key: string]: string | number;
+}
+
+export interface ChartProps {
+  type: 'line' | 'area' | 'bar' | 'pie';
+  data: ChartData[];
+  title?: string;
+  width?: string | number;
+  height?: string | number;
+  xAxisKey?: string;
+  yAxisKey?: string;
+  colors?: string[];
+  showLegend?: boolean;
+  showGrid?: boolean;
+  loading?: boolean;
+  error?: string;
+  className?: string;
+  'data-testid'?: string;
+}
+
+export interface SelectOption {
+  value: string | number;
+  label: string;
+  disabled?: boolean;
+}
+
+export interface SelectProps {
+  options: SelectOption[];
+  value?: string | number;
+  onChange?: (value: string | number, option: SelectOption) => void;
+  placeholder?: string;
+  searchable?: boolean;
+  disabled?: boolean;
+  error?: string;
+  label?: string;
+  helperText?: string;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  'data-testid'?: string;
+}
+
+export interface AlertProps {
+  type: 'success' | 'warning' | 'error' | 'info' | 'critical';
+  title?: string;
+  message: string;
+  dismissible?: boolean;
+  onDismiss?: () => void;
+  icon?: React.ReactNode;
+  className?: string;
+  'data-testid'?: string;
+}
+
+export interface MetricCardProps {
+  title: string;
+  value: string | number;
+  unit?: string;
+  change?: {
+    value: number;
+    type: 'increase' | 'decrease' | 'neutral';
+    period?: string;
+  };
+  icon?: React.ReactNode;
+  status?: 'normal' | 'warning' | 'critical' | 'success';
+  trend?: 'up' | 'down' | 'stable';
+  className?: string;
+  'data-testid'?: string;
+}
+
+export interface SidebarItem {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+  href?: string;
+  onClick?: () => void;
+  active?: boolean;
+  disabled?: boolean;
+  badge?: string | number;
+  children?: SidebarItem[];
+}
+
+export interface SidebarProps {
+  items: SidebarItem[];
+  title?: string;
+  logo?: React.ReactNode;
+  user?: {
+    name: string;
+    role: string;
+    avatar?: string;
+  };
+  collapsed?: boolean;
+  onToggle?: () => void;
+  className?: string;
+  'data-testid'?: string;
+}
+
 // Oil & Gas Industry Specific Types
 export interface OperationalMetrics {
   production: {
