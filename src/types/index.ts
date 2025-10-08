@@ -127,6 +127,65 @@ export interface CardProps extends BaseComponentProps {
   padding?: keyof SpacingScale;
 }
 
+export interface HeaderProps {
+  title?: string;
+  onMenuToggle?: () => void;
+  user?: {
+    name: string;
+    role: string;
+    avatar?: string;
+  };
+  navigation?: Array<{
+    label: string;
+    href: string;
+    active?: boolean;
+  }>;
+}
+
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  label?: string;
+  error?: string;
+  helperText?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'outlined' | 'filled';
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  closeOnBackdropClick?: boolean;
+  closeOnEscape?: boolean;
+  'data-testid'?: string;
+}
+
+export interface TableColumn<T = Record<string, unknown>> {
+  key: string;
+  title: string;
+  dataIndex?: keyof T;
+  render?: (value: unknown, record: T, index: number) => React.ReactNode;
+  width?: string | number;
+  align?: 'left' | 'center' | 'right';
+  sortable?: boolean;
+}
+
+export interface TableProps<T = Record<string, unknown>> {
+  columns: TableColumn<T>[];
+  data: T[];
+  loading?: boolean;
+  emptyText?: string;
+  size?: 'sm' | 'md' | 'lg';
+  striped?: boolean;
+  hoverable?: boolean;
+  className?: string;
+  'data-testid'?: string;
+}
+
 // Oil & Gas Industry Specific Types
 export interface OperationalMetrics {
   production: {
