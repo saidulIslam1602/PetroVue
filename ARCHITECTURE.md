@@ -1,6 +1,6 @@
 # PetroVue - Advanced Oil & Gas Industry Dashboard
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 PetroVue is a modern, enterprise-grade React application built specifically for the oil & gas industry. It provides real-time monitoring, operational insights, and comprehensive data visualization for petroleum facilities worldwide.
 
@@ -16,14 +16,14 @@ PetroVue is a modern, enterprise-grade React application built specifically for 
 
 ### Key Features
 
-- 🛢️ **Real-time Facility Monitoring**: Live data from refineries, drilling sites, and processing plants
-- 📊 **Advanced Analytics**: Production metrics, efficiency tracking, and predictive insights
-- 🛡️ **Safety Management**: Incident tracking, compliance monitoring, and safety scores
-- 🌱 **Environmental Compliance**: CO2 emissions, water usage, waste management tracking
-- ⚙️ **Equipment Management**: Health monitoring, maintenance scheduling, alerts system
-- 📱 **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Real-time Facility Monitoring**: Live data from refineries, drilling sites, and processing plants
+- **Advanced Analytics**: Production metrics, efficiency tracking, and predictive insights
+- **Safety Management**: Incident tracking, compliance monitoring, and safety scores
+- **Environmental Compliance**: CO2 emissions, water usage, waste management tracking
+- **Equipment Management**: Health monitoring, maintenance scheduling, alerts system
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -65,7 +65,7 @@ REACT_APP_ENVIRONMENT=development
 REACT_APP_VERSION=1.0.0
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -94,7 +94,7 @@ src/
 └── styles/           # Global styles and themes
 ```
 
-## 🔧 Development Workflow
+## Development Workflow
 
 ### Code Standards
 
@@ -155,7 +155,7 @@ dataService.subscribe('production-updates', (data) => {
 });
 ```
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 ### Unit Testing
 
@@ -235,7 +235,7 @@ describe('Dashboard E2E Tests', () => {
 });
 ```
 
-## 🚀 Performance Optimization
+## Performance Optimization
 
 ### Bundle Optimization
 
@@ -274,7 +274,7 @@ export const DashboardComponent = () => {
 - **Time to Interactive**: < 3s
 - **Memory Usage**: < 50MB
 
-## 🔒 Security & Compliance
+## Security & Compliance
 
 ### Data Security
 
@@ -290,7 +290,7 @@ export const DashboardComponent = () => {
 - **GDPR**: Data privacy compliance
 - **API Security**: OAuth 2.0 / OpenID Connect
 
-## 🌐 Deployment
+## Deployment
 
 ### Production Build
 
@@ -334,7 +334,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
-## 📊 Monitoring & Analytics
+## Monitoring & Analytics
 
 ### Performance Monitoring
 
@@ -350,7 +350,7 @@ services:
 - **Performance Impact**: Business KPI correlation
 - **Industry Benchmarks**: Comparative analysis
 
-## 🤝 Contributing
+## Contributing
 
 ### Development Process
 
@@ -369,7 +369,7 @@ services:
 - [ ] Security considerations reviewed
 - [ ] Documentation updated
 
-## 📈 Roadmap
+## Roadmap
 
 ### Q1 2025
 - [ ] Mobile app development (React Native)
@@ -383,7 +383,7 @@ services:
 - [ ] Third-party integrations (SAP, Oracle)
 - [ ] Enhanced security features
 
-## 🆘 Support
+## Support
 
 ### Documentation
 - **API Documentation**: `/docs/api`
@@ -398,4 +398,4 @@ services:
 
 ---
 
-Built with ❤️ for the Oil & Gas Industry by the PetroVue Team
+Built for the Oil & Gas Industry by the PetroVue Team

@@ -579,7 +579,7 @@ export const EquipmentStatus: React.FC<EquipmentStatusProps> = ({
                 padding: '2rem',
                 color: '#64748b'
               }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✅</div>
+                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✓</div>
                 <p style={{ margin: 0 }}>No upcoming maintenance tasks</p>
               </div>
             )}

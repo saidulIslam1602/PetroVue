@@ -347,7 +347,7 @@ export function usePerformanceTracking(componentName: string) {
 
 // Bundle analysis script
 export const analyzeBundlePerformance = () => {
-  console.log('🔍 Bundle Performance Analysis');
+  console.log('Bundle Performance Analysis');
   console.log('================================');
   
   const analysis = performanceMonitor.getBundleAnalysis();

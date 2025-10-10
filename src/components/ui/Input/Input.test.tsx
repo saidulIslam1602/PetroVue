@@ -84,8 +84,8 @@ describe('Input Component', () => {
   });
 
   it('renders with start and end icons', () => {
-    const startIcon = <span data-testid="start-icon">🔍</span>;
-    const endIcon = <span data-testid="end-icon">❌</span>;
+    const startIcon = <span data-testid="start-icon">Search</span>;
+    const endIcon = <span data-testid="end-icon">Clear</span>;
     
     render(<Input startIcon={startIcon} endIcon={endIcon} />);
     

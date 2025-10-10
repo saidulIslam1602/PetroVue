@@ -61,7 +61,7 @@ describe('Alert Component', () => {
   });
 
   it('renders with custom icon', () => {
-    const customIcon = <span data-testid="custom-icon">🚨</span>;
+    const customIcon = <span data-testid="custom-icon">Alert</span>;
     render(<Alert type="info" message="Custom icon alert" icon={customIcon} />);
     
     expect(screen.getByTestId('custom-icon')).toBeInTheDocument();

@@ -1,0 +1,263 @@
+// SASS Mixins for Oil & Gas Dashboard Components
+// Demonstrates advanced SASS skills for Norwegian job requirements
+
+@import './variables';
+
+// Responsive Design Mixins
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Card Component Mixin
+@mixin dashboard-card($padding: $spacing-6) {
+  background: white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-base;
+  padding: $padding;
+  transition: $transition-base;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+// Button Mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3 $spacing-6;
+  border-radius: $border-radius-md;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: $transition-base;
+  border: none;
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-blue;
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background-color: $danger-red;
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background-color: darken($danger-red, 10%);
+  }
+}
+
+// Alert/Status Mixins
+@mixin status-indicator($color, $size: 0.5rem) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $color;
+  display: inline-block;
+  margin-right: $spacing-2;
+  
+  &.pulse {
+    animation: pulse 2s infinite;
+  }
+}
+
+@mixin alert-base {
+  padding: $spacing-4;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  display: flex;
+  align-items: center;
+  
+  .icon {
+    margin-right: $spacing-3;
+    flex-shrink: 0;
+  }
+}
+
+@mixin alert-critical {
+  @include alert-base;
+  background-color: lighten($danger-red, 40%);
+  color: $danger-red;
+  border: 1px solid lighten($danger-red, 20%);
+}
+
+@mixin alert-warning {
+  @include alert-base;
+  background-color: lighten($warning-amber, 35%);
+  color: darken($warning-amber, 20%);
+  border: 1px solid lighten($warning-amber, 15%);
+}
+
+@mixin alert-success {
+  @include alert-base;
+  background-color: lighten($success-green, 45%);
+  color: $success-green;
+  border: 1px solid lighten($success-green, 25%);
+}
+
+// Typography Mixins
+@mixin heading-xl {
+  font-family: $font-family-primary;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  color: $gray-900;
+  margin: 0 0 $spacing-4 0;
+}
+
+@mixin heading-lg {
+  font-family: $font-family-primary;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: 1.3;
+  color: $gray-900;
+  margin: 0 0 $spacing-3 0;
+}
+
+@mixin body-text {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: $gray-700;
+  margin: 0 0 $spacing-4 0;
+}
+
+@mixin small-text {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: 1.5;
+  color: $gray-500;
+}
+
+// Layout Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin container {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  
+  @include respond-to(md) {
+    padding: 0 $spacing-6;
+  }
+}
+
+// Oil & Gas Specific Mixins
+@mixin production-metric($color: $primary-blue) {
+  @include dashboard-card;
+  text-align: center;
+  
+  .metric-value {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color;
+    line-height: 1;
+    margin-bottom: $spacing-2;
+  }
+  
+  .metric-label {
+    @include small-text;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+  }
+  
+  .metric-trend {
+    font-size: $font-size-xs;
+    margin-top: $spacing-2;
+    
+    &.up { color: $success-green; }
+    &.down { color: $danger-red; }
+    &.neutral { color: $gray-500; }
+  }
+}
+
+@mixin facility-status($status: 'operational') {
+  @if $status == 'operational' {
+    @include status-indicator($success-green);
+  } @else if $status == 'warning' {
+    @include status-indicator($warning-amber);
+  } @else if $status == 'critical' {
+    @include status-indicator($danger-red);
+  } @else {
+    @include status-indicator($gray-500);
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

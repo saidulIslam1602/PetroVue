@@ -145,12 +145,12 @@ const App: React.FC = () => {
   ];
 
   const sidebarItems = [
-    { id: 'dashboard', icon: '🏠', label: 'Dashboard', href: '#', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
-    { id: 'operations', icon: '⚙️', label: 'Operations', href: '#', active: activeView === 'operations', onClick: () => setActiveView('operations') },
-    { id: 'safety', icon: '🛡️', label: 'Safety', href: '#', active: activeView === 'safety', onClick: () => setActiveView('safety') },
-    { id: 'production', icon: '📊', label: 'Production', href: '#', active: activeView === 'production', onClick: () => setActiveView('production') },
-    { id: 'environmental', icon: '🌱', label: 'Environmental', href: '#', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
-    { id: 'equipment', icon: '🔧', label: 'Equipment', href: '#', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
+    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', href: '#', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
+    { id: 'operations', icon: 'settings', label: 'Operations', href: '#', active: activeView === 'operations', onClick: () => setActiveView('operations') },
+    { id: 'safety', icon: 'security', label: 'Safety', href: '#', active: activeView === 'safety', onClick: () => setActiveView('safety') },
+    { id: 'production', icon: 'analytics', label: 'Production', href: '#', active: activeView === 'production', onClick: () => setActiveView('production') },
+    { id: 'environmental', icon: 'eco', label: 'Environmental', href: '#', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
+    { id: 'equipment', icon: 'build', label: 'Equipment', href: '#', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
   ];
 
   const user = {

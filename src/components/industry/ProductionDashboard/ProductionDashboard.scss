@@ -1,0 +1,253 @@
+// SASS Example Component - Oil Production Dashboard Card
+// Demonstrates SASS/LESS skills required in Norwegian job posting
+
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.production-dashboard {
+  @include container;
+  margin-top: $spacing-8;
+  
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-8;
+    
+    h1 {
+      @include heading-xl;
+      margin-bottom: 0;
+    }
+    
+    .last-updated {
+      @include small-text;
+      margin-bottom: 0;
+    }
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-6;
+    margin-bottom: $spacing-8;
+  }
+  
+  &__metric-card {
+    @include production-metric($primary-blue);
+    
+    &--oil {
+      @include production-metric($primary-blue);
+    }
+    
+    &--gas {
+      @include production-metric($success-green);
+    }
+    
+    &--water {
+      @include production-metric($gray-500);
+    }
+    
+    &--efficiency {
+      @include production-metric($warning-amber);
+    }
+  }
+  
+  &__alerts {
+    @include dashboard-card;
+    margin-bottom: $spacing-8;
+    
+    h2 {
+      @include heading-lg;
+      @include flex-between;
+      
+      .alert-count {
+        @include status-indicator($danger-red, 0.75rem);
+        
+        &.pulse {
+          animation: pulse 2s infinite;
+        }
+      }
+    }
+    
+    &-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        padding: $spacing-4 0;
+        border-bottom: 1px solid $gray-200;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &.critical {
+          @include alert-critical;
+          margin: $spacing-2 0;
+          border-bottom: none;
+        }
+        
+        &.warning {
+          @include alert-warning;
+          margin: $spacing-2 0;
+          border-bottom: none;
+        }
+        
+        &.info {
+          @include alert-success;
+          margin: $spacing-2 0;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  
+  &__facility-status {
+    @include dashboard-card;
+    
+    h3 {
+      @include heading-lg;
+      margin-bottom: $spacing-4;
+    }
+    
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: $spacing-4;
+    }
+    
+    .facility-item {
+      padding: $spacing-4;
+      border: 1px solid $gray-200;
+      border-radius: $border-radius-md;
+      transition: $transition-base;
+      
+      &:hover {
+        border-color: $primary-blue;
+        box-shadow: $shadow-sm;
+      }
+      
+      .facility-name {
+        @include body-text;
+        margin-bottom: $spacing-2;
+        font-weight: $font-weight-medium;
+      }
+      
+      .facility-location {
+        @include small-text;
+        margin-bottom: $spacing-3;
+      }
+      
+      .facility-status {
+        @include flex-center;
+        justify-content: flex-start;
+        
+        &--operational {
+          @include facility-status('operational');
+        }
+        
+        &--warning {
+          @include facility-status('warning');
+        }
+        
+        &--critical {
+          @include facility-status('critical');
+        }
+        
+        span {
+          @include small-text;
+          margin-left: $spacing-2;
+          margin-bottom: 0;
+          text-transform: uppercase;
+          font-weight: $font-weight-medium;
+        }
+      }
+    }
+  }
+  
+  // Responsive Design
+  @include respond-to(sm) {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @include respond-to(lg) {
+    &__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    &__metric-card {
+      padding: $spacing-8;
+      
+      .metric-value {
+        font-size: $font-size-4xl;
+      }
+    }
+  }
+  
+  // Dark theme support (bonus for modern applications)
+  @media (prefers-color-scheme: dark) {
+    &__metric-card {
+      background-color: $gray-900;
+      color: white;
+      
+      .metric-label {
+        color: $gray-300;
+      }
+    }
+    
+    &__alerts {
+      background-color: $gray-900;
+      color: white;
+    }
+    
+    &__facility-status {
+      background-color: $gray-900;
+      color: white;
+      
+      .facility-item {
+        background-color: $gray-700;
+        border-color: $gray-600;
+        
+        &:hover {
+          border-color: $primary-light;
+        }
+      }
+    }
+  }
+}
+
+// Loading states with SASS
+.loading-skeleton {
+  background: linear-gradient(90deg, $gray-200 25%, $gray-100 50%, $gray-200 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: $border-radius-md;
+  
+  &--metric {
+    height: 6rem;
+    margin-bottom: $spacing-4;
+  }
+  
+  &--text {
+    height: 1rem;
+    margin-bottom: $spacing-2;
+    
+    &.short {
+      width: 60%;
+    }
+    
+    &.medium {
+      width: 80%;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
