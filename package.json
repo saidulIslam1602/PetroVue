@@ -1,6 +1,29 @@
 {
   "name": "petro-vue",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Sustainable Energy Data Platform - React application for environmental reporting and carbon management",
+  "keywords": [
+    "sustainability",
+    "environmental-reporting",
+    "carbon-footprint",
+    "esg",
+    "react",
+    "typescript",
+    "material-ui",
+    "energy",
+    "renewable",
+    "climate"
+  ],
+  "author": {
+    "name": "Saidul Islam",
+    "email": "your.email@example.com",
+    "url": "https://github.com/saidulIslam1602"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saidulIslam1602/PetroVue.git"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -49,7 +72,13 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docker:build": "docker build -t petrovue:latest .",
+    "docker:run": "docker run -p 3000:3000 petrovue:latest",
+    "docker:dev": "docker-compose up",
+    "deploy:aws": "bash aws-deployment/deploy.sh production",
+    "deploy:staging": "bash aws-deployment/deploy.sh staging",
+    "deploy:dev": "bash aws-deployment/deploy.sh development"
   },
   "eslintConfig": {
     "extends": [

@@ -21,6 +21,9 @@ import { SafetyMonitor } from './components/industry/SafetyMonitor';
 import { ProductionTracker } from './components/industry/ProductionTracker';
 import { EnvironmentalMonitor } from './components/industry/EnvironmentalMonitor';
 import { EquipmentStatus } from './components/industry/EquipmentStatus';
+import { CarbonFootprintCalculator } from './components/industry/CarbonFootprintCalculator';
+import { ReportGenerator } from './components/industry/ReportGenerator';
+import { SustainabilityInsights } from './components/industry/SustainabilityInsights';
 import { APP_CONFIG } from './constants';
 import {
   useFacilities,
@@ -142,6 +145,9 @@ const App: React.FC = () => {
     { label: 'Production', href: '/production', active: activeView === 'production' },
     { label: 'Environmental', href: '/environmental', active: activeView === 'environmental' },
     { label: 'Equipment', href: '/equipment', active: activeView === 'equipment' },
+    { label: 'Sustainability', href: '/sustainability', active: activeView === 'sustainability' },
+    { label: 'Carbon Calculator', href: '/carbon', active: activeView === 'carbon' },
+    { label: 'Reports', href: '/reports', active: activeView === 'reports' },
   ];
 
   const sidebarItems = [
@@ -151,6 +157,9 @@ const App: React.FC = () => {
     { id: 'production', icon: 'analytics', label: 'Production', href: '#', active: activeView === 'production', onClick: () => setActiveView('production') },
     { id: 'environmental', icon: 'eco', label: 'Environmental', href: '#', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
     { id: 'equipment', icon: 'build', label: 'Equipment', href: '#', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
+    { id: 'sustainability', icon: 'eco', label: 'Sustainability Insights', href: '#', active: activeView === 'sustainability', onClick: () => setActiveView('sustainability') },
+    { id: 'carbon', icon: 'calculate', label: 'Carbon Calculator', href: '#', active: activeView === 'carbon', onClick: () => setActiveView('carbon') },
+    { id: 'reports', icon: 'description', label: 'Reports', href: '#', active: activeView === 'reports', onClick: () => setActiveView('reports') },
   ];
 
   const user = {
@@ -233,6 +242,15 @@ const App: React.FC = () => {
           />
         ) : <div style={{ padding: '2rem', textAlign: 'center' }}>Loading equipment data...</div>;
         
+      case 'sustainability':
+        return <SustainabilityInsights />;
+        
+      case 'carbon':
+        return <CarbonFootprintCalculator />;
+        
+      case 'reports':
+        return <ReportGenerator />;
+        
       default:
         return renderDashboard();
     }
@@ -286,6 +304,12 @@ const App: React.FC = () => {
           </Button>
           <Button variant='secondary' size='lg' onClick={() => setActiveView('production')}>
             Production Tracker
+          </Button>
+          <Button variant='secondary' size='lg' onClick={() => setActiveView('sustainability')}>
+            Sustainability Insights
+          </Button>
+          <Button variant='outline' size='lg' onClick={() => setActiveView('carbon')}>
+            Carbon Calculator
           </Button>
         </div>
       </header>
