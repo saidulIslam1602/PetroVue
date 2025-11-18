@@ -158,7 +158,9 @@ const colorVariants = {
 };
 
 // Main button container
-export const ButtonContainer = styled.button<ButtonProps>`
+export const ButtonContainer = styled('button', {
+  shouldForwardProp: prop => !['loading', 'variant', 'size'].includes(prop),
+})<ButtonProps>`
   ${baseButtonStyles}
   ${({ size }) => size && sizeVariants[size]}
   ${({ variant }) => variant && colorVariants[variant]}

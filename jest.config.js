@@ -11,7 +11,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   
   // Module name mapping for absolute imports
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
@@ -26,7 +26,9 @@ module.exports = {
   
   // Transform files
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: 'tsconfig.json',
+    }],
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
   
@@ -64,13 +66,6 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(recharts|@emotion|@mui)/)',
   ],
-  
-  // Global setup
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
-  },
   
   // Verbose output
   verbose: true,

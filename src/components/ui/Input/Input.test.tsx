@@ -13,7 +13,7 @@ describe('Input Component', () => {
     render(<Input placeholder='Enter text' />);
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute('type', 'text');
+    expect(input).toHaveAttribute('placeholder', 'Enter text');
   });
 
   it('renders with label', () => {

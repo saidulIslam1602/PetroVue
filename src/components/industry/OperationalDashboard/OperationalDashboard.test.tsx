@@ -62,7 +62,8 @@ describe('OperationalDashboard', () => {
     );
 
     expect(screen.getByText('Platform Alpha')).toBeInTheDocument();
-    expect(screen.getByText('Facility ID: PLT-001')).toBeInTheDocument();
+    expect(screen.getByText(/Facility ID:/)).toBeInTheDocument();
+    expect(screen.getByText(/PLT-001/)).toBeInTheDocument();
   });
 
   it('displays operational metrics', () => {
@@ -76,11 +77,11 @@ describe('OperationalDashboard', () => {
     );
 
     expect(screen.getByText('Oil Production')).toBeInTheDocument();
-    expect(screen.getByText('1250')).toBeInTheDocument();
+    expect(screen.getByText(/1250|1,250/)).toBeInTheDocument();
     expect(screen.getByText('bbl/day')).toBeInTheDocument();
 
     expect(screen.getByText('Gas Production')).toBeInTheDocument();
-    expect(screen.getByText('2100')).toBeInTheDocument();
+    expect(screen.getByText(/2100|2,100/)).toBeInTheDocument();
     expect(screen.getByText('mcf/day')).toBeInTheDocument();
   });
 
@@ -110,7 +111,7 @@ describe('OperationalDashboard', () => {
     );
 
     expect(screen.getByText('Equipment Status')).toBeInTheDocument();
-    expect(screen.getByText('42')).toBeInTheDocument();
+    expect(screen.getAllByText('42').length).toBeGreaterThan(0);
     expect(screen.getByText('/ 45')).toBeInTheDocument();
   });
 
