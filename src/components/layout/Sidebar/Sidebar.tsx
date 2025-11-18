@@ -83,7 +83,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const renderItem = (item: SidebarItemType) => {
-    const icon = item.icon || defaultIcons[item.id as keyof typeof defaultIcons];
+    // Only use default icons if item.icon is a string (icon name), otherwise use React component
+    const iconElement = typeof item.icon === 'string' 
+      ? defaultIcons[item.icon as keyof typeof defaultIcons] || item.icon
+      : item.icon;
+    
+    const iconToRender = typeof iconElement === 'string' 
+      ? defaultIcons[item.id as keyof typeof defaultIcons]
+      : iconElement;
     
     return (
       <SidebarItem
@@ -101,7 +108,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           minWidth: 0,
           overflow: 'hidden'
         }}>
-          {icon && !collapsed && (
+          {iconToRender && !collapsed && (
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -110,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               height: '20px',
               flexShrink: 0
             }}>
-              {icon}
+              {iconToRender}
             </div>
           )}
           {!collapsed && (
@@ -127,7 +134,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               {item.label}
             </span>
           )}
-          {icon && collapsed && (
+          {iconToRender && collapsed && (
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -136,7 +143,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               height: '20px',
               flexShrink: 0
             }}>
-              {icon}
+              {iconToRender}
             </div>
           )}
         </div>
