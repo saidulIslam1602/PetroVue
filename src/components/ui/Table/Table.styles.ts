@@ -37,7 +37,7 @@ export const TableElement = styled.table<{
   width: 100%;
   border-collapse: collapse;
   background-color: #ffffff;
-  
+
   ${({ size }) => sizeVariants[size]}
 `;
 
@@ -50,7 +50,7 @@ export const TableBody = styled.tbody``;
 
 export const TableRow = styled.tr<{ striped?: boolean; hoverable?: boolean }>`
   border-bottom: 1px solid #f3f4f6;
-  
+
   ${({ striped }) =>
     striped &&
     `
@@ -58,7 +58,7 @@ export const TableRow = styled.tr<{ striped?: boolean; hoverable?: boolean }>`
       background-color: #f9fafb;
     }
   `}
-  
+
   ${({ hoverable }) =>
     hoverable &&
     `
@@ -82,9 +82,10 @@ export const TableHeader = styled.th<{
   text-align: ${({ align }) => align || 'left'};
   padding: 0.75rem 1rem;
   border-right: 1px solid #e5e7eb;
-  
-  ${({ width }) => width && `width: ${typeof width === 'number' ? `${width}px` : width};`}
-  
+
+  ${({ width }) =>
+    width && `width: ${typeof width === 'number' ? `${width}px` : width};`}
+
   ${({ sortable }) =>
     sortable &&
     `
@@ -108,7 +109,7 @@ export const TableCell = styled.td<{
   text-align: ${({ align }) => align || 'left'};
   padding: 0.75rem 1rem;
   border-right: 1px solid #f3f4f6;
-  
+
   &:last-child {
     border-right: none;
   }

@@ -4,7 +4,12 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Card, CardHeaderComponent as CardHeader, CardContentComponent as CardContent, CardFooterComponent as CardFooter } from './Card';
+import {
+  Card,
+  CardHeaderComponent as CardHeader,
+  CardContentComponent as CardContent,
+  CardFooterComponent as CardFooter,
+} from './Card';
 import { Button } from '../Button';
 
 const meta: Meta<typeof Card> = {
@@ -14,7 +19,8 @@ const meta: Meta<typeof Card> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A versatile container component for displaying content, designed for oil & gas industry data presentation.',
+        component:
+          'A versatile container component for displaying content, designed for oil & gas industry data presentation.',
       },
     },
   },
@@ -67,13 +73,16 @@ export const WithFooter: Story = {
         <h3>Safety Alert</h3>
       </CardHeader>
       <CardContent>
-        <p>High pressure detected in pipeline section A-12. Immediate attention required.</p>
+        <p>
+          High pressure detected in pipeline section A-12. Immediate attention
+          required.
+        </p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" size="sm">
+        <Button variant='outline' size='sm'>
           Dismiss
         </Button>
-        <Button variant="primary" size="sm">
+        <Button variant='primary' size='sm'>
           View Details
         </Button>
       </CardFooter>
@@ -101,23 +110,23 @@ export const Outlined: Story = {
 export const PaddingSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-      <Card padding="xs">
+      <Card padding='xs'>
         <h4>Extra Small</h4>
         <p>Minimal padding</p>
       </Card>
-      <Card padding="sm">
+      <Card padding='sm'>
         <h4>Small</h4>
         <p>Small padding</p>
       </Card>
-      <Card padding="md">
+      <Card padding='md'>
         <h4>Medium</h4>
         <p>Default padding</p>
       </Card>
-      <Card padding="lg">
+      <Card padding='lg'>
         <h4>Large</h4>
         <p>Large padding</p>
       </Card>
-      <Card padding="xl">
+      <Card padding='xl'>
         <h4>Extra Large</h4>
         <p>Maximum padding</p>
       </Card>
@@ -129,15 +138,15 @@ export const PaddingSizes: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-      <Card variant="default">
+      <Card variant='default'>
         <h4>Default</h4>
         <p>Standard card appearance</p>
       </Card>
-      <Card variant="elevated">
+      <Card variant='elevated'>
         <h4>Elevated</h4>
         <p>Card with shadow</p>
       </Card>
-      <Card variant="outlined">
+      <Card variant='outlined'>
         <h4>Outlined</h4>
         <p>Card with border</p>
       </Card>

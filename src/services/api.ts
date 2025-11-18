@@ -4,7 +4,8 @@
  */
 
 // Base API configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 const API_TIMEOUT = 30000; // 30 seconds
 
 // API response types
@@ -59,19 +60,22 @@ class ApiClient {
       return data;
     } catch (error) {
       clearTimeout(timeoutId);
-      
+
       if (error instanceof Error) {
         if (error.name === 'AbortError') {
           throw new Error('Request timeout');
         }
         throw error;
       }
-      
+
       throw new Error('Unknown error occurred');
     }
   }
 
-  async get<T>(endpoint: string, params?: Record<string, string>): Promise<ApiResponse<T>> {
+  async get<T>(
+    endpoint: string,
+    params?: Record<string, string>
+  ): Promise<ApiResponse<T>> {
     const url = new URL(`${this.baseURL}${endpoint}`);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
@@ -136,9 +140,11 @@ export const withRetry = async <T>(
       return await operation();
     } catch (error) {
       lastError = error instanceof Error ? error : new Error('Unknown error');
-      
+
       if (i < maxRetries - 1) {
-        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+        await new Promise(resolve =>
+          setTimeout(resolve, delay * Math.pow(2, i))
+        );
       }
     }
   }

@@ -13,7 +13,7 @@ export const norwegianTranslations = {
   reports: 'Rapporter',
   settings: 'Innstillinger',
   logout: 'Logg ut',
-  
+
   // Production Terms (Norwegian Petroleum Industry)
   oilProduction: 'Oljeproduksjon',
   gasProduction: 'Gassproduksjon',
@@ -26,7 +26,7 @@ export const norwegianTranslations = {
   efficiency: 'Effektivitet',
   capacity: 'Kapasitet',
   utilization: 'Utnyttelse',
-  
+
   // Facility Types
   platform: 'Plattform',
   offshorePlatform: 'Offshoreplatform',
@@ -35,7 +35,7 @@ export const norwegianTranslations = {
   refinery: 'Raffineri',
   pipeline: 'Rørledning',
   wellhead: 'Brønnhode',
-  
+
   // Safety and Emergency
   safetyAlert: 'Sikkerhetsvarsel',
   emergencyShutdown: 'Nødsstopp',
@@ -46,7 +46,7 @@ export const norwegianTranslations = {
   incidentRate: 'Hendelsesrate',
   daysWithoutIncident: 'Dager uten hendelse',
   hseCompliance: 'HMS-overholdelse', // Helse, Miljø og Sikkerhet
-  
+
   // Environmental Terms
   carbonEmissions: 'Karbonutslipp',
   carbonIntensity: 'Karbonintensitet',
@@ -56,7 +56,7 @@ export const norwegianTranslations = {
   spillPrevention: 'Utslippsforebygging',
   environmentalCompliance: 'Miljøoverholdelse',
   sustainabilityReport: 'Bærekraftsrapport',
-  
+
   // Regulatory and Compliance (Norwegian Specific)
   norwegianPetroleumDirectorate: 'Oljedirektoratet',
   petroleumSafetyAuthority: 'Petroleumstilsynet',
@@ -65,7 +65,7 @@ export const norwegianTranslations = {
   safetyCase: 'Sikkerhetsdokumentasjon',
   impactAssessment: 'Konsekvensutredning',
   workingEnvironment: 'Arbeidsmiljø',
-  
+
   // Technical Terms
   pressure: 'Trykk',
   temperature: 'Temperatur',
@@ -75,7 +75,7 @@ export const norwegianTranslations = {
   separator: 'Separator',
   pumpStation: 'Pumpestasjon',
   controlRoom: 'Kontrollrom',
-  
+
   // Time and Status
   realTime: 'Sanntid',
   lastUpdated: 'Sist oppdatert',
@@ -87,7 +87,7 @@ export const norwegianTranslations = {
   normal: 'Normal',
   status: 'Status',
   conditions: 'Forhold',
-  
+
   // Data and Analytics
   trending: 'Trending',
   forecastData: 'Prognose',
@@ -95,7 +95,7 @@ export const norwegianTranslations = {
   performance: 'Ytelse',
   optimization: 'Optimalisering',
   benchmark: 'Referanseverdi',
-  
+
   // Geographic Terms (Norwegian Continental Shelf)
   northSea: 'Nordsjøen',
   norwegianSea: 'Norskehavet',
@@ -104,7 +104,7 @@ export const norwegianTranslations = {
   sector: 'Sektor',
   block: 'Blokk',
   field: 'Felt',
-  
+
   // Common UI Messages
   loading: 'Laster...',
   error: 'Feil',
@@ -115,7 +115,7 @@ export const norwegianTranslations = {
   save: 'Lagre',
   cancel: 'Avbryt',
   confirm: 'Bekreft',
-  
+
   // Alerts and Notifications
   highPressureAlert: 'Høytrykkvarsel',
   temperatureAlert: 'Temperaturvarsel',
@@ -123,7 +123,7 @@ export const norwegianTranslations = {
   maintenanceDue: 'Vedlikehold forfaller',
   productionDown: 'Produksjonsstans',
   systemOnline: 'System online',
-  
+
   // Reports and Documentation
   dailyReport: 'Dagrapport',
   weeklyReport: 'Ukerapport',
@@ -131,7 +131,7 @@ export const norwegianTranslations = {
   annualReport: 'Årsrapport',
   auditReport: 'Revisjonsrapport',
   complianceReport: 'Samsvarserklæring',
-  
+
   // Weather and Conditions (Important for Offshore)
   weather: 'Vær',
   windSpeed: 'Vindhastighet',
@@ -139,7 +139,7 @@ export const norwegianTranslations = {
   visibility: 'Sikt',
   seaState: 'Sjøtilstand',
   weatherWindow: 'Værvindu',
-  
+
   // Personnel and Operations
   personnel: 'Personell',
   onboard: 'Ombord',
@@ -149,7 +149,7 @@ export const norwegianTranslations = {
   supplyVessel: 'Forsyningsfartøy',
   crew: 'Mannskap',
   shift: 'Skift',
-  
+
   // Units and Measurements (Norwegian Standards)
   meters: 'meter',
   kilometers: 'kilometer',
@@ -158,7 +158,7 @@ export const norwegianTranslations = {
   bar: 'bar', // Pressure unit
   meterPerSecond: 'meter per sekund',
   percentage: 'prosent',
-  
+
   // Financial Terms
   revenue: 'Inntekt',
   cost: 'Kostnad',
@@ -167,7 +167,7 @@ export const norwegianTranslations = {
   roi: 'Avkastning på investering',
   opex: 'Driftskostnader',
   capex: 'Investeringskostnader',
-  
+
   // Innovation and Technology
   digitization: 'Digitalisering',
   automation: 'Automatisering',
@@ -176,7 +176,7 @@ export const norwegianTranslations = {
   predictiveMaintenance: 'Prediktivt vedlikehold',
   smartSensors: 'Smarte sensorer',
   iot: 'Tingenes internett',
-  
+
   // Sustainability (Important for Norwegian Companies)
   carbonNeutral: 'Karbonnøytral',
   greenTechnology: 'Grønn teknologi',
@@ -194,40 +194,40 @@ export const norwegianFormatting = {
   timeFormat: 'HH:mm',
   decimalSeparator: ',',
   thousandsSeparator: ' ',
-  
+
   // Format numbers according to Norwegian standards
   formatNumber: (value: number): string => {
     return new Intl.NumberFormat('nb-NO').format(value);
   },
-  
+
   // Format currency in Norwegian Kroner
   formatCurrency: (value: number): string => {
     return new Intl.NumberFormat('nb-NO', {
       style: 'currency',
-      currency: 'NOK'
+      currency: 'NOK',
     }).format(value);
   },
-  
+
   // Format dates according to Norwegian standard
   formatDate: (date: Date): string => {
     return new Intl.DateTimeFormat('nb-NO', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
     }).format(date);
   },
-  
+
   // Format time according to Norwegian 24-hour format
   formatTime: (date: Date): string => {
     return new Intl.DateTimeFormat('nb-NO', {
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false
+      hour12: false,
     }).format(date);
-  }
+  },
 };
 
-  // Oil & Gas specific terminology that impresses Norwegian companies
+// Oil & Gas specific terminology that impresses Norwegian companies
 export const petroleumTerminology = {
   // Production terminology from Norwegian Petroleum Directorate
   standardCubicMeter: 'standard kubikkmeter (Sm³)',
@@ -238,7 +238,7 @@ export const petroleumTerminology = {
   reserves: 'reserver',
   contingentResources: 'betingede ressurser',
   prospectiveResources: 'prospektive ressurser',
-  
+
   // Drilling Operations (Norwegian North Sea specific)
   rotaryDrilling: 'rotorboring',
   mudLogging: 'borecuttanalyse',
@@ -252,7 +252,7 @@ export const petroleumTerminology = {
   formationEvaluation: 'formasjonsevaluering',
   logWhileDrilling: 'logging under boring (LWD)',
   measurementWhileDrilling: 'måling under boring (MWD)',
-  
+
   // Reservoir Engineering
   porosityPermeability: 'porøsitet og permeabilitet',
   fluidSaturation: 'væskemetning',
@@ -268,7 +268,7 @@ export const petroleumTerminology = {
   enhancedOilRecovery: 'forbedret oljeutvinning (EOR)',
   waterInjection: 'vanninjeksjon',
   gasInjection: 'gassinjeksjon',
-  
+
   // Production Engineering
   artificialLift: 'kunstig løft',
   electricSubmersiblePump: 'nedsenkbar elektrisk pumpe (ESP)',
@@ -281,7 +281,7 @@ export const petroleumTerminology = {
   heaterTreater: 'varme-behandlingsenhet',
   testSeparator: 'testseparator',
   flareSystem: 'fakkelSystem',
-  
+
   // Facility Engineering
   processPlatform: 'prosessplattform',
   wellheadPlatform: 'brønnhodeplattform',
@@ -293,12 +293,12 @@ export const petroleumTerminology = {
   pipelineEndManifold: 'rørledningsendeterminal (PLEM)',
   umbilical: 'navlestreng',
   riser: 'stiger',
-  
+
   // Regulatory framework
   managementRegulations: 'Styringsforskriften',
   facilitiesRegulations: 'Innretningsforskriften',
   activitiesRegulations: 'Aktivitetsforskriften',
-  
+
   // Norwegian Continental Shelf specific
   productionLicense: 'utvinningstillatelse',
   explorationLicense: 'lettelisens',
@@ -306,7 +306,7 @@ export const petroleumTerminology = {
   tieback: 'tilknytning',
   subsea: 'undersjøisk',
   template: 'brønnhodemodul',
-  
+
   // Geology and Geophysics
   seismicSurvey: 'seismisk undersøkelse',
   magnetotellurics: 'magnetotellurisk undersøkelse',
@@ -322,7 +322,7 @@ export const petroleumTerminology = {
   reservoirRock: 'reservoarbergart',
   capRock: 'tettbergart',
   migration: 'migrasjon',
-  
+
   // Health, Safety & Environment (HMS)
   permitToWork: 'arbeidstillatelse',
   jobSafetyAnalysis: 'jobbsikkerhetsanalyse (JSA)',
@@ -333,7 +333,7 @@ export const petroleumTerminology = {
   majorAccidentRisk: 'storulykkerisiko',
   barrierManagement: 'barrierestyring',
   integrityManagement: 'integritetsstyring',
-  
+
   // Safety and environmental
   totalRecordableRate: 'total registrerbar skaderate (TRIF)',
   lostTimeInjuryFrequency: 'fraværsskadefrekvens (H1)',
@@ -343,7 +343,7 @@ export const petroleumTerminology = {
   emissionsFactor: 'utslippsfaktor',
   flaring: 'fakkling',
   venting: 'utblåsning',
-  
+
   // Economics and Commercial
   netPresentValue: 'netto nåverdi (NPV)',
   internalRateReturn: 'internrente (IRR)',
@@ -355,7 +355,7 @@ export const petroleumTerminology = {
   operatingExpenditure: 'driftsutgifter (OPEX)',
   unitTechnicalCost: 'enhetsteknisk kostnad (UTC)',
   fieldLifeCycle: 'feltets livsløp',
-  
+
   // Digital and Technology
   digitalTwin: 'digital tvilling',
   artificialIntelligence: 'kunstig intelligens (AI)',
@@ -374,7 +374,7 @@ export const petroleumTerminology = {
 const norwegianLocalization = {
   translations: norwegianTranslations,
   formatting: norwegianFormatting,
-  terminology: petroleumTerminology
+  terminology: petroleumTerminology,
 };
 
 export default norwegianLocalization;

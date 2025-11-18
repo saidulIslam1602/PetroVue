@@ -4,11 +4,11 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { 
-  Container, 
-  Card, 
-  CardContent, 
-  Typography, 
+import {
+  Container,
+  Card,
+  CardContent,
+  Typography,
   Box,
   Chip,
   LinearProgress,
@@ -18,7 +18,7 @@ import {
   ListItemText,
   Divider,
   Button,
-  Paper
+  Paper,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
@@ -29,7 +29,7 @@ import {
   Assignment,
   Security,
   Nature,
-  Engineering
+  Engineering,
 } from '@mui/icons-material';
 import { norwegianTranslations } from '../../../constants/norwegianLocalization';
 
@@ -45,8 +45,9 @@ const ComplianceCard = styled(Card)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: 'url("data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/svg%3E")',
-  }
+    backgroundImage:
+      'url("data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/svg%3E")',
+  },
 }));
 
 const RegulationCard = styled(Card)(({ theme }) => ({
@@ -98,12 +99,13 @@ const mockComplianceData: ComplianceRequirement[] = [
     lastReview: new Date('2024-01-15'),
     nextReview: new Date('2024-02-01'),
     riskLevel: 'medium',
-    documentStatus: 'approved'
+    documentStatus: 'approved',
   },
   {
     id: 'PSA-002',
     title: 'Sikkerhetsdokumentasjon (Safety Case)',
-    description: 'Oppdatering av sikkerhetsdokumentasjon for Petroleumstilsynet',
+    description:
+      'Oppdatering av sikkerhetsdokumentasjon for Petroleumstilsynet',
     authority: 'PSA',
     category: 'safety',
     status: 'pending',
@@ -111,7 +113,7 @@ const mockComplianceData: ComplianceRequirement[] = [
     lastReview: new Date('2023-12-01'),
     nextReview: new Date('2024-03-15'),
     riskLevel: 'high',
-    documentStatus: 'pending'
+    documentStatus: 'pending',
   },
   {
     id: 'NEA-003',
@@ -124,7 +126,7 @@ const mockComplianceData: ComplianceRequirement[] = [
     lastReview: new Date('2023-11-15'),
     nextReview: new Date('2024-02-10'),
     riskLevel: 'critical',
-    documentStatus: 'draft'
+    documentStatus: 'draft',
   },
   {
     id: 'NPD-004',
@@ -137,7 +139,7 @@ const mockComplianceData: ComplianceRequirement[] = [
     lastReview: new Date('2024-01-01'),
     nextReview: new Date('2024-12-31'),
     riskLevel: 'low',
-    documentStatus: 'approved'
+    documentStatus: 'approved',
   },
   {
     id: 'PSA-005',
@@ -150,8 +152,8 @@ const mockComplianceData: ComplianceRequirement[] = [
     lastReview: new Date('2023-04-01'),
     nextReview: new Date('2024-04-01'),
     riskLevel: 'medium',
-    documentStatus: 'draft'
-  }
+    documentStatus: 'draft',
+  },
 ];
 
 const regulatoryFrameworks: RegulatoryFramework[] = [
@@ -163,7 +165,7 @@ const regulatoryFrameworks: RegulatoryFramework[] = [
     applicableToGas: true,
     lastUpdate: new Date('2023-01-01'),
     nextRevision: new Date('2025-01-01'),
-    complianceLevel: 94.2
+    complianceLevel: 94.2,
   },
   {
     name: 'Innretningsforskriften',
@@ -173,18 +175,19 @@ const regulatoryFrameworks: RegulatoryFramework[] = [
     applicableToGas: true,
     lastUpdate: new Date('2023-06-15'),
     nextRevision: new Date('2025-06-15'),
-    complianceLevel: 97.8
+    complianceLevel: 97.8,
   },
   {
     name: 'Aktivitetsforskriften',
     authority: 'Petroleumstilsynet (PSA)',
-    description: 'Forskrift om gjennomføring av aktiviteter i petroleumsvirksomheten',
+    description:
+      'Forskrift om gjennomføring av aktiviteter i petroleumsvirksomheten',
     applicableToOil: true,
     applicableToGas: true,
     lastUpdate: new Date('2023-03-01'),
     nextRevision: new Date('2025-03-01'),
-    complianceLevel: 91.5
-  }
+    complianceLevel: 91.5,
+  },
 ];
 
 export const RegulatoryComplianceDashboard: React.FC = () => {
@@ -193,106 +196,149 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
 
   useEffect(() => {
     // Calculate overall compliance score
-    const compliantItems = mockComplianceData.filter(item => item.status === 'compliant').length;
+    const compliantItems = mockComplianceData.filter(
+      item => item.status === 'compliant'
+    ).length;
     const totalItems = mockComplianceData.length;
     setOverallCompliance((compliantItems / totalItems) * 100);
   }, []);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'compliant': return <CheckCircle color="success" />;
-      case 'pending': return <Schedule color="warning" />;
-      case 'overdue': return <Error color="error" />;
-      case 'non-compliant': return <Warning color="error" />;
-      default: return <Schedule />;
+      case 'compliant':
+        return <CheckCircle color='success' />;
+      case 'pending':
+        return <Schedule color='warning' />;
+      case 'overdue':
+        return <Error color='error' />;
+      case 'non-compliant':
+        return <Warning color='error' />;
+      default:
+        return <Schedule />;
     }
   };
 
-  const getStatusColor = (status: string): 'success' | 'warning' | 'error' | 'info' => {
+  const getStatusColor = (
+    status: string
+  ): 'success' | 'warning' | 'error' | 'info' => {
     switch (status) {
-      case 'compliant': return 'success';
-      case 'pending': return 'warning';
-      case 'overdue': return 'error';
-      case 'non-compliant': return 'error';
-      default: return 'info';
+      case 'compliant':
+        return 'success';
+      case 'pending':
+        return 'warning';
+      case 'overdue':
+        return 'error';
+      case 'non-compliant':
+        return 'error';
+      default:
+        return 'info';
     }
   };
 
-  const getRiskColor = (risk: string): 'success' | 'warning' | 'error' | 'info' => {
+  const getRiskColor = (
+    risk: string
+  ): 'success' | 'warning' | 'error' | 'info' => {
     switch (risk) {
-      case 'low': return 'success';
-      case 'medium': return 'warning';
-      case 'high': return 'error';
-      case 'critical': return 'error';
-      default: return 'info';
+      case 'low':
+        return 'success';
+      case 'medium':
+        return 'warning';
+      case 'high':
+        return 'error';
+      case 'critical':
+        return 'error';
+      default:
+        return 'info';
     }
   };
 
   const getAuthorityFullName = (authority: string): string => {
     switch (authority) {
-      case 'NPD': return norwegianTranslations.norwegianPetroleumDirectorate;
-      case 'PSA': return norwegianTranslations.petroleumSafetyAuthority;
-      case 'NEA': return norwegianTranslations.environmentalAgency;
-      case 'NOA': return 'Norges Oljemuseum';
-      default: return authority;
+      case 'NPD':
+        return norwegianTranslations.norwegianPetroleumDirectorate;
+      case 'PSA':
+        return norwegianTranslations.petroleumSafetyAuthority;
+      case 'NEA':
+        return norwegianTranslations.environmentalAgency;
+      case 'NOA':
+        return 'Norges Oljemuseum';
+      default:
+        return authority;
     }
   };
 
-  const filteredData = selectedCategory === 'all' 
-    ? mockComplianceData 
-    : mockComplianceData.filter(item => item.category === selectedCategory);
+  const filteredData =
+    selectedCategory === 'all'
+      ? mockComplianceData
+      : mockComplianceData.filter(item => item.category === selectedCategory);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
+    <Container maxWidth='xl' sx={{ py: 4 }}>
+      <Typography variant='h4' gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
         {norwegianTranslations.regulatoryCompliance} Dashboard
       </Typography>
-      
-      <Typography variant="subtitle1" sx={{ mb: 4, color: 'text.secondary' }}>
+
+      <Typography variant='subtitle1' sx={{ mb: 4, color: 'text.secondary' }}>
         Norsk petroleumsregulering og HMS-overholdelse
       </Typography>
 
       {/* Overall Compliance Score */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3, mb: 4 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+          gap: 3,
+          mb: 4,
+        }}
+      >
         <ComplianceCard>
           <CardContent sx={{ position: 'relative', zIndex: 1 }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Total {norwegianTranslations.regulatoryCompliance}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Box sx={{ flex: 1, mr: 2 }}>
-                <LinearProgress 
-                  variant="determinate" 
+                <LinearProgress
+                  variant='determinate'
                   value={overallCompliance}
                   sx={{
                     height: 12,
                     borderRadius: 6,
                     backgroundColor: 'rgba(255,255,255,0.3)',
                     '& .MuiLinearProgress-bar': {
-                      backgroundColor: overallCompliance > 80 ? '#10b981' : overallCompliance > 60 ? '#f59e0b' : '#ef4444'
-                    }
+                      backgroundColor:
+                        overallCompliance > 80
+                          ? '#10b981'
+                          : overallCompliance > 60
+                            ? '#f59e0b'
+                            : '#ef4444',
+                    },
                   }}
                 />
               </Box>
-              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
                 {overallCompliance.toFixed(1)}%
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              {mockComplianceData.filter(item => item.status === 'compliant').length} av {mockComplianceData.length} krav oppfylt
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
+              {
+                mockComplianceData.filter(item => item.status === 'compliant')
+                  .length
+              }{' '}
+              av {mockComplianceData.length} krav oppfylt
             </Typography>
           </CardContent>
         </ComplianceCard>
 
         <RegulationCard>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Aktive Forskrifter
             </Typography>
-            <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography variant='h3' sx={{ fontWeight: 'bold', mb: 1 }}>
               {regulatoryFrameworks.length}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               Petroleumstilsynet og Oljedirektoratet
             </Typography>
           </CardContent>
@@ -300,15 +346,19 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
 
         <AuditCard>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Forestående Revisjoner
             </Typography>
-            <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 1 }}>
-              {mockComplianceData.filter(item => 
-                new Date(item.nextReview).getTime() - Date.now() < 30 * 24 * 60 * 60 * 1000
-              ).length}
+            <Typography variant='h3' sx={{ fontWeight: 'bold', mb: 1 }}>
+              {
+                mockComplianceData.filter(
+                  item =>
+                    new Date(item.nextReview).getTime() - Date.now() <
+                    30 * 24 * 60 * 60 * 1000
+                ).length
+              }
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               Neste 30 dager
             </Typography>
           </CardContent>
@@ -317,29 +367,45 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
 
       {/* Category Filter */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>Filtrer etter kategori:</Typography>
+        <Typography variant='h6' sx={{ mb: 2 }}>
+          Filtrer etter kategori:
+        </Typography>
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-          {['all', 'safety', 'environmental', 'operational', 'reporting'].map(category => (
-            <Chip
-              key={category}
-              label={category === 'all' ? 'Alle' : 
-                category === 'safety' ? 'Sikkerhet' :
-                category === 'environmental' ? 'Miljø' :
-                category === 'operational' ? 'Operasjonell' : 
-                'Rapportering'}
-              onClick={() => setSelectedCategory(category)}
-              color={selectedCategory === category ? 'primary' : 'default'}
-              variant={selectedCategory === category ? 'filled' : 'outlined'}
-            />
-          ))}
+          {['all', 'safety', 'environmental', 'operational', 'reporting'].map(
+            category => (
+              <Chip
+                key={category}
+                label={
+                  category === 'all'
+                    ? 'Alle'
+                    : category === 'safety'
+                      ? 'Sikkerhet'
+                      : category === 'environmental'
+                        ? 'Miljø'
+                        : category === 'operational'
+                          ? 'Operasjonell'
+                          : 'Rapportering'
+                }
+                onClick={() => setSelectedCategory(category)}
+                color={selectedCategory === category ? 'primary' : 'default'}
+                variant={selectedCategory === category ? 'filled' : 'outlined'}
+              />
+            )
+          )}
         </Box>
       </Box>
 
       {/* Compliance Requirements List & Regulatory Frameworks */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 3 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' },
+          gap: 3,
+        }}
+      >
         <Card>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Compliance Krav ({filteredData.length})
             </Typography>
             <List>
@@ -351,48 +417,64 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary={
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1, flexWrap: 'wrap' }}>
-                          <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 2,
+                            mb: 1,
+                            flexWrap: 'wrap',
+                          }}
+                        >
+                          <Typography
+                            variant='subtitle1'
+                            sx={{ fontWeight: 'bold' }}
+                          >
                             {requirement.title}
                           </Typography>
-                          <Chip 
+                          <Chip
                             label={requirement.authority}
-                            size="small"
-                            color="primary"
-                            variant="outlined"
+                            size='small'
+                            color='primary'
+                            variant='outlined'
                           />
-                          <Chip 
+                          <Chip
                             label={requirement.status}
-                            size="small"
+                            size='small'
                             color={getStatusColor(requirement.status)}
                           />
-                          <Chip 
+                          <Chip
                             label={`Risk: ${requirement.riskLevel}`}
-                            size="small"
+                            size='small'
                             color={getRiskColor(requirement.riskLevel)}
-                            variant="outlined"
+                            variant='outlined'
                           />
                         </Box>
                       }
                       secondary={
                         <Box>
-                          <Typography variant="body2" sx={{ mb: 1 }}>
+                          <Typography variant='body2' sx={{ mb: 1 }}>
                             {requirement.description}
                           </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            Forfaller: {requirement.dueDate.toLocaleDateString('nb-NO')} | 
-                            Sist gjennomgang: {requirement.lastReview.toLocaleDateString('nb-NO')} |
-                            Myndighet: {getAuthorityFullName(requirement.authority)}
+                          <Typography variant='caption' color='text.secondary'>
+                            Forfaller:{' '}
+                            {requirement.dueDate.toLocaleDateString('nb-NO')} |
+                            Sist gjennomgang:{' '}
+                            {requirement.lastReview.toLocaleDateString('nb-NO')}{' '}
+                            | Myndighet:{' '}
+                            {getAuthorityFullName(requirement.authority)}
                           </Typography>
                         </Box>
                       }
                     />
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                      <Button variant="outlined" size="small">
+                    <Box
+                      sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+                    >
+                      <Button variant='outlined' size='small'>
                         Vis detaljer
                       </Button>
                       {requirement.status === 'overdue' && (
-                        <Button variant="contained" color="error" size="small">
+                        <Button variant='contained' color='error' size='small'>
                           Opprett rapport
                         </Button>
                       )}
@@ -408,46 +490,59 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
         {/* Regulatory Frameworks */}
         <Card>
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Norske Petroleumsforskrifter
             </Typography>
             {regulatoryFrameworks.map((framework, index) => (
               <Paper key={index} sx={{ p: 2, mb: 2, bgcolor: 'grey.50' }}>
-                <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1 }}>
+                <Typography
+                  variant='subtitle2'
+                  sx={{ fontWeight: 'bold', mb: 1 }}
+                >
                   {framework.name}
                 </Typography>
-                <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
+                <Typography
+                  variant='body2'
+                  sx={{ mb: 2, color: 'text.secondary' }}
+                >
                   {framework.description}
                 </Typography>
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography variant='caption' color='text.secondary'>
                     Compliance Score:
                   </Typography>
-                  <LinearProgress 
-                    variant="determinate" 
+                  <LinearProgress
+                    variant='determinate'
                     value={framework.complianceLevel}
-                    sx={{ 
-                      mt: 0.5, 
-                      height: 6, 
+                    sx={{
+                      mt: 0.5,
+                      height: 6,
                       '& .MuiLinearProgress-bar': {
-                        backgroundColor: framework.complianceLevel > 95 ? '#10b981' : '#f59e0b'
-                      }
+                        backgroundColor:
+                          framework.complianceLevel > 95
+                            ? '#10b981'
+                            : '#f59e0b',
+                      },
                     }}
                   />
-                  <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                  <Typography variant='caption' sx={{ fontWeight: 'bold' }}>
                     {framework.complianceLevel.toFixed(1)}%
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
                   {framework.applicableToOil && (
-                    <Chip label="Olje" size="small" color="warning" />
+                    <Chip label='Olje' size='small' color='warning' />
                   )}
                   {framework.applicableToGas && (
-                    <Chip label="Gass" size="small" color="info" />
+                    <Chip label='Gass' size='small' color='info' />
                   )}
                 </Box>
-                <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary' }}>
-                  {framework.authority} | Neste revisjon: {framework.nextRevision.toLocaleDateString('nb-NO')}
+                <Typography
+                  variant='caption'
+                  sx={{ display: 'block', color: 'text.secondary' }}
+                >
+                  {framework.authority} | Neste revisjon:{' '}
+                  {framework.nextRevision.toLocaleDateString('nb-NO')}
                 </Typography>
               </Paper>
             ))}
@@ -457,20 +552,27 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography variant='h6' sx={{ mb: 2 }}>
           Hurtighandlinger
         </Typography>
-        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Button variant="contained" startIcon={<Assignment />}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 2,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Button variant='contained' startIcon={<Assignment />}>
             Generer månedlig rapport
           </Button>
-          <Button variant="outlined" startIcon={<Security />}>
+          <Button variant='outlined' startIcon={<Security />}>
             Oppdater sikkerhetsdokumentasjon
           </Button>
-          <Button variant="outlined" startIcon={<Nature />}>
+          <Button variant='outlined' startIcon={<Nature />}>
             Miljørapport
           </Button>
-          <Button variant="outlined" startIcon={<Engineering />}>
+          <Button variant='outlined' startIcon={<Engineering />}>
             Teknisk revisjon
           </Button>
         </Box>

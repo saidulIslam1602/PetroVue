@@ -38,7 +38,7 @@ export const ModalContainer = styled.div<{ size: 'sm' | 'md' | 'lg' | 'xl' }>`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  
+
   @media (max-width: 768px) {
     max-width: 95vw;
     margin: 0.5rem;
@@ -58,7 +58,7 @@ export const ModalContent = styled.div`
   padding: 0 1.5rem;
   flex: 1;
   overflow-y: auto;
-  
+
   &:last-child {
     padding-bottom: 1.5rem;
   }
@@ -82,17 +82,17 @@ export const CloseButton = styled.button`
   border-radius: ${theme.borderRadius.md};
   color: #6b7280;
   transition: all 0.2s ease;
-  
+
   &:hover {
     background-color: #f3f4f6;
     color: #374151;
   }
-  
+
   &:focus {
     outline: 2px solid #0066cc;
     outline-offset: 2px;
   }
-  
+
   svg {
     width: 1.5rem;
     height: 1.5rem;

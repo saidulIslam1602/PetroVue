@@ -4,4 +4,8 @@
  */
 
 export { EnvironmentalMonitor } from './EnvironmentalMonitor';
-export type { EnvironmentalMonitorProps, EnvironmentalMetrics, EnvironmentalAlert } from './EnvironmentalMonitor';
+export type {
+  EnvironmentalMonitorProps,
+  EnvironmentalMetrics,
+  EnvironmentalAlert,
+} from './EnvironmentalMonitor';

@@ -4,4 +4,8 @@
  */
 
 export { SafetyMonitor } from './SafetyMonitor';
-export type { SafetyMonitorProps, SafetyMetrics, SafetyIncident } from './SafetyMonitor';
+export type {
+  SafetyMonitorProps,
+  SafetyMetrics,
+  SafetyIncident,
+} from './SafetyMonitor';

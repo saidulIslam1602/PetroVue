@@ -4,7 +4,11 @@
  */
 
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { FacilityData, OperationalMetrics, AlertData } from '../services/dataService';
+import type {
+  FacilityData,
+  OperationalMetrics,
+  AlertData,
+} from '../services/dataService';
 
 // Facility slice
 interface FacilityState {
@@ -113,7 +117,7 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: initialUIState,
   reducers: {
-    toggleSidebar: (state) => {
+    toggleSidebar: state => {
       state.sidebarCollapsed = !state.sidebarCollapsed;
     },
     setActiveView: (state, action: PayloadAction<string>) => {
@@ -122,7 +126,12 @@ const uiSlice = createSlice({
     setTheme: (state, action: PayloadAction<'light' | 'dark'>) => {
       state.theme = action.payload;
     },
-    addNotification: (state, action: PayloadAction<Omit<UIState['notifications'][0], 'id' | 'timestamp'>>) => {
+    addNotification: (
+      state,
+      action: PayloadAction<
+        Omit<UIState['notifications'][0], 'id' | 'timestamp'>
+      >
+    ) => {
       const notification = {
         ...action.payload,
         id: Date.now().toString(),
@@ -131,7 +140,9 @@ const uiSlice = createSlice({
       state.notifications.push(notification);
     },
     removeNotification: (state, action: PayloadAction<string>) => {
-      state.notifications = state.notifications.filter(n => n.id !== action.payload);
+      state.notifications = state.notifications.filter(
+        n => n.id !== action.payload
+      );
     },
   },
 });
@@ -143,7 +154,7 @@ export const store = configureStore({
     operational: operationalSlice.reducer,
     ui: uiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST'],
@@ -160,10 +171,13 @@ export const operationalActions = operationalSlice.actions;
 export const uiActions = uiSlice.actions;
 
 // Selectors
-export const selectSelectedFacilityId = (state: RootState) => state.facility.selectedFacilityId;
+export const selectSelectedFacilityId = (state: RootState) =>
+  state.facility.selectedFacilityId;
 export const selectFacilities = (state: RootState) => state.facility.facilities;
-export const selectOperationalMetrics = (state: RootState) => state.operational.metrics;
+export const selectOperationalMetrics = (state: RootState) =>
+  state.operational.metrics;
 export const selectAlerts = (state: RootState) => state.operational.alerts;
 export const selectActiveView = (state: RootState) => state.ui.activeView;
-export const selectSidebarCollapsed = (state: RootState) => state.ui.sidebarCollapsed;
+export const selectSidebarCollapsed = (state: RootState) =>
+  state.ui.sidebarCollapsed;
 export const selectNotifications = (state: RootState) => state.ui.notifications;

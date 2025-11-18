@@ -5,7 +5,14 @@
  */
 
 import React, { useState } from 'react';
-import { HeaderContainer, HeaderContent, Logo, Navigation, UserSection, MobileMenuButton } from './Header.styles';
+import {
+  HeaderContainer,
+  HeaderContent,
+  Logo,
+  Navigation,
+  UserSection,
+  MobileMenuButton,
+} from './Header.styles';
 import { Button } from '../../ui/Button';
 
 export interface HeaderProps {
@@ -41,7 +48,10 @@ export const Header: React.FC<HeaderProps> = ({
     <HeaderContainer>
       <HeaderContent>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <MobileMenuButton onClick={handleMenuToggle} aria-label="Toggle navigation menu">
+          <MobileMenuButton
+            onClick={handleMenuToggle}
+            aria-label='Toggle navigation menu'
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -54,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               key={index}
               href={item.href}
-              onClick={(e) => {
+              onClick={e => {
                 e.preventDefault();
                 item.onClick?.();
               }}
@@ -77,7 +87,13 @@ export const Header: React.FC<HeaderProps> = ({
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#212121' }}>
+                <div
+                  style={{
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
+                    color: '#212121',
+                  }}
+                >
                   {user.name}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: '#666' }}>
@@ -115,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
           ) : (
-            <Button variant="outline" size="sm">
+            <Button variant='outline' size='sm'>
               Sign In
             </Button>
           )}

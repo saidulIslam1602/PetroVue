@@ -5,9 +5,16 @@
  */
 
 import React, { forwardRef } from 'react';
-import { InputContainer, InputField, InputLabel, InputError, InputHelper } from './Input.styles';
+import {
+  InputContainer,
+  InputField,
+  InputLabel,
+  InputError,
+  InputHelper,
+} from './Input.styles';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   error?: string;
   helperText?: string;
@@ -43,7 +50,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </InputLabel>
         )}
-        
+
         <div style={{ position: 'relative' }}>
           {startIcon && (
             <div
@@ -59,7 +66,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {startIcon}
             </div>
           )}
-          
+
           <InputField
             ref={ref}
             id={inputId}
@@ -70,7 +77,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             hasEndIcon={!!endIcon}
             {...props}
           />
-          
+
           {endIcon && (
             <div
               style={{
@@ -86,7 +93,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </div>
           )}
         </div>
-        
+
         {error && <InputError>{error}</InputError>}
         {helperText && !error && <InputHelper>{helperText}</InputHelper>}
       </InputContainer>

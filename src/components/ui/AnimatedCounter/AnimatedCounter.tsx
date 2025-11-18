@@ -35,8 +35,9 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
     bounce: 0,
   });
 
-  const display = useTransform(spring, (current) =>
-    prefix + current.toFixed(decimals) + suffix
+  const display = useTransform(
+    spring,
+    current => prefix + current.toFixed(decimals) + suffix
   );
 
   useEffect(() => {
@@ -47,15 +48,15 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   }, [isInView, value, spring, hasAnimated]);
 
   return (
-    <Box ref={ref} component="span">
+    <Box ref={ref} component='span'>
       <motion.span>
-        <Typography 
-          variant={variant} 
-          component="span" 
-          sx={{ 
+        <Typography
+          variant={variant}
+          component='span'
+          sx={{
             fontWeight: 'bold',
             color: color || 'inherit',
-            fontVariantNumeric: 'tabular-nums'
+            fontVariantNumeric: 'tabular-nums',
           }}
         >
           <motion.span>{display}</motion.span>
@@ -66,4 +67,3 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
 };
 
 export default AnimatedCounter;
-

@@ -4,4 +4,7 @@
  */
 
 export { OperationalDashboard } from './OperationalDashboard';
-export type { OperationalDashboardProps, OperationalMetrics } from './OperationalDashboard';
+export type {
+  OperationalDashboardProps,
+  OperationalMetrics,
+} from './OperationalDashboard';

@@ -13,10 +13,10 @@ export const analyzeBundleSize = () => {
   // Get bundle size information
   const scripts = document.querySelectorAll('script[src]');
   const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-  
+
   const totalScriptSize = 0;
   const totalStyleSize = 0;
-  
+
   scripts.forEach(script => {
     const src = script.getAttribute('src');
     if (src && src.includes('static/js')) {
@@ -25,7 +25,7 @@ export const analyzeBundleSize = () => {
       console.log(`Script: ${src}`);
     }
   });
-  
+
   stylesheets.forEach(link => {
     const href = link.getAttribute('href');
     if (href && href.includes('static/css')) {
@@ -33,7 +33,7 @@ export const analyzeBundleSize = () => {
       console.log(`Stylesheet: ${href}`);
     }
   });
-  
+
   // eslint-disable-next-line no-console
   console.log(`Total script size: ${totalScriptSize} bytes`);
   // eslint-disable-next-line no-console
@@ -47,34 +47,34 @@ export const getCodeSplittingRecommendations = () => {
       component: 'OperationalDashboard',
       reason: 'Large component with multiple charts and data visualizations',
       suggestion: 'Consider lazy loading this component',
-      priority: 'high'
+      priority: 'high',
     },
     {
       component: 'SafetyMonitor',
       reason: 'Contains complex safety metrics and incident tracking',
       suggestion: 'Split into smaller sub-components',
-      priority: 'medium'
+      priority: 'medium',
     },
     {
       component: 'ProductionTracker',
       reason: 'Heavy data processing and real-time updates',
       suggestion: 'Implement virtual scrolling for large datasets',
-      priority: 'high'
+      priority: 'high',
     },
     {
       component: 'EnvironmentalMonitor',
       reason: 'Multiple charts and environmental data processing',
       suggestion: 'Lazy load chart components',
-      priority: 'medium'
+      priority: 'medium',
     },
     {
       component: 'EquipmentStatus',
       reason: 'Large equipment list with detailed status information',
       suggestion: 'Implement pagination or virtual scrolling',
-      priority: 'medium'
-    }
+      priority: 'medium',
+    },
   ];
-  
+
   return recommendations;
 };
 
@@ -87,7 +87,7 @@ export const checkPerformanceBudget = () => {
     'first-input-delay': 100, // 100ms
     'total-blocking-time': 300, // 300ms
   };
-  
+
   const currentMetrics = {
     'first-contentful-paint': 0,
     'largest-contentful-paint': 0,
@@ -95,7 +95,7 @@ export const checkPerformanceBudget = () => {
     'first-input-delay': 0,
     'total-blocking-time': 0,
   };
-  
+
   // This would be populated with actual performance metrics
   const violations: Array<{
     metric: string;
@@ -103,7 +103,7 @@ export const checkPerformanceBudget = () => {
     current: number;
     severity: 'critical' | 'warning';
   }> = [];
-  
+
   Object.entries(budget).forEach(([metric, threshold]) => {
     const current = currentMetrics[metric as keyof typeof currentMetrics];
     if (current > threshold) {
@@ -111,33 +111,33 @@ export const checkPerformanceBudget = () => {
         metric,
         threshold,
         current,
-        severity: current > threshold * 1.5 ? 'critical' : 'warning'
+        severity: current > threshold * 1.5 ? 'critical' : 'warning',
       });
     }
   });
-  
+
   return {
     budget,
     current: currentMetrics,
     violations,
-    status: violations.length === 0 ? 'pass' : 'fail'
+    status: violations.length === 0 ? 'pass' : 'fail',
   };
 };
 
 // Dependency analysis
 export const analyzeDependencies = () => {
   const dependencies = {
-    'react': '19.2.0',
+    react: '19.2.0',
     'react-dom': '19.2.0',
     '@mui/material': '7.3.4',
     '@emotion/react': '11.14.0',
     '@emotion/styled': '11.14.1',
-    'recharts': '3.2.1',
+    recharts: '3.2.1',
     'framer-motion': '12.23.22',
     'react-hook-form': '7.64.0',
-    'yup': '1.7.1',
+    yup: '1.7.1',
   };
-  
+
   const analysis = Object.entries(dependencies).map(([name, version]) => {
     const size = getEstimatedSize(name);
     return {
@@ -145,27 +145,27 @@ export const analyzeDependencies = () => {
       version,
       estimatedSize: size,
       category: getDependencyCategory(name),
-      critical: isCriticalDependency(name)
+      critical: isCriticalDependency(name),
     };
   });
-  
+
   return analysis;
 };
 
 // Helper functions
 const getEstimatedSize = (packageName: string): number => {
   const sizes: Record<string, number> = {
-    'react': 42,
+    react: 42,
     'react-dom': 130,
     '@mui/material': 280,
     '@emotion/react': 15,
     '@emotion/styled': 8,
-    'recharts': 180,
+    recharts: 180,
     'framer-motion': 95,
     'react-hook-form': 25,
-    'yup': 45,
+    yup: 45,
   };
-  
+
   return sizes[packageName] || 0;
 };
 
@@ -201,32 +201,32 @@ export const getOptimizationSuggestions = () => {
       suggestions: [
         'Implement lazy loading for industry-specific components',
         'Split vendor bundles from application code',
-        'Use dynamic imports for heavy libraries like Recharts'
-      ]
+        'Use dynamic imports for heavy libraries like Recharts',
+      ],
     },
     {
       category: 'Tree Shaking',
       suggestions: [
         'Import only needed MUI components',
         'Use named imports for utility libraries',
-        'Remove unused dependencies'
-      ]
+        'Remove unused dependencies',
+      ],
     },
     {
       category: 'Asset Optimization',
       suggestions: [
         'Compress images and use modern formats (WebP, AVIF)',
         'Minify CSS and JavaScript',
-        'Use CDN for static assets'
-      ]
+        'Use CDN for static assets',
+      ],
     },
     {
       category: 'Caching',
       suggestions: [
         'Implement service worker for offline functionality',
         'Use browser caching for static assets',
-        'Implement proper cache headers'
-      ]
-    }
+        'Implement proper cache headers',
+      ],
+    },
   ];
 };

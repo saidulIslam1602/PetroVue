@@ -15,7 +15,7 @@ const mockSafetyMetrics = {
   criticalAlerts: 0,
   complianceRate: 98,
   lastInspection: '2024-01-15',
-  nextInspection: '2024-04-15'
+  nextInspection: '2024-04-15',
 };
 
 const mockIncidents = [
@@ -26,7 +26,7 @@ const mockIncidents = [
     description: 'Minor valve leak detected in Zone A',
     location: 'Platform Alpha - Zone A',
     timestamp: '2024-01-10T10:30:00Z',
-    status: 'resolved' as const
+    status: 'resolved' as const,
   },
   {
     id: '2',
@@ -35,27 +35,29 @@ const mockIncidents = [
     description: 'Minor injury during maintenance',
     location: 'Platform Beta - Engine Room',
     timestamp: '2024-01-05T14:20:00Z',
-    status: 'investigating' as const
-  }
+    status: 'investigating' as const,
+  },
 ];
 
 describe('SafetyMonitor', () => {
   it('renders safety monitor with facility information', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
     );
 
-    expect(screen.getByText('Safety Monitor - Facility PLT-001')).toBeInTheDocument();
+    expect(
+      screen.getByText('Safety Monitor - Facility PLT-001')
+    ).toBeInTheDocument();
   });
 
   it('displays safety metrics', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
@@ -64,7 +66,7 @@ describe('SafetyMonitor', () => {
     expect(screen.getByText('Safety Score')).toBeInTheDocument();
     expect(screen.getAllByText('98')[0]).toBeInTheDocument();
     expect(screen.getByText('%')).toBeInTheDocument();
-    
+
     expect(screen.getByText('Days Since Incident')).toBeInTheDocument();
     expect(screen.getByText('45')).toBeInTheDocument();
     expect(screen.getByText('days')).toBeInTheDocument();
@@ -73,7 +75,7 @@ describe('SafetyMonitor', () => {
   it('displays incident metrics', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
@@ -82,7 +84,7 @@ describe('SafetyMonitor', () => {
     expect(screen.getByText('Total Incidents')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
     expect(screen.getByText('this year')).toBeInTheDocument();
-    
+
     expect(screen.getAllByText('Compliance Rate')[0]).toBeInTheDocument();
     expect(screen.getAllByText('98')[0]).toBeInTheDocument();
   });
@@ -90,21 +92,25 @@ describe('SafetyMonitor', () => {
   it('shows recent incidents', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
     );
 
     expect(screen.getByText('Recent Incidents')).toBeInTheDocument();
-    expect(screen.getByText('Minor valve leak detected in Zone A')).toBeInTheDocument();
-    expect(screen.getByText('Minor injury during maintenance')).toBeInTheDocument();
+    expect(
+      screen.getByText('Minor valve leak detected in Zone A')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Minor injury during maintenance')
+    ).toBeInTheDocument();
   });
 
   it('displays compliance status', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
@@ -119,28 +125,32 @@ describe('SafetyMonitor', () => {
   it('shows critical safety alert when present', () => {
     const metricsWithCritical = {
       ...mockSafetyMetrics,
-      criticalAlerts: 1
+      criticalAlerts: 1,
     };
 
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={metricsWithCritical}
         incidents={mockIncidents}
       />
     );
 
     expect(screen.getByText('Critical Safety Alert')).toBeInTheDocument();
-    expect(screen.getByText('1 critical safety issue(s) require immediate attention.')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        '1 critical safety issue(s) require immediate attention.'
+      )
+    ).toBeInTheDocument();
   });
 
   it('handles incident click events', async () => {
     const user = userEvent.setup();
     const handleIncidentClick = jest.fn();
-    
+
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
         onIncidentClick={handleIncidentClick}
@@ -148,7 +158,9 @@ describe('SafetyMonitor', () => {
     );
 
     // Click directly on the incident description - the onClick is on the parent div
-    const incidentDescription = screen.getByText('Minor valve leak detected in Zone A');
+    const incidentDescription = screen.getByText(
+      'Minor valve leak detected in Zone A'
+    );
     await user.click(incidentDescription);
     expect(handleIncidentClick).toHaveBeenCalledWith(mockIncidents[0]);
   });
@@ -156,10 +168,10 @@ describe('SafetyMonitor', () => {
   it('handles refresh functionality', async () => {
     const user = userEvent.setup();
     const handleRefresh = jest.fn();
-    
+
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
         onRefresh={handleRefresh}
@@ -168,14 +180,14 @@ describe('SafetyMonitor', () => {
 
     const refreshButton = screen.getByText('Refresh');
     await user.click(refreshButton);
-    
+
     expect(handleRefresh).toHaveBeenCalledTimes(1);
   });
 
   it('displays safety performance trends chart', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
@@ -188,7 +200,7 @@ describe('SafetyMonitor', () => {
   it('shows sustainability metrics', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />
@@ -202,7 +214,7 @@ describe('SafetyMonitor', () => {
   it('handles empty incidents gracefully', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={[]}
       />
@@ -214,7 +226,7 @@ describe('SafetyMonitor', () => {
   it('displays incident severity and type correctly', () => {
     render(
       <SafetyMonitor
-        facilityId="PLT-001"
+        facilityId='PLT-001'
         metrics={mockSafetyMetrics}
         incidents={mockIncidents}
       />

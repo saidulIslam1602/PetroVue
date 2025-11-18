@@ -17,34 +17,34 @@ describe('Button Component', () => {
   });
 
   it('renders with different variants', () => {
-    const { rerender } = render(<Button variant="primary">Primary</Button>);
+    const { rerender } = render(<Button variant='primary'>Primary</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<Button variant="secondary">Secondary</Button>);
+    rerender(<Button variant='secondary'>Secondary</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<Button variant="outline">Outline</Button>);
+    rerender(<Button variant='outline'>Outline</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('renders with different sizes', () => {
-    const { rerender } = render(<Button size="sm">Small</Button>);
+    const { rerender } = render(<Button size='sm'>Small</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<Button size="md">Medium</Button>);
+    rerender(<Button size='md'>Medium</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
 
-    rerender(<Button size="lg">Large</Button>);
+    rerender(<Button size='lg'>Large</Button>);
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('handles click events', async () => {
     const handleClick = jest.fn();
     const user = userEvent.setup();
-    
+
     render(<Button onClick={handleClick}>Click me</Button>);
     const button = screen.getByRole('button');
-    
+
     await user.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -62,7 +62,7 @@ describe('Button Component', () => {
   });
 
   it('renders with custom className', () => {
-    render(<Button className="custom-class">Custom</Button>);
+    render(<Button className='custom-class'>Custom</Button>);
     const button = screen.getByRole('button');
     expect(button).toHaveClass('custom-class');
   });
@@ -73,7 +73,7 @@ describe('Button Component', () => {
   });
 
   it('renders with data-testid', () => {
-    render(<Button data-testid="test-button">Test</Button>);
+    render(<Button data-testid='test-button'>Test</Button>);
     expect(screen.getByTestId('test-button')).toBeInTheDocument();
   });
 
@@ -92,18 +92,22 @@ describe('ButtonGroup Component', () => {
         <Button>Button 2</Button>
       </ButtonGroup>
     );
-    
-    expect(screen.getByRole('button', { name: /button 1/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /button 2/i })).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('button', { name: /button 1/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /button 2/i })
+    ).toBeInTheDocument();
   });
 
   it('applies custom className', () => {
     render(
-      <ButtonGroup className="custom-group" data-testid="button-group">
+      <ButtonGroup className='custom-group' data-testid='button-group'>
         <Button>Button 1</Button>
       </ButtonGroup>
     );
-    
+
     const group = screen.getByTestId('button-group');
     expect(group).toBeInTheDocument();
     expect(group).toHaveClass('custom-group');

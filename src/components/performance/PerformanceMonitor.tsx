@@ -13,7 +13,10 @@ interface PerformanceData {
     total: number;
     limit: number;
   } | null;
-  metrics: Record<string, { average: number; max: number; min: number; count: number }>;
+  metrics: Record<
+    string,
+    { average: number; max: number; min: number; count: number }
+  >;
   renderTime: number;
   componentCount: number;
 }
@@ -30,12 +33,12 @@ export const PerformanceMonitor: React.FC = () => {
 
   useEffect(() => {
     const startTime = performance.now();
-    
+
     const updatePerformanceData = () => {
       const memory = getMemoryUsage();
       const metrics = performanceMetrics.getAllMetrics();
       const renderTime = performance.now() - startTime;
-      
+
       setPerformanceData({
         memory,
         metrics,
@@ -84,7 +87,7 @@ export const PerformanceMonitor: React.FC = () => {
           fontSize: '12px',
           fontWeight: 'bold',
         }}
-        title="Show Performance Monitor"
+        title='Show Performance Monitor'
       >
         PERF
       </button>
@@ -109,7 +112,13 @@ export const PerformanceMonitor: React.FC = () => {
     >
       <Card>
         <CardHeader>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <h3 style={{ margin: 0, fontSize: '14px', color: '#0066cc' }}>
               Performance Monitor
             </h3>
@@ -132,34 +141,63 @@ export const PerformanceMonitor: React.FC = () => {
             {/* Memory Usage */}
             {performanceData.memory && (
               <div style={{ marginBottom: '12px' }}>
-                <h4 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#333' }}>
+                <h4
+                  style={{
+                    margin: '0 0 4px 0',
+                    fontSize: '12px',
+                    color: '#333',
+                  }}
+                >
                   Memory Usage
                 </h4>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
                   <span>Used:</span>
-                  <span style={{ color: getPerformanceColor(performanceData.memory.used, 100) }}>
+                  <span
+                    style={{
+                      color: getPerformanceColor(
+                        performanceData.memory.used,
+                        100
+                      ),
+                    }}
+                  >
                     {formatBytes(performanceData.memory.used * 1024 * 1024)}
                   </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
                   <span>Total:</span>
-                  <span>{formatBytes(performanceData.memory.total * 1024 * 1024)}</span>
+                  <span>
+                    {formatBytes(performanceData.memory.total * 1024 * 1024)}
+                  </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
                   <span>Limit:</span>
-                  <span>{formatBytes(performanceData.memory.limit * 1024 * 1024)}</span>
+                  <span>
+                    {formatBytes(performanceData.memory.limit * 1024 * 1024)}
+                  </span>
                 </div>
               </div>
             )}
 
             {/* Render Time */}
             <div style={{ marginBottom: '12px' }}>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#333' }}>
+              <h4
+                style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#333' }}
+              >
                 Render Performance
               </h4>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>Render Time:</span>
-                <span style={{ color: getPerformanceColor(performanceData.renderTime, 100) }}>
+                <span
+                  style={{
+                    color: getPerformanceColor(performanceData.renderTime, 100),
+                  }}
+                >
                   {performanceData.renderTime.toFixed(2)}ms
                 </span>
               </div>
@@ -172,15 +210,33 @@ export const PerformanceMonitor: React.FC = () => {
             {/* Performance Metrics */}
             {Object.keys(performanceData.metrics).length > 0 && (
               <div style={{ marginBottom: '12px' }}>
-                <h4 style={{ margin: '0 0 4px 0', fontSize: '12px', color: '#333' }}>
+                <h4
+                  style={{
+                    margin: '0 0 4px 0',
+                    fontSize: '12px',
+                    color: '#333',
+                  }}
+                >
                   Custom Metrics
                 </h4>
                 {Object.entries(performanceData.metrics).map(([name, data]) => (
                   <div key={name} style={{ marginBottom: '4px' }}>
-                    <div style={{ fontSize: '10px', color: '#666', marginBottom: '2px' }}>
+                    <div
+                      style={{
+                        fontSize: '10px',
+                        color: '#666',
+                        marginBottom: '2px',
+                      }}
+                    >
                       {name}
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '10px',
+                      }}
+                    >
                       <span>Avg: {data.average.toFixed(2)}</span>
                       <span>Max: {data.max.toFixed(2)}</span>
                       <span>Count: {data.count}</span>
@@ -191,11 +247,27 @@ export const PerformanceMonitor: React.FC = () => {
             )}
 
             {/* Performance Tips */}
-            <div style={{ marginTop: '12px', padding: '8px', background: '#f5f5f5', borderRadius: '4px' }}>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '11px', color: '#333' }}>
+            <div
+              style={{
+                marginTop: '12px',
+                padding: '8px',
+                background: '#f5f5f5',
+                borderRadius: '4px',
+              }}
+            >
+              <h4
+                style={{ margin: '0 0 4px 0', fontSize: '11px', color: '#333' }}
+              >
                 Performance Tips
               </h4>
-              <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '10px', color: '#666' }}>
+              <ul
+                style={{
+                  margin: 0,
+                  paddingLeft: '16px',
+                  fontSize: '10px',
+                  color: '#666',
+                }}
+              >
                 <li>Use React.memo for expensive components</li>
                 <li>Implement lazy loading for large datasets</li>
                 <li>Optimize images and assets</li>

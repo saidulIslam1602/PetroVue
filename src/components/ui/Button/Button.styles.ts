@@ -33,16 +33,16 @@ const baseButtonStyles = css`
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
-  
+
   &:focus {
     outline: 2px solid ${theme.palette.primary[500]};
     outline-offset: 2px;
   }
-  
+
   &:focus:not(:focus-visible) {
     outline: none;
   }
-  
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;
@@ -76,68 +76,68 @@ const colorVariants = {
   primary: css`
     background-color: ${theme.palette.primary[500]};
     color: white;
-    
+
     &:hover:not(:disabled) {
       background-color: ${theme.palette.primary[600]};
       transform: translateY(-1px);
       box-shadow: ${theme.shadows.md};
     }
-    
+
     &:active:not(:disabled) {
       background-color: ${theme.palette.primary[700]};
       transform: translateY(0);
     }
   `,
-  
+
   secondary: css`
     background-color: ${theme.palette.secondary[500]};
     color: white;
-    
+
     &:hover:not(:disabled) {
       background-color: ${theme.palette.secondary[600]};
       transform: translateY(-1px);
       box-shadow: ${theme.shadows.md};
     }
-    
+
     &:active:not(:disabled) {
       background-color: ${theme.palette.secondary[700]};
       transform: translateY(0);
     }
   `,
-  
+
   outline: css`
     background-color: transparent;
     color: ${theme.palette.primary[500]};
     border: 2px solid ${theme.palette.primary[500]};
-    
+
     &:hover:not(:disabled) {
       background-color: ${theme.palette.primary[50]};
       border-color: ${theme.palette.primary[600]};
       color: ${theme.palette.primary[600]};
     }
-    
+
     &:active:not(:disabled) {
       background-color: ${theme.palette.primary[100]};
       border-color: ${theme.palette.primary[700]};
       color: ${theme.palette.primary[700]};
     }
   `,
-  
+
   ghost: css`
     background-color: transparent;
     color: ${theme.palette.primary[500]};
-    
+
     &:hover:not(:disabled) {
       background-color: ${theme.palette.primary[50]};
       color: ${theme.palette.primary[600]};
     }
-    
+
     &:active:not(:disabled) {
       background-color: ${theme.palette.primary[100]};
       color: ${theme.palette.primary[700]};
     }
   `,
-  
+
   link: css`
     background-color: transparent;
     color: ${theme.palette.primary[500]};
@@ -145,12 +145,12 @@ const colorVariants = {
     min-width: auto;
     height: auto;
     padding: 0;
-    
+
     &:hover:not(:disabled) {
       color: ${theme.palette.primary[600]};
       text-decoration: none;
     }
-    
+
     &:active:not(:disabled) {
       color: ${theme.palette.primary[700]};
     }
@@ -211,17 +211,17 @@ export const LoadingSpinner = styled.div<{ size: ButtonProps['size'] }>`
 export const ButtonGroupContainer = styled.div`
   display: flex;
   gap: ${theme.spacing.sm};
-  
+
   & > button:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  
+
   & > button:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  
+
   & > button:not(:first-child):not(:last-child) {
     border-radius: 0;
   }

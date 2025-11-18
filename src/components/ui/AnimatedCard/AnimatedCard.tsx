@@ -36,45 +36,44 @@ const StyledCard = styled(MuiCard)(({ theme }) => ({
   },
 }));
 
-export const AnimatedCard: React.FC<AnimatedCardProps> = ({ 
-  children, 
-  delay = 0, 
+export const AnimatedCard: React.FC<AnimatedCardProps> = ({
+  children,
+  delay = 0,
   hover = true,
   scale = 1.02,
-  ...props 
+  ...props
 }) => {
   const variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
         delay,
-        ease: [0.43, 0.13, 0.23, 0.96] as [number, number, number, number]
-      }
+        ease: [0.43, 0.13, 0.23, 0.96] as [number, number, number, number],
+      },
     },
   };
 
-  const hoverVariants = hover ? {
-    scale,
-    boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-    transition: { duration: 0.2 }
-  } : {};
+  const hoverVariants = hover
+    ? {
+        scale,
+        boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+        transition: { duration: 0.2 },
+      }
+    : {};
 
   return (
     <motion.div
       variants={variants}
-      initial="hidden"
-      animate="visible"
+      initial='hidden'
+      animate='visible'
       whileHover={hoverVariants}
     >
-      <StyledCard {...props}>
-        {children}
-      </StyledCard>
+      <StyledCard {...props}>{children}</StyledCard>
     </motion.div>
   );
 };
 
 export default AnimatedCard;
-

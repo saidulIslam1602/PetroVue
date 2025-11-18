@@ -9,7 +9,11 @@ import { Card, CardHeader, CardContent } from '../../ui/Card';
 import { MetricCard } from '../../ui/MetricCard';
 import { Alert } from '../../ui/Alert';
 import { Chart } from '../../ui/Chart';
-import { OperationalDashboardContainer, DashboardGrid, StatusIndicator } from './OperationalDashboard.styles';
+import {
+  OperationalDashboardContainer,
+  DashboardGrid,
+  StatusIndicator,
+} from './OperationalDashboard.styles';
 
 export interface OperationalMetrics {
   production: {
@@ -100,9 +104,13 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
   };
 
   const getOverallStatus = () => {
-    const criticalAlerts = alerts.filter(alert => alert.type === 'critical').length;
-    const warningAlerts = alerts.filter(alert => alert.type === 'warning').length;
-    
+    const criticalAlerts = alerts.filter(
+      alert => alert.type === 'critical'
+    ).length;
+    const warningAlerts = alerts.filter(
+      alert => alert.type === 'warning'
+    ).length;
+
     if (criticalAlerts > 0) return 'critical';
     if (warningAlerts > 0) return 'warning';
     if (metrics.safety.score < 95) return 'warning';
@@ -114,40 +122,50 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
   return (
     <OperationalDashboardContainer className={className} data-testid={testId}>
       {/* Header Section */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        marginBottom: '2rem',
-        padding: '1rem',
-        backgroundColor: '#f8fafc',
-        borderRadius: '8px',
-        border: '1px solid #e2e8f0'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '2rem',
+          padding: '1rem',
+          backgroundColor: '#f8fafc',
+          borderRadius: '8px',
+          border: '1px solid #e2e8f0',
+        }}
+      >
         <div>
-          <h2 style={{ 
-            fontSize: '1.5rem', 
-            fontWeight: '700', 
-            color: '#1e293b',
-            margin: '0 0 0.25rem 0'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: '700',
+              color: '#1e293b',
+              margin: '0 0 0.25rem 0',
+            }}
+          >
             {facilityName}
           </h2>
-          <p style={{ 
-            fontSize: '0.875rem', 
-            color: '#64748b',
-            margin: 0
-          }}>
-            Facility ID: {facilityId} | Last Updated: {new Date().toLocaleTimeString()}
+          <p
+            style={{
+              fontSize: '0.875rem',
+              color: '#64748b',
+              margin: 0,
+            }}
+          >
+            Facility ID: {facilityId} | Last Updated:{' '}
+            {new Date().toLocaleTimeString()}
           </p>
         </div>
-        
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <StatusIndicator status={overallStatus}>
-            {overallStatus === 'critical' ? 'CRITICAL' : 
-             overallStatus === 'warning' ? 'WARNING' : 'NORMAL'}
+            {overallStatus === 'critical'
+              ? 'CRITICAL'
+              : overallStatus === 'warning'
+                ? 'WARNING'
+                : 'NORMAL'}
           </StatusIndicator>
-          
+
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
@@ -160,7 +178,7 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
               cursor: isRefreshing ? 'not-allowed' : 'pointer',
               opacity: isRefreshing ? 0.7 : 1,
               fontSize: '0.875rem',
-              fontWeight: '500'
+              fontWeight: '500',
             }}
           >
             {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
@@ -171,16 +189,20 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
       {/* Critical Alerts */}
       {alerts.length > 0 && (
         <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ 
-            fontSize: '1.125rem', 
-            fontWeight: '600', 
-            color: '#1e293b',
-            marginBottom: '1rem'
-          }}>
+          <h3
+            style={{
+              fontSize: '1.125rem',
+              fontWeight: '600',
+              color: '#1e293b',
+              marginBottom: '1rem',
+            }}
+          >
             Active Alerts ({alerts.length})
           </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {alerts.slice(0, 3).map((alert) => (
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+          >
+            {alerts.slice(0, 3).map(alert => (
               <Alert
                 key={alert.id}
                 type={alert.type}
@@ -190,14 +212,16 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
               />
             ))}
             {alerts.length > 3 && (
-              <div style={{
-                padding: '0.75rem',
-                backgroundColor: '#f1f5f9',
-                borderRadius: '6px',
-                textAlign: 'center',
-                color: '#64748b',
-                fontSize: '0.875rem'
-              }}>
+              <div
+                style={{
+                  padding: '0.75rem',
+                  backgroundColor: '#f1f5f9',
+                  borderRadius: '6px',
+                  textAlign: 'center',
+                  color: '#64748b',
+                  fontSize: '0.875rem',
+                }}
+              >
                 +{alerts.length - 3} more alerts
               </div>
             )}
@@ -208,76 +232,78 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
       {/* Key Metrics Grid */}
       <DashboardGrid>
         <MetricCard
-          title="Oil Production"
+          title='Oil Production'
           value={metrics.production.oil}
-          unit="bbl/day"
-          change={{ 
-            value: 2.5, 
-            type: 'increase', 
-            period: 'vs yesterday' 
+          unit='bbl/day'
+          change={{
+            value: 2.5,
+            type: 'increase',
+            period: 'vs yesterday',
           }}
           status={metrics.production.oil > 1200 ? 'success' : 'normal'}
-          trend="up"
+          trend='up'
         />
-        
+
         <MetricCard
-          title="Gas Production"
+          title='Gas Production'
           value={metrics.production.gas}
-          unit="mcf/day"
-          change={{ 
-            value: 1.8, 
-            type: 'increase', 
-            period: 'vs yesterday' 
+          unit='mcf/day'
+          change={{
+            value: 1.8,
+            type: 'increase',
+            period: 'vs yesterday',
           }}
-          status="normal"
-          trend="up"
+          status='normal'
+          trend='up'
         />
-        
+
         <MetricCard
-          title="Safety Score"
+          title='Safety Score'
           value={metrics.safety.score}
-          unit="%"
-          change={{ 
-            value: 0.5, 
-            type: 'increase', 
-            period: 'vs last week' 
+          unit='%'
+          change={{
+            value: 0.5,
+            type: 'increase',
+            period: 'vs last week',
           }}
           status={metrics.safety.score >= 95 ? 'success' : 'warning'}
-          trend="up"
+          trend='up'
         />
-        
+
         <MetricCard
-          title="Equipment Status"
+          title='Equipment Status'
           value={metrics.equipment.operational}
           unit={`/ ${metrics.equipment.totalUnits}`}
-          change={{ 
-            value: 0, 
-            type: 'neutral', 
-            period: 'units operational' 
+          change={{
+            value: 0,
+            type: 'neutral',
+            period: 'units operational',
           }}
           status={metrics.equipment.critical > 0 ? 'critical' : 'normal'}
         />
       </DashboardGrid>
 
       {/* Charts Section */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '2fr 1fr', 
-        gap: '1.5rem',
-        marginTop: '2rem'
-      }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '2fr 1fr',
+          gap: '1.5rem',
+          marginTop: '2rem',
+        }}
+      >
         <Card>
           <CardHeader>
             <h4>Real-time Production Trends</h4>
           </CardHeader>
           <CardContent>
             <Chart
-              type="line"
+              type='line'
               data={realTimeData}
               height={300}
               showLegend
               showGrid
-              title="24-Hour Production Overview"
+              title='24-Hour Production Overview'
             />
           </CardContent>
         </Card>
@@ -287,14 +313,18 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
             <h4>System Status</h4>
           </CardHeader>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                padding: '0.75rem',
-                backgroundColor: '#f8fafc',
-                borderRadius: '6px'
-              }}>
+            <div
+              style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '6px',
+                }}
+              >
                 <span style={{ fontSize: '0.875rem', color: '#64748b' }}>
                   Total Equipment
                 </span>
@@ -302,14 +332,16 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
                   {metrics.equipment.totalUnits}
                 </span>
               </div>
-              
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                padding: '0.75rem',
-                backgroundColor: '#f0fdf4',
-                borderRadius: '6px'
-              }}>
+
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f0fdf4',
+                  borderRadius: '6px',
+                }}
+              >
                 <span style={{ fontSize: '0.875rem', color: '#64748b' }}>
                   Operational
                 </span>
@@ -317,14 +349,16 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
                   {metrics.equipment.operational}
                 </span>
               </div>
-              
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                padding: '0.75rem',
-                backgroundColor: '#fef3c7',
-                borderRadius: '6px'
-              }}>
+
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#fef3c7',
+                  borderRadius: '6px',
+                }}
+              >
                 <span style={{ fontSize: '0.875rem', color: '#64748b' }}>
                   Maintenance
                 </span>
@@ -332,15 +366,17 @@ export const OperationalDashboard: React.FC<OperationalDashboardProps> = ({
                   {metrics.equipment.maintenance}
                 </span>
               </div>
-              
+
               {metrics.equipment.critical > 0 && (
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  padding: '0.75rem',
-                  backgroundColor: '#fef2f2',
-                  borderRadius: '6px'
-                }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '0.75rem',
+                    backgroundColor: '#fef2f2',
+                    borderRadius: '6px',
+                  }}
+                >
                   <span style={{ fontSize: '0.875rem', color: '#64748b' }}>
                     Critical
                   </span>

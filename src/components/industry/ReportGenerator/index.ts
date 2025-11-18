@@ -1,2 +1,1 @@
 export { ReportGenerator } from './ReportGenerator';
-

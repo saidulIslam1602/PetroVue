@@ -5,7 +5,14 @@
  */
 
 import React, { useEffect } from 'react';
-import { ModalBackdrop, ModalContainer, ModalHeader, ModalContent, ModalFooter, CloseButton } from './Modal.styles';
+import {
+  ModalBackdrop,
+  ModalContainer,
+  ModalHeader,
+  ModalContent,
+  ModalFooter,
+  CloseButton,
+} from './Modal.styles';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -58,23 +65,38 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <ModalBackdrop onClick={handleBackdropClick} data-testid={testId}>
-      <ModalContainer size={size} role="dialog" aria-modal="true" aria-labelledby={title ? 'modal-title' : undefined}>
+      <ModalContainer
+        size={size}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby={title ? 'modal-title' : undefined}
+      >
         {title && (
           <ModalHeader>
-            <h2 id="modal-title" style={{ margin: 0, fontSize: '1.25rem', fontWeight: '600' }}>
+            <h2
+              id='modal-title'
+              style={{ margin: 0, fontSize: '1.25rem', fontWeight: '600' }}
+            >
               {title}
             </h2>
-            <CloseButton onClick={onClose} aria-label="Close modal">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+            <CloseButton onClick={onClose} aria-label='Close modal'>
+              <svg
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+              >
+                <line x1='18' y1='6' x2='6' y2='18'></line>
+                <line x1='6' y1='6' x2='18' y2='18'></line>
               </svg>
             </CloseButton>
           </ModalHeader>
         )}
-        
+
         <ModalContent>{children}</ModalContent>
-        
+
         {footer && <ModalFooter>{footer}</ModalFooter>}
       </ModalContainer>
     </ModalBackdrop>

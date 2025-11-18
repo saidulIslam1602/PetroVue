@@ -47,7 +47,14 @@ export interface ChartProps {
   'data-testid'?: string;
 }
 
-const defaultColors = ['#0066cc', '#ff6600', '#4caf50', '#ff9800', '#f44336', '#2196f3'];
+const defaultColors = [
+  '#0066cc',
+  '#ff6600',
+  '#4caf50',
+  '#ff9800',
+  '#f44336',
+  '#2196f3',
+];
 
 export const Chart: React.FC<ChartProps> = ({
   type,
@@ -69,13 +76,15 @@ export const Chart: React.FC<ChartProps> = ({
     return (
       <ChartContainer className={className} data-testid={testId}>
         {title && <ChartTitle>{title}</ChartTitle>}
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center', 
-          height: typeof height === 'number' ? `${height}px` : height,
-          color: '#666'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: typeof height === 'number' ? `${height}px` : height,
+            color: '#666',
+          }}
+        >
           Loading chart data...
         </div>
       </ChartContainer>
@@ -102,84 +111,104 @@ export const Chart: React.FC<ChartProps> = ({
       case 'line':
         return (
           <LineChart {...commonProps}>
-            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />}
-            <XAxis dataKey={xAxisKey} stroke="#666" />
-            <YAxis stroke="#666" />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#fff', 
+            {showGrid && (
+              <CartesianGrid strokeDasharray='3 3' stroke='#f0f0f0' />
+            )}
+            <XAxis dataKey={xAxisKey} stroke='#666' />
+            <YAxis stroke='#666' />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#fff',
                 border: '1px solid #e0e0e0',
                 borderRadius: '8px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }} 
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             />
             {showLegend && <Legend />}
-            {Object.keys(data[0] || {}).filter(key => key !== xAxisKey).map((key, index) => (
-              <Line
-                key={key}
-                type="monotone"
-                dataKey={key}
-                stroke={colors[index % colors.length]}
-                strokeWidth={2}
-                dot={{ fill: colors[index % colors.length], strokeWidth: 2, r: 4 }}
-                activeDot={{ r: 6, stroke: colors[index % colors.length], strokeWidth: 2 }}
-              />
-            ))}
+            {Object.keys(data[0] || {})
+              .filter(key => key !== xAxisKey)
+              .map((key, index) => (
+                <Line
+                  key={key}
+                  type='monotone'
+                  dataKey={key}
+                  stroke={colors[index % colors.length]}
+                  strokeWidth={2}
+                  dot={{
+                    fill: colors[index % colors.length],
+                    strokeWidth: 2,
+                    r: 4,
+                  }}
+                  activeDot={{
+                    r: 6,
+                    stroke: colors[index % colors.length],
+                    strokeWidth: 2,
+                  }}
+                />
+              ))}
           </LineChart>
         );
 
       case 'area':
         return (
           <AreaChart {...commonProps}>
-            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />}
-            <XAxis dataKey={xAxisKey} stroke="#666" />
-            <YAxis stroke="#666" />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#fff', 
+            {showGrid && (
+              <CartesianGrid strokeDasharray='3 3' stroke='#f0f0f0' />
+            )}
+            <XAxis dataKey={xAxisKey} stroke='#666' />
+            <YAxis stroke='#666' />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#fff',
                 border: '1px solid #e0e0e0',
                 borderRadius: '8px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }} 
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             />
             {showLegend && <Legend />}
-            {Object.keys(data[0] || {}).filter(key => key !== xAxisKey).map((key, index) => (
-              <Area
-                key={key}
-                type="monotone"
-                dataKey={key}
-                stackId="1"
-                stroke={colors[index % colors.length]}
-                fill={colors[index % colors.length]}
-                fillOpacity={0.6}
-              />
-            ))}
+            {Object.keys(data[0] || {})
+              .filter(key => key !== xAxisKey)
+              .map((key, index) => (
+                <Area
+                  key={key}
+                  type='monotone'
+                  dataKey={key}
+                  stackId='1'
+                  stroke={colors[index % colors.length]}
+                  fill={colors[index % colors.length]}
+                  fillOpacity={0.6}
+                />
+              ))}
           </AreaChart>
         );
 
       case 'bar':
         return (
           <BarChart {...commonProps}>
-            {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />}
-            <XAxis dataKey={xAxisKey} stroke="#666" />
-            <YAxis stroke="#666" />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#fff', 
+            {showGrid && (
+              <CartesianGrid strokeDasharray='3 3' stroke='#f0f0f0' />
+            )}
+            <XAxis dataKey={xAxisKey} stroke='#666' />
+            <YAxis stroke='#666' />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#fff',
                 border: '1px solid #e0e0e0',
                 borderRadius: '8px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }} 
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             />
             {showLegend && <Legend />}
-            {Object.keys(data[0] || {}).filter(key => key !== xAxisKey).map((key, index) => (
-              <Bar
-                key={key}
-                dataKey={key}
-                fill={colors[index % colors.length]}
-                radius={[4, 4, 0, 0]}
-              />
-            ))}
+            {Object.keys(data[0] || {})
+              .filter(key => key !== xAxisKey)
+              .map((key, index) => (
+                <Bar
+                  key={key}
+                  dataKey={key}
+                  fill={colors[index % colors.length]}
+                  radius={[4, 4, 0, 0]}
+                />
+              ))}
           </BarChart>
         );
 
@@ -188,25 +217,28 @@ export const Chart: React.FC<ChartProps> = ({
           <PieChart {...commonProps}>
             <Pie
               data={data}
-              cx="50%"
-              cy="50%"
+              cx='50%'
+              cy='50%'
               labelLine={false}
               label={showLegend ? false : true}
               outerRadius={80}
-              fill="#8884d8"
+              fill='#8884d8'
               dataKey={yAxisKey}
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={colors[index % colors.length]}
+                />
               ))}
             </Pie>
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#fff', 
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#fff',
                 border: '1px solid #e0e0e0',
                 borderRadius: '8px',
-                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
-              }} 
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+              }}
             />
             {showLegend && <Legend />}
           </PieChart>
@@ -218,7 +250,7 @@ export const Chart: React.FC<ChartProps> = ({
   };
 
   const chartElement = renderChart();
-  
+
   if (!chartElement) {
     return (
       <ChartContainer className={className} data-testid={testId}>

@@ -61,7 +61,12 @@ const HeaderCard = styled(Card)(({ theme }) => ({
 }));
 
 interface ReportConfig {
-  reportType: 'environmental' | 'esg' | 'carbon' | 'sustainability' | 'compliance';
+  reportType:
+    | 'environmental'
+    | 'esg'
+    | 'carbon'
+    | 'sustainability'
+    | 'compliance';
   period: 'monthly' | 'quarterly' | 'annual';
   startDate: string;
   endDate: string;
@@ -86,7 +91,8 @@ const REPORT_TEMPLATES: ReportTemplate[] = [
   {
     type: 'environmental',
     name: 'Environmental Compliance Report',
-    description: 'Comprehensive emissions, waste, and water management reporting',
+    description:
+      'Comprehensive emissions, waste, and water management reporting',
     icon: <Nature />,
     sections: [
       'Executive Summary',
@@ -102,7 +108,8 @@ const REPORT_TEMPLATES: ReportTemplate[] = [
   {
     type: 'esg',
     name: 'ESG Performance Report',
-    description: 'Environmental, Social, and Governance metrics and performance',
+    description:
+      'Environmental, Social, and Governance metrics and performance',
     icon: <Business />,
     sections: [
       'Executive Summary',
@@ -152,7 +159,8 @@ const REPORT_TEMPLATES: ReportTemplate[] = [
   {
     type: 'compliance',
     name: 'Regulatory Compliance Report',
-    description: 'Compliance status with environmental regulations and standards',
+    description:
+      'Compliance status with environmental regulations and standards',
     icon: <Security />,
     sections: [
       'Regulatory Framework',
@@ -186,11 +194,13 @@ export const ReportGenerator: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [generating, setGenerating] = useState(false);
   const [reportGenerated, setReportGenerated] = useState(false);
-  
+
   const [config, setConfig] = useState<ReportConfig>({
     reportType: 'environmental',
     period: 'monthly',
-    startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split('T')[0],
     endDate: new Date().toISOString().split('T')[0],
     format: 'pdf',
     sections: [],
@@ -202,9 +212,15 @@ export const ReportGenerator: React.FC = () => {
 
   const [recipientEmail, setRecipientEmail] = useState('');
 
-  const steps = ['Select Report Type', 'Configure Details', 'Review & Generate'];
+  const steps = [
+    'Select Report Type',
+    'Configure Details',
+    'Review & Generate',
+  ];
 
-  const selectedTemplate = REPORT_TEMPLATES.find(t => t.type === config.reportType);
+  const selectedTemplate = REPORT_TEMPLATES.find(
+    t => t.type === config.reportType
+  );
 
   const handleNext = () => {
     if (activeStep === 0 && config.sections.length === 0) {
@@ -214,11 +230,11 @@ export const ReportGenerator: React.FC = () => {
         sections: selectedTemplate?.sections || [],
       }));
     }
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleSectionToggle = (section: string) => {
@@ -249,10 +265,10 @@ export const ReportGenerator: React.FC = () => {
 
   const handleGenerate = async () => {
     setGenerating(true);
-    
+
     // Simulate report generation
     await new Promise(resolve => setTimeout(resolve, 3000));
-    
+
     setGenerating(false);
     setReportGenerated(true);
   };
@@ -287,53 +303,68 @@ export const ReportGenerator: React.FC = () => {
       case 0:
         return (
           <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Choose a Report Template
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            <Typography variant='body2' color='text.secondary' sx={{ mb: 3 }}>
               Select the type of report you want to generate
             </Typography>
 
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 2 }}>
-              {REPORT_TEMPLATES.map((template) => (
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+                gap: 2,
+              }}
+            >
+              {REPORT_TEMPLATES.map(template => (
                 <Card
                   key={template.type}
                   sx={{
                     cursor: 'pointer',
                     border: config.reportType === template.type ? 2 : 1,
-                    borderColor: config.reportType === template.type ? 'primary.main' : 'divider',
+                    borderColor:
+                      config.reportType === template.type
+                        ? 'primary.main'
+                        : 'divider',
                     transition: 'all 0.2s',
                     '&:hover': {
                       borderColor: 'primary.main',
                       transform: 'translateY(-2px)',
                     },
                   }}
-                  onClick={() => setConfig(prev => ({ ...prev, reportType: template.type }))}
+                  onClick={() =>
+                    setConfig(prev => ({ ...prev, reportType: template.type }))
+                  }
                 >
                   <CardContent>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                       <Box sx={{ color: 'primary.main', mr: 1 }}>
                         {template.icon}
                       </Box>
-                      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
                         {template.name}
                       </Typography>
                     </Box>
-                    
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ mb: 2 }}
+                    >
                       {template.description}
                     </Typography>
-                    
+
                     <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                      <Chip 
-                        label={`${template.sections.length} sections`} 
-                        size="small" 
-                        variant="outlined" 
+                      <Chip
+                        label={`${template.sections.length} sections`}
+                        size='small'
+                        variant='outlined'
                       />
-                      <Chip 
-                        label={`~${template.estimatedPages} pages`} 
-                        size="small" 
-                        variant="outlined" 
+                      <Chip
+                        label={`~${template.estimatedPages} pages`}
+                        size='small'
+                        variant='outlined'
                       />
                     </Box>
                   </CardContent>
@@ -346,68 +377,117 @@ export const ReportGenerator: React.FC = () => {
       case 1:
         return (
           <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Configure Report Details
             </Typography>
-            
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3, mt: 3 }}>
+
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+                gap: 3,
+                mt: 3,
+              }}
+            >
               <Box>
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography variant='subtitle2' gutterBottom>
                   Reporting Period
                 </Typography>
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <RadioGroup
                     value={config.period}
-                    onChange={(e) => setConfig(prev => ({ ...prev, period: e.target.value as any }))}
+                    onChange={e =>
+                      setConfig(prev => ({
+                        ...prev,
+                        period: e.target.value as any,
+                      }))
+                    }
                   >
-                    <FormControlLabel value="monthly" control={<Radio />} label="Monthly" />
-                    <FormControlLabel value="quarterly" control={<Radio />} label="Quarterly" />
-                    <FormControlLabel value="annual" control={<Radio />} label="Annual" />
+                    <FormControlLabel
+                      value='monthly'
+                      control={<Radio />}
+                      label='Monthly'
+                    />
+                    <FormControlLabel
+                      value='quarterly'
+                      control={<Radio />}
+                      label='Quarterly'
+                    />
+                    <FormControlLabel
+                      value='annual'
+                      control={<Radio />}
+                      label='Annual'
+                    />
                   </RadioGroup>
                 </FormControl>
 
                 <TextField
-                  label="Start Date"
-                  type="date"
+                  label='Start Date'
+                  type='date'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   InputLabelProps={{ shrink: true }}
                   value={config.startDate}
-                  onChange={(e) => setConfig(prev => ({ ...prev, startDate: e.target.value }))}
+                  onChange={e =>
+                    setConfig(prev => ({ ...prev, startDate: e.target.value }))
+                  }
                 />
 
                 <TextField
-                  label="End Date"
-                  type="date"
+                  label='End Date'
+                  type='date'
                   fullWidth
-                  margin="normal"
+                  margin='normal'
                   InputLabelProps={{ shrink: true }}
                   value={config.endDate}
-                  onChange={(e) => setConfig(prev => ({ ...prev, endDate: e.target.value }))}
+                  onChange={e =>
+                    setConfig(prev => ({ ...prev, endDate: e.target.value }))
+                  }
                 />
 
-                <Typography variant="subtitle2" gutterBottom sx={{ mt: 3 }}>
+                <Typography variant='subtitle2' gutterBottom sx={{ mt: 3 }}>
                   Report Format
                 </Typography>
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <RadioGroup
                     value={config.format}
-                    onChange={(e) => setConfig(prev => ({ ...prev, format: e.target.value as any }))}
+                    onChange={e =>
+                      setConfig(prev => ({
+                        ...prev,
+                        format: e.target.value as any,
+                      }))
+                    }
                   >
-                    <FormControlLabel value="pdf" control={<Radio />} label="PDF Document" />
-                    <FormControlLabel value="excel" control={<Radio />} label="Excel Spreadsheet" />
-                    <FormControlLabel value="csv" control={<Radio />} label="CSV Data File" />
-                    <FormControlLabel value="json" control={<Radio />} label="JSON (API)" />
+                    <FormControlLabel
+                      value='pdf'
+                      control={<Radio />}
+                      label='PDF Document'
+                    />
+                    <FormControlLabel
+                      value='excel'
+                      control={<Radio />}
+                      label='Excel Spreadsheet'
+                    />
+                    <FormControlLabel
+                      value='csv'
+                      control={<Radio />}
+                      label='CSV Data File'
+                    />
+                    <FormControlLabel
+                      value='json'
+                      control={<Radio />}
+                      label='JSON (API)'
+                    />
                   </RadioGroup>
                 </FormControl>
               </Box>
 
               <Box>
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography variant='subtitle2' gutterBottom>
                   Report Sections
                 </Typography>
                 <Paper sx={{ p: 2, maxHeight: 300, overflow: 'auto' }}>
-                  {SECTION_OPTIONS.map((section) => (
+                  {SECTION_OPTIONS.map(section => (
                     <FormControlLabel
                       key={section}
                       control={
@@ -422,65 +502,80 @@ export const ReportGenerator: React.FC = () => {
                   ))}
                 </Paper>
 
-                <Typography variant="subtitle2" gutterBottom sx={{ mt: 3 }}>
+                <Typography variant='subtitle2' gutterBottom sx={{ mt: 3 }}>
                   Additional Options
                 </Typography>
                 <FormControlLabel
                   control={
                     <Checkbox
                       checked={config.includeCharts}
-                      onChange={(e) => setConfig(prev => ({ ...prev, includeCharts: e.target.checked }))}
+                      onChange={e =>
+                        setConfig(prev => ({
+                          ...prev,
+                          includeCharts: e.target.checked,
+                        }))
+                      }
                     />
                   }
-                  label="Include charts and visualizations"
+                  label='Include charts and visualizations'
                 />
                 <FormControlLabel
                   control={
                     <Checkbox
                       checked={config.includeRecommendations}
-                      onChange={(e) => setConfig(prev => ({ ...prev, includeRecommendations: e.target.checked }))}
+                      onChange={e =>
+                        setConfig(prev => ({
+                          ...prev,
+                          includeRecommendations: e.target.checked,
+                        }))
+                      }
                     />
                   }
-                  label="Include recommendations"
+                  label='Include recommendations'
                 />
                 <FormControlLabel
                   control={
                     <Checkbox
                       checked={config.includeComparison}
-                      onChange={(e) => setConfig(prev => ({ ...prev, includeComparison: e.target.checked }))}
+                      onChange={e =>
+                        setConfig(prev => ({
+                          ...prev,
+                          includeComparison: e.target.checked,
+                        }))
+                      }
                     />
                   }
-                  label="Include historical comparison"
+                  label='Include historical comparison'
                 />
               </Box>
             </Box>
 
             <Box sx={{ mt: 3 }}>
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography variant='subtitle2' gutterBottom>
                 Email Recipients (optional)
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                 <TextField
-                  placeholder="email@example.com"
-                  type="email"
+                  placeholder='email@example.com'
+                  type='email'
                   fullWidth
-                  size="small"
+                  size='small'
                   value={recipientEmail}
-                  onChange={(e) => setRecipientEmail(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleAddRecipient()}
+                  onChange={e => setRecipientEmail(e.target.value)}
+                  onKeyPress={e => e.key === 'Enter' && handleAddRecipient()}
                 />
-                <Button variant="outlined" onClick={handleAddRecipient}>
+                <Button variant='outlined' onClick={handleAddRecipient}>
                   Add
                 </Button>
               </Box>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {config.recipients.map((email) => (
+                {config.recipients.map(email => (
                   <Chip
                     key={email}
                     label={email}
                     onDelete={() => handleRemoveRecipient(email)}
-                    color="primary"
-                    variant="outlined"
+                    color='primary'
+                    variant='outlined'
                   />
                 ))}
               </Box>
@@ -491,58 +586,62 @@ export const ReportGenerator: React.FC = () => {
       case 2:
         return (
           <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant='h6' gutterBottom>
               Review & Generate Report
             </Typography>
 
             <Paper sx={{ p: 3, mb: 3 }}>
-              <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              <Typography
+                variant='subtitle2'
+                color='text.secondary'
+                gutterBottom
+              >
                 Report Summary
               </Typography>
               <List>
                 <ListItem>
                   <ListItemIcon>
-                    <Description color="primary" />
+                    <Description color='primary' />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Report Type"
+                    primary='Report Type'
                     secondary={selectedTemplate?.name}
                   />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <Schedule color="primary" />
+                    <Schedule color='primary' />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Period"
+                    primary='Period'
                     secondary={`${config.startDate} to ${config.endDate} (${config.period})`}
                   />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <Assessment color="primary" />
+                    <Assessment color='primary' />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Format"
+                    primary='Format'
                     secondary={config.format.toUpperCase()}
                   />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
-                    <CheckCircle color="primary" />
+                    <CheckCircle color='primary' />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Sections"
+                    primary='Sections'
                     secondary={`${config.sections.length} sections selected`}
                   />
                 </ListItem>
                 {config.recipients.length > 0 && (
                   <ListItem>
                     <ListItemIcon>
-                      <Email color="primary" />
+                      <Email color='primary' />
                     </ListItemIcon>
                     <ListItemText
-                      primary="Recipients"
+                      primary='Recipients'
                       secondary={`Will be sent to ${config.recipients.length} recipient(s)`}
                     />
                   </ListItem>
@@ -555,14 +654,18 @@ export const ReportGenerator: React.FC = () => {
                 {generating && (
                   <Box sx={{ mb: 2 }}>
                     <LinearProgress />
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1, textAlign: 'center' }}>
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ mt: 1, textAlign: 'center' }}
+                    >
                       Generating report...
                     </Typography>
                   </Box>
                 )}
                 <Button
-                  variant="contained"
-                  size="large"
+                  variant='contained'
+                  size='large'
                   fullWidth
                   onClick={handleGenerate}
                   disabled={generating}
@@ -573,41 +676,33 @@ export const ReportGenerator: React.FC = () => {
               </Box>
             ) : (
               <Box>
-                <Alert severity="success" sx={{ mb: 2 }}>
-                  <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+                <Alert severity='success' sx={{ mb: 2 }}>
+                  <Typography variant='body1' sx={{ fontWeight: 'bold' }}>
                     Report Generated Successfully!
                   </Typography>
-                  <Typography variant="body2">
-                    Your environmental report is ready for download or distribution.
+                  <Typography variant='body2'>
+                    Your environmental report is ready for download or
+                    distribution.
                   </Typography>
                 </Alert>
 
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                   <Button
-                    variant="contained"
+                    variant='contained'
                     startIcon={<Download />}
                     onClick={handleDownload}
                   >
                     Download Report
                   </Button>
                   {config.recipients.length > 0 && (
-                    <Button
-                      variant="outlined"
-                      startIcon={<Send />}
-                    >
+                    <Button variant='outlined' startIcon={<Send />}>
                       Send to Recipients
                     </Button>
                   )}
-                  <Button
-                    variant="outlined"
-                    startIcon={<Preview />}
-                  >
+                  <Button variant='outlined' startIcon={<Preview />}>
                     Preview Report
                   </Button>
-                  <Button
-                    variant="outlined"
-                    startIcon={<Share />}
-                  >
+                  <Button variant='outlined' startIcon={<Share />}>
                     Share Link
                   </Button>
                 </Box>
@@ -626,12 +721,12 @@ export const ReportGenerator: React.FC = () => {
       <HeaderCard>
         <CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Description fontSize="large" />
+            <Description fontSize='large' />
             <Box>
-              <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h4' sx={{ fontWeight: 'bold' }}>
                 Environmental Report Generator
               </Typography>
-              <Typography variant="body1" sx={{ opacity: 0.9 }}>
+              <Typography variant='body1' sx={{ opacity: 0.9 }}>
                 Automated compliance and sustainability report generation
               </Typography>
             </Box>
@@ -642,7 +737,7 @@ export const ReportGenerator: React.FC = () => {
       <Card>
         <CardContent>
           <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
-            {steps.map((label) => (
+            {steps.map(label => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
@@ -652,14 +747,11 @@ export const ReportGenerator: React.FC = () => {
           {renderStepContent(activeStep)}
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
-            <Button
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
+            <Button disabled={activeStep === 0} onClick={handleBack}>
               Back
             </Button>
             <Button
-              variant="contained"
+              variant='contained'
               onClick={handleNext}
               disabled={activeStep === steps.length - 1}
             >
@@ -673,4 +765,3 @@ export const ReportGenerator: React.FC = () => {
 };
 
 export default ReportGenerator;
-

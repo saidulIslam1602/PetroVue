@@ -1,6 +1,6 @@
 /**
  * Advanced Performance Monitoring and Optimization Tools
- * 
+ *
  * Comprehensive performance tracking for oil & gas industry dashboard
  * Includes real-time monitoring, bundle analysis, and optimization metrics
  */
@@ -26,7 +26,7 @@ class AdvancedPerformanceMonitor {
   private metrics: PerformanceMetrics[] = [];
   private budget: PerformanceBudget;
   private observers: Map<string, PerformanceObserver> = new Map();
-  
+
   constructor(budget: PerformanceBudget) {
     this.budget = budget;
     this.initializeObservers();
@@ -35,7 +35,7 @@ class AdvancedPerformanceMonitor {
   private initializeObservers() {
     // Observe paint timing
     if ('PerformanceObserver' in window) {
-      const paintObserver = new PerformanceObserver((list) => {
+      const paintObserver = new PerformanceObserver(list => {
         for (const entry of list.getEntries()) {
           console.log(`${entry.name}: ${entry.startTime}ms`);
         }
@@ -44,7 +44,7 @@ class AdvancedPerformanceMonitor {
       this.observers.set('paint', paintObserver);
 
       // Observe navigation timing
-      const navigationObserver = new PerformanceObserver((list) => {
+      const navigationObserver = new PerformanceObserver(list => {
         for (const entry of list.getEntries()) {
           this.analyzeNavigationTiming(entry as PerformanceNavigationTiming);
         }
@@ -53,7 +53,7 @@ class AdvancedPerformanceMonitor {
       this.observers.set('navigation', navigationObserver);
 
       // Observe largest contentful paint
-      const lcpObserver = new PerformanceObserver((list) => {
+      const lcpObserver = new PerformanceObserver(list => {
         for (const entry of list.getEntries()) {
           console.log(`LCP: ${entry.startTime}ms`);
           this.checkPerformanceBudget('lcp', entry.startTime);
@@ -95,10 +95,12 @@ class AdvancedPerformanceMonitor {
     const endTime = performance.now();
     const duration = endTime - startTime;
 
-    console.log(`Component ${componentName} render time: ${duration.toFixed(2)}ms`);
-    
+    console.log(
+      `Component ${componentName} render time: ${duration.toFixed(2)}ms`
+    );
+
     this.checkPerformanceBudget('render', duration);
-    
+
     return result;
   }
 
@@ -107,22 +109,25 @@ class AdvancedPerformanceMonitor {
     apiCall: () => Promise<T>
   ): Promise<T> {
     const startTime = performance.now();
-    
+
     try {
       const result = await apiCall();
       const endTime = performance.now();
       const duration = endTime - startTime;
-      
+
       // eslint-disable-next-line no-console
       console.log(`API ${apiName} latency: ${duration.toFixed(2)}ms`);
       this.checkPerformanceBudget('api', duration);
-      
+
       return result;
     } catch (error) {
       const endTime = performance.now();
       const duration = endTime - startTime;
       // eslint-disable-next-line no-console
-      console.error(`API ${apiName} failed after ${duration.toFixed(2)}ms:`, error);
+      console.error(
+        `API ${apiName} failed after ${duration.toFixed(2)}ms:`,
+        error
+      );
       throw error;
     }
   }
@@ -164,12 +169,18 @@ class AdvancedPerformanceMonitor {
 
     if (exceeded) {
       // eslint-disable-next-line no-console
-      console.warn(`Performance budget exceeded for ${metric}: ${value} > ${budget}`);
+      console.warn(
+        `Performance budget exceeded for ${metric}: ${value} > ${budget}`
+      );
       this.reportBudgetViolation(metric, value, budget);
     }
   }
 
-  private reportBudgetViolation(metric: string, actual: number, budget: number) {
+  private reportBudgetViolation(
+    metric: string,
+    actual: number,
+    budget: number
+  ) {
     // Send alert to monitoring service
     if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line no-console
@@ -212,13 +223,13 @@ class AdvancedPerformanceMonitor {
 
   private getOptimizationRecommendations(): string[] {
     const recommendations = [];
-    
+
     if (this.calculateBundleSize() > this.budget.maxBundleSize) {
       recommendations.push('Consider code splitting for large components');
       recommendations.push('Enable tree shaking for unused exports');
       recommendations.push('Use dynamic imports for non-critical modules');
     }
-    
+
     return recommendations;
   }
 
@@ -244,7 +255,7 @@ class AdvancedPerformanceMonitor {
   }
 
   public cleanup() {
-    this.observers.forEach((observer) => observer.disconnect());
+    this.observers.forEach(observer => observer.disconnect());
     this.observers.clear();
   }
 }
@@ -339,7 +350,7 @@ export function usePerformanceTracking(componentName: string) {
 
   React.useEffect(() => {
     const startTime = performance.now();
-    
+
     return () => {
       const endTime = performance.now();
       const duration = endTime - startTime;
@@ -358,10 +369,14 @@ export const analyzeBundlePerformance = () => {
   console.log('Bundle Performance Analysis');
   // eslint-disable-next-line no-console
   console.log('================================');
-  
+
   const analysis = performanceMonitor.getBundleAnalysis();
   // eslint-disable-next-line no-console
-  console.log('Total Bundle Size:', (analysis.totalSize / 1024).toFixed(2), 'KB');
+  console.log(
+    'Total Bundle Size:',
+    (analysis.totalSize / 1024).toFixed(2),
+    'KB'
+  );
   // eslint-disable-next-line no-console
   console.log('Chunk Breakdown:', analysis.chunks);
   // eslint-disable-next-line no-console

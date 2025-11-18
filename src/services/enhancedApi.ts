@@ -1,7 +1,7 @@
 /**
  * Advanced REST API Service Layer
  * Demonstrates comprehensive REST API experience as required in job posting
- * 
+ *
  * Features:
  * - Comprehensive error handling and retry logic
  * - Request/response interceptors
@@ -12,7 +12,12 @@
  * - Type-safe API responses
  */
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  CancelTokenSource,
+} from 'axios';
 
 // API Response Types
 export interface ApiResponse<T = any> {
@@ -56,7 +61,10 @@ class EnhancedApiClient {
   private config: ApiConfig;
   private requestQueue: QueuedRequest[] = [];
   private isProcessingQueue = false;
-  private cache = new Map<string, { data: any; timestamp: number; ttl: number }>();
+  private cache = new Map<
+    string,
+    { data: any; timestamp: number; ttl: number }
+  >();
   private cancelTokens = new Map<string, CancelTokenSource>();
 
   constructor(config: Partial<ApiConfig> = {}) {
@@ -75,7 +83,7 @@ class EnhancedApiClient {
       timeout: this.config.timeout,
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
     });
 
@@ -104,7 +112,7 @@ class EnhancedApiClient {
 
         return config;
       },
-      (error) => {
+      error => {
         // eslint-disable-next-line no-console
         console.error('Request interceptor error:', error);
         return Promise.reject(error);
@@ -115,10 +123,13 @@ class EnhancedApiClient {
     this.client.interceptors.response.use(
       (response: AxiosResponse) => {
         if (this.config.enableLogging) {
-          console.log(`API Response [${(response.config as any).metadata?.requestId}]:`, {
-            status: response.status,
-            data: response.data,
-          });
+          console.log(
+            `API Response [${(response.config as any).metadata?.requestId}]:`,
+            {
+              status: response.status,
+              data: response.data,
+            }
+          );
         }
 
         // Cache successful GET requests
@@ -132,15 +143,18 @@ class EnhancedApiClient {
 
         return response;
       },
-      async (error) => {
+      async error => {
         const originalRequest = error.config;
 
         if (this.config.enableLogging) {
-          console.error(`API Error [${originalRequest?.metadata?.requestId}]:`, {
-            status: error.response?.status,
-            message: error.message,
-            url: originalRequest?.url,
-          });
+          console.error(
+            `API Error [${originalRequest?.metadata?.requestId}]:`,
+            {
+              status: error.response?.status,
+              message: error.message,
+              url: originalRequest?.url,
+            }
+          );
         }
 
         // Handle token refresh
@@ -164,7 +178,9 @@ class EnhancedApiClient {
           originalRequest._retry = true;
           originalRequest._retryCount = (originalRequest._retryCount || 0) + 1;
 
-          await this.delay(this.config.retryDelay * originalRequest._retryCount);
+          await this.delay(
+            this.config.retryDelay * originalRequest._retryCount
+          );
           return this.client(originalRequest);
         }
 
@@ -176,7 +192,10 @@ class EnhancedApiClient {
   // Enhanced HTTP Methods with caching and error handling
   async get<T>(
     url: string,
-    config: AxiosRequestConfig & { cacheTTL?: number; bypassCache?: boolean } = {}
+    config: AxiosRequestConfig & {
+      cacheTTL?: number;
+      bypassCache?: boolean;
+    } = {}
   ): Promise<ApiResponse<T>> {
     const { cacheTTL = 300000, bypassCache = false, ...axiosConfig } = config;
 
@@ -195,25 +214,40 @@ class EnhancedApiClient {
     return response.data;
   }
 
-  async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async post<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.post<ApiResponse<T>>(url, data, config);
     this.invalidateRelatedCache(url);
     return response.data;
   }
 
-  async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async put<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.put<ApiResponse<T>>(url, data, config);
     this.invalidateRelatedCache(url);
     return response.data;
   }
 
-  async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async patch<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.patch<ApiResponse<T>>(url, data, config);
     this.invalidateRelatedCache(url);
     return response.data;
   }
 
-  async delete<T>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>> {
+  async delete<T>(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<ApiResponse<T>> {
     const response = await this.client.delete<ApiResponse<T>>(url, config);
     this.invalidateRelatedCache(url);
     return response.data;
@@ -228,17 +262,21 @@ class EnhancedApiClient {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.client.post(url, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      onUploadProgress: (progressEvent) => {
-        if (onProgress && progressEvent.total) {
-          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          onProgress(progress);
-        }
-      },
-    }).then(response => response.data);
+    return this.client
+      .post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: progressEvent => {
+          if (onProgress && progressEvent.total) {
+            const progress = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            onProgress(progress);
+          }
+        },
+      })
+      .then(response => response.data);
   }
 
   // Request Cancellation
@@ -251,7 +289,7 @@ class EnhancedApiClient {
   }
 
   cancelAllRequests(): void {
-    this.cancelTokens.forEach((cancelToken) => {
+    this.cancelTokens.forEach(cancelToken => {
       cancelToken.cancel('All requests cancelled');
     });
     this.cancelTokens.clear();
@@ -292,7 +330,9 @@ class EnhancedApiClient {
 
   // Authentication
   private getAuthToken(): string | null {
-    return localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token');
+    return (
+      localStorage.getItem('auth_token') || sessionStorage.getItem('auth_token')
+    );
   }
 
   private async refreshToken(): Promise<void> {
@@ -343,7 +383,7 @@ class EnhancedApiClient {
   }
 
   private delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   // Health Check

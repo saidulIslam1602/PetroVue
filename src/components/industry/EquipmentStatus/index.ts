@@ -4,4 +4,8 @@
  */
 
 export { EquipmentStatus } from './EquipmentStatus';
-export type { EquipmentStatusProps, EquipmentItem, MaintenanceTask } from './EquipmentStatus';
+export type {
+  EquipmentStatusProps,
+  EquipmentItem,
+  MaintenanceTask,
+} from './EquipmentStatus';

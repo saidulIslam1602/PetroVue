@@ -13,24 +13,24 @@ const mockMetrics = {
     oil: 1250,
     gas: 2100,
     water: 850,
-    efficiency: 92
+    efficiency: 92,
   },
   safety: {
     score: 98,
     incidents: 0,
-    lastInspection: '2024-01-15'
+    lastInspection: '2024-01-15',
   },
   equipment: {
     totalUnits: 45,
     operational: 42,
     maintenance: 2,
-    critical: 1
+    critical: 1,
   },
   environmental: {
     emissions: 1200,
     waste: 85,
-    compliance: 96
-  }
+    compliance: 96,
+  },
 };
 
 const mockAlerts = [
@@ -39,23 +39,23 @@ const mockAlerts = [
     type: 'critical' as const,
     title: 'High Pressure Alert',
     message: 'Pressure reading exceeds safety threshold.',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   },
   {
     id: '2',
     type: 'warning' as const,
     title: 'Maintenance Due',
     message: 'Scheduled maintenance is due in 48 hours.',
-    timestamp: new Date().toISOString()
-  }
+    timestamp: new Date().toISOString(),
+  },
 ];
 
 describe('OperationalDashboard', () => {
   it('renders dashboard with facility information', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -68,8 +68,8 @@ describe('OperationalDashboard', () => {
   it('displays operational metrics', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -78,7 +78,7 @@ describe('OperationalDashboard', () => {
     expect(screen.getByText('Oil Production')).toBeInTheDocument();
     expect(screen.getByText('1250')).toBeInTheDocument();
     expect(screen.getByText('bbl/day')).toBeInTheDocument();
-    
+
     expect(screen.getByText('Gas Production')).toBeInTheDocument();
     expect(screen.getByText('2100')).toBeInTheDocument();
     expect(screen.getByText('mcf/day')).toBeInTheDocument();
@@ -87,8 +87,8 @@ describe('OperationalDashboard', () => {
   it('displays safety metrics', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -102,8 +102,8 @@ describe('OperationalDashboard', () => {
   it('displays equipment status', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -117,8 +117,8 @@ describe('OperationalDashboard', () => {
   it('shows active alerts', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -132,8 +132,8 @@ describe('OperationalDashboard', () => {
   it('displays overall status indicator', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -145,11 +145,11 @@ describe('OperationalDashboard', () => {
   it('handles refresh functionality', async () => {
     const user = userEvent.setup();
     const handleRefresh = jest.fn();
-    
+
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
         onRefresh={handleRefresh}
@@ -158,15 +158,15 @@ describe('OperationalDashboard', () => {
 
     const refreshButton = screen.getByText('Refresh Data');
     await user.click(refreshButton);
-    
+
     expect(handleRefresh).toHaveBeenCalledTimes(1);
   });
 
   it('displays production trends chart', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -178,8 +178,8 @@ describe('OperationalDashboard', () => {
   it('shows system status summary', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />
@@ -195,8 +195,8 @@ describe('OperationalDashboard', () => {
   it('handles empty alerts gracefully', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={[]}
       />
@@ -208,8 +208,8 @@ describe('OperationalDashboard', () => {
   it('displays last updated timestamp', () => {
     render(
       <OperationalDashboard
-        facilityId="PLT-001"
-        facilityName="Platform Alpha"
+        facilityId='PLT-001'
+        facilityName='Platform Alpha'
         metrics={mockMetrics}
         alerts={mockAlerts}
       />

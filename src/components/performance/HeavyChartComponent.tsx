@@ -4,7 +4,16 @@
  */
 
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 
 interface ProductionData {
   id: string;
@@ -31,32 +40,32 @@ const HeavyChartComponent: React.FC<HeavyChartComponentProps> = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="heavy-chart-component">
+    <div className='heavy-chart-component'>
       <h3>Production Trends</h3>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width='100%' height={400}>
         <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" />
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='timestamp' />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line 
-            type="monotone" 
-            dataKey="oil" 
-            stroke="#0066cc" 
-            name="Oil Production (bbl/day)"
+          <Line
+            type='monotone'
+            dataKey='oil'
+            stroke='#0066cc'
+            name='Oil Production (bbl/day)'
           />
-          <Line 
-            type="monotone" 
-            dataKey="gas" 
-            stroke="#38a169" 
-            name="Gas Production (mcf/day)"
+          <Line
+            type='monotone'
+            dataKey='gas'
+            stroke='#38a169'
+            name='Gas Production (mcf/day)'
           />
-          <Line 
-            type="monotone" 
-            dataKey="efficiency" 
-            stroke="#ffb02e" 
-            name="Efficiency (%)"
+          <Line
+            type='monotone'
+            dataKey='efficiency'
+            stroke='#ffb02e'
+            name='Efficiency (%)'
           />
         </LineChart>
       </ResponsiveContainer>

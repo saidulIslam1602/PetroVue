@@ -18,14 +18,16 @@ export const DashboardGrid = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const StatusIndicator = styled.div<{ status: 'normal' | 'warning' | 'critical' }>`
+export const StatusIndicator = styled.div<{
+  status: 'normal' | 'warning' | 'critical';
+}>`
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 600;
   text-align: center;
   min-width: 80px;
-  
+
   ${({ status }) => {
     switch (status) {
       case 'critical':

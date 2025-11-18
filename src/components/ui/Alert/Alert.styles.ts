@@ -45,7 +45,9 @@ const alertStyles = {
   },
 };
 
-export const AlertContainer = styled.div<{ type: 'success' | 'warning' | 'error' | 'info' | 'critical' }>`
+export const AlertContainer = styled.div<{
+  type: 'success' | 'warning' | 'error' | 'info' | 'critical';
+}>`
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -53,7 +55,7 @@ export const AlertContainer = styled.div<{ type: 'success' | 'warning' | 'error'
   border-radius: ${theme.borderRadius.lg};
   border: 1px solid;
   margin-bottom: 1rem;
-  
+
   ${({ type }) => {
     const style = alertStyles[type];
     return `
@@ -63,9 +65,10 @@ export const AlertContainer = styled.div<{ type: 'success' | 'warning' | 'error'
       ${style.animation ? `animation: ${style.animation};` : ''}
     `;
   }}
-  
+
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -74,18 +77,20 @@ export const AlertContainer = styled.div<{ type: 'success' | 'warning' | 'error'
   }
 `;
 
-export const AlertIcon = styled.div<{ type: 'success' | 'warning' | 'error' | 'info' | 'critical' }>`
+export const AlertIcon = styled.div<{
+  type: 'success' | 'warning' | 'error' | 'info' | 'critical';
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-top: 0.125rem;
-  
+
   ${({ type }) => {
     const style = alertStyles[type];
     return `color: ${style.iconColor};`;
   }}
-  
+
   svg {
     width: 20px;
     height: 20px;
@@ -110,17 +115,17 @@ export const AlertCloseButton = styled.button`
   opacity: 0.7;
   transition: opacity 0.2s ease;
   flex-shrink: 0;
-  
+
   &:hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.1);
   }
-  
+
   &:focus {
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
-  
+
   svg {
     width: 16px;
     height: 16px;

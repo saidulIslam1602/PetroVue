@@ -4,4 +4,8 @@
  */
 
 export { ProductionTracker } from './ProductionTracker';
-export type { ProductionTrackerProps, WellData, ProductionMetrics } from './ProductionTracker';
+export type {
+  ProductionTrackerProps,
+  WellData,
+  ProductionMetrics,
+} from './ProductionTracker';

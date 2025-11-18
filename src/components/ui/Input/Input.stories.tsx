@@ -13,7 +13,8 @@ const meta: Meta<typeof Input> = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A form input component with validation and accessibility features, designed for oil & gas industry data entry.',
+        component:
+          'A form input component with validation and accessibility features, designed for oil & gas industry data entry.',
       },
     },
   },
@@ -136,10 +137,17 @@ export const Disabled: Story = {
 // All sizes showcase
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
-      <Input size="sm" label="Small" placeholder="Small input" />
-      <Input size="md" label="Medium" placeholder="Medium input" />
-      <Input size="lg" label="Large" placeholder="Large input" />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '300px',
+      }}
+    >
+      <Input size='sm' label='Small' placeholder='Small input' />
+      <Input size='md' label='Medium' placeholder='Medium input' />
+      <Input size='lg' label='Large' placeholder='Large input' />
     </div>
   ),
 };
@@ -147,10 +155,17 @@ export const AllSizes: Story = {
 // All variants showcase
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '300px' }}>
-      <Input variant="default" label="Default" placeholder="Default style" />
-      <Input variant="outlined" label="Outlined" placeholder="Outlined style" />
-      <Input variant="filled" label="Filled" placeholder="Filled style" />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '300px',
+      }}
+    >
+      <Input variant='default' label='Default' placeholder='Default style' />
+      <Input variant='outlined' label='Outlined' placeholder='Outlined style' />
+      <Input variant='filled' label='Filled' placeholder='Filled style' />
     </div>
   ),
 };

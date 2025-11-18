@@ -1,2 +1,1 @@
 export { SustainabilityInsights } from './SustainabilityInsights';
-

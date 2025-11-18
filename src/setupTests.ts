@@ -25,7 +25,7 @@ global.IntersectionObserver = class IntersectionObserver {
   root: Element | null = null;
   rootMargin: string = '';
   thresholds: ReadonlyArray<number> = [];
-  
+
   constructor() {}
   disconnect() {}
   observe() {}
@@ -64,7 +64,7 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('componentWillReceiveProps') ||
-       args[0].includes('componentWillMount'))
+        args[0].includes('componentWillMount'))
     ) {
       return;
     }

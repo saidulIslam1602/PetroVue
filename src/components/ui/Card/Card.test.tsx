@@ -5,7 +5,12 @@
 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Card, CardHeaderComponent as CardHeader, CardContentComponent as CardContent, CardFooterComponent as CardFooter } from './Card';
+import {
+  Card,
+  CardHeaderComponent as CardHeader,
+  CardContentComponent as CardContent,
+  CardFooterComponent as CardFooter,
+} from './Card';
 
 describe('Card Component', () => {
   it('renders with default props', () => {
@@ -14,21 +19,21 @@ describe('Card Component', () => {
   });
 
   it('renders with different variants', () => {
-    const { rerender } = render(<Card variant="elevated">Elevated</Card>);
+    const { rerender } = render(<Card variant='elevated'>Elevated</Card>);
     expect(screen.getByText('Elevated')).toBeInTheDocument();
 
-    rerender(<Card variant="outlined">Outlined</Card>);
+    rerender(<Card variant='outlined'>Outlined</Card>);
     expect(screen.getByText('Outlined')).toBeInTheDocument();
   });
 
   it('renders with custom className', () => {
-    render(<Card className="custom-card">Custom</Card>);
+    render(<Card className='custom-card'>Custom</Card>);
     const card = screen.getByText('Custom');
     expect(card).toBeInTheDocument();
   });
 
   it('renders with data-testid', () => {
-    render(<Card data-testid="test-card">Test</Card>);
+    render(<Card data-testid='test-card'>Test</Card>);
     expect(screen.getByTestId('test-card')).toBeInTheDocument();
   });
 
@@ -47,7 +52,7 @@ describe('Card Subcomponents', () => {
         <div>Body Content</div>
       </Card>
     );
-    
+
     expect(screen.getByText('Header Content')).toBeInTheDocument();
     expect(screen.getByText('Body Content')).toBeInTheDocument();
   });
@@ -58,7 +63,7 @@ describe('Card Subcomponents', () => {
         <CardContent>Content</CardContent>
       </Card>
     );
-    
+
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
@@ -69,7 +74,7 @@ describe('Card Subcomponents', () => {
         <CardFooter>Footer Content</CardFooter>
       </Card>
     );
-    
+
     expect(screen.getByText('Footer Content')).toBeInTheDocument();
   });
 
@@ -81,7 +86,7 @@ describe('Card Subcomponents', () => {
         <CardFooter>Footer</CardFooter>
       </Card>
     );
-    
+
     expect(screen.getByText('Header')).toBeInTheDocument();
     expect(screen.getByText('Content')).toBeInTheDocument();
     expect(screen.getByText('Footer')).toBeInTheDocument();

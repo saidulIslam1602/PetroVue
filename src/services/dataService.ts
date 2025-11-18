@@ -118,7 +118,13 @@ export interface WellData {
 export interface EquipmentData {
   id: string;
   name: string;
-  type: 'pump' | 'compressor' | 'valve' | 'turbine' | 'generator' | 'heat_exchanger';
+  type:
+    | 'pump'
+    | 'compressor'
+    | 'valve'
+    | 'turbine'
+    | 'generator'
+    | 'heat_exchanger';
   status: 'operational' | 'maintenance' | 'failed' | 'standby';
   health: number; // 0-100
   location: string;
@@ -167,11 +173,10 @@ export interface EnvironmentalMetrics {
 
 // Data Services
 export class DataService {
-  
   // Facility Services
   async getFacilities(): Promise<FacilityData[]> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<FacilityData[]>('/facilities')
       );
       return response.data;
@@ -184,7 +189,7 @@ export class DataService {
 
   async getFacility(id: string): Promise<FacilityData | null> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<FacilityData>(`/facilities/${id}`)
       );
       return response.data;
@@ -199,21 +204,26 @@ export class DataService {
   // Operational Data Services
   async getOperationalMetrics(facilityId: string): Promise<OperationalMetrics> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<OperationalMetrics>(`/facilities/${facilityId}/metrics`)
       );
       return response.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error fetching operational metrics:', handleApiError(error));
+      console.error(
+        'Error fetching operational metrics:',
+        handleApiError(error)
+      );
       return this.getFallbackOperationalMetrics();
     }
   }
 
   async getAlerts(facilityId?: string): Promise<AlertData[]> {
     try {
-      const endpoint = facilityId ? `/facilities/${facilityId}/alerts` : '/alerts';
-      const response = await withRetry(() => 
+      const endpoint = facilityId
+        ? `/facilities/${facilityId}/alerts`
+        : '/alerts';
+      const response = await withRetry(() =>
         apiClient.get<AlertData[]>(endpoint)
       );
       return response.data;
@@ -225,10 +235,16 @@ export class DataService {
   }
 
   // Production Services
-  async getProductionData(facilityId: string, period: string = '7d'): Promise<ProductionData[]> {
+  async getProductionData(
+    facilityId: string,
+    period: string = '7d'
+  ): Promise<ProductionData[]> {
     try {
-      const response = await withRetry(() => 
-        apiClient.get<ProductionData[]>(`/facilities/${facilityId}/production`, { period })
+      const response = await withRetry(() =>
+        apiClient.get<ProductionData[]>(
+          `/facilities/${facilityId}/production`,
+          { period }
+        )
       );
       return response.data;
     } catch (error) {
@@ -240,7 +256,7 @@ export class DataService {
 
   async getWells(facilityId: string): Promise<WellData[]> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<WellData[]>(`/facilities/${facilityId}/wells`)
       );
       return response.data;
@@ -254,7 +270,7 @@ export class DataService {
   // Safety Services
   async getSafetyMetrics(facilityId: string): Promise<SafetyMetrics> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<SafetyMetrics>(`/facilities/${facilityId}/safety/metrics`)
       );
       return response.data;
@@ -265,11 +281,16 @@ export class DataService {
     }
   }
 
-  async getSafetyIncidents(facilityId: string, limit: number = 50): Promise<SafetyIncident[]> {
+  async getSafetyIncidents(
+    facilityId: string,
+    limit: number = 50
+  ): Promise<SafetyIncident[]> {
     try {
-      const response = await withRetry(() => 
-        apiClient.get<SafetyIncident[]>(`/facilities/${facilityId}/safety/incidents`, 
-        { limit: limit.toString() })
+      const response = await withRetry(() =>
+        apiClient.get<SafetyIncident[]>(
+          `/facilities/${facilityId}/safety/incidents`,
+          { limit: limit.toString() }
+        )
       );
       return response.data;
     } catch (error) {
@@ -282,7 +303,7 @@ export class DataService {
   // Equipment Services
   async getEquipment(facilityId: string): Promise<EquipmentData[]> {
     try {
-      const response = await withRetry(() => 
+      const response = await withRetry(() =>
         apiClient.get<EquipmentData[]>(`/facilities/${facilityId}/equipment`)
       );
       return response.data;
@@ -294,15 +315,22 @@ export class DataService {
   }
 
   // Environmental Services
-  async getEnvironmentalMetrics(facilityId: string): Promise<EnvironmentalMetrics> {
+  async getEnvironmentalMetrics(
+    facilityId: string
+  ): Promise<EnvironmentalMetrics> {
     try {
-      const response = await withRetry(() => 
-        apiClient.get<EnvironmentalMetrics>(`/facilities/${facilityId}/environmental`)
+      const response = await withRetry(() =>
+        apiClient.get<EnvironmentalMetrics>(
+          `/facilities/${facilityId}/environmental`
+        )
       );
       return response.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error fetching environmental metrics:', handleApiError(error));
+      console.error(
+        'Error fetching environmental metrics:',
+        handleApiError(error)
+      );
       return this.getFallbackEnvironmentalMetrics();
     }
   }
@@ -317,15 +345,15 @@ export class DataService {
         location: {
           latitude: 29.7604,
           longitude: -95.3698,
-          address: 'Gulf of Mexico, Sector 7'
+          address: 'Gulf of Mexico, Sector 7',
         },
         capacity: {
           oil: 2000,
           gas: 5000,
-          storage: 10000
+          storage: 10000,
         },
         status: 'operational',
-        lastUpdated: new Date().toISOString()
+        lastUpdated: new Date().toISOString(),
       },
       {
         id: 'PLT-002',
@@ -334,16 +362,16 @@ export class DataService {
         location: {
           latitude: 29.8604,
           longitude: -95.2698,
-          address: 'Gulf of Mexico, Sector 8'
+          address: 'Gulf of Mexico, Sector 8',
         },
         capacity: {
           oil: 1800,
           gas: 4500,
-          storage: 9000
+          storage: 9000,
         },
         status: 'operational',
-        lastUpdated: new Date().toISOString()
-      }
+        lastUpdated: new Date().toISOString(),
+      },
     ];
   }
 
@@ -353,24 +381,28 @@ export class DataService {
         oil: Math.floor(Math.random() * 500) + 1000,
         gas: Math.floor(Math.random() * 1000) + 2000,
         water: Math.floor(Math.random() * 200) + 800,
-        efficiency: Math.floor(Math.random() * 10) + 90
+        efficiency: Math.floor(Math.random() * 10) + 90,
       },
       safety: {
         score: Math.floor(Math.random() * 5) + 95,
         incidents: Math.floor(Math.random() * 3),
-        lastInspection: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+        lastInspection: new Date(
+          Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000
+        )
+          .toISOString()
+          .split('T')[0],
       },
       equipment: {
         totalUnits: 45,
         operational: 40 + Math.floor(Math.random() * 4),
         maintenance: Math.floor(Math.random() * 3) + 1,
-        critical: Math.floor(Math.random() * 2)
+        critical: Math.floor(Math.random() * 2),
       },
       environmental: {
         emissions: Math.floor(Math.random() * 200) + 1000,
         waste: Math.floor(Math.random() * 20) + 80,
-        compliance: Math.floor(Math.random() * 5) + 94
-      }
+        compliance: Math.floor(Math.random() * 5) + 94,
+      },
     };
   }
 
@@ -381,20 +413,25 @@ export class DataService {
       'Maintenance Due',
       'Low Inventory',
       'Equipment Malfunction',
-      'Temperature Warning'
+      'Temperature Warning',
     ];
-    
-    return Array.from({ length: Math.floor(Math.random() * 5) + 1 }, (_, i) => ({
-      id: `alert-${i + 1}`,
-      type: alertTypes[Math.floor(Math.random() * alertTypes.length)],
-      title: titles[Math.floor(Math.random() * titles.length)],
-      message: `System alert detected at ${new Date().toLocaleTimeString()}`,
-      timestamp: new Date(Date.now() - Math.random() * 24 * 60 * 60 * 1000).toISOString(),
-      facilityId: 'PLT-001',
-      priority: Math.floor(Math.random() * 10) + 1,
-      acknowledged: Math.random() > 0.5,
-      resolved: Math.random() > 0.7
-    }));
+
+    return Array.from(
+      { length: Math.floor(Math.random() * 5) + 1 },
+      (_, i) => ({
+        id: `alert-${i + 1}`,
+        type: alertTypes[Math.floor(Math.random() * alertTypes.length)],
+        title: titles[Math.floor(Math.random() * titles.length)],
+        message: `System alert detected at ${new Date().toLocaleTimeString()}`,
+        timestamp: new Date(
+          Date.now() - Math.random() * 24 * 60 * 60 * 1000
+        ).toISOString(),
+        facilityId: 'PLT-001',
+        priority: Math.floor(Math.random() * 10) + 1,
+        acknowledged: Math.random() > 0.5,
+        resolved: Math.random() > 0.7,
+      })
+    );
   }
 
   private getFallbackProductionData(): ProductionData[] {
@@ -408,7 +445,7 @@ export class DataService {
         gas: Math.floor(Math.random() * 400) + 1900,
         water: Math.floor(Math.random() * 100) + 800,
         efficiency: Math.floor(Math.random() * 10) + 88,
-        target: 1200
+        target: 1200,
       };
     });
   }
@@ -423,19 +460,19 @@ export class DataService {
         production: {
           rate: Math.floor(Math.random() * 50) + 100,
           unit: 'bbl/day',
-          efficiency: Math.floor(Math.random() * 10) + 90
+          efficiency: Math.floor(Math.random() * 10) + 90,
         },
         pressure: {
           current: Math.floor(Math.random() * 100) + 800,
           target: 900,
-          unit: 'PSI'
+          unit: 'PSI',
         },
         lastUpdate: new Date().toISOString(),
         location: {
           platform: 'Alpha',
-          zone: 'A'
-        }
-      }
+          zone: 'A',
+        },
+      },
     ];
   }
 
@@ -446,32 +483,61 @@ export class DataService {
       totalIncidents: Math.floor(Math.random() * 5) + 1,
       criticalAlerts: Math.floor(Math.random() * 2),
       complianceRate: Math.floor(Math.random() * 5) + 95,
-      lastInspection: new Date(Date.now() - Math.random() * 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      nextInspection: new Date(Date.now() + Math.random() * 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      lastInspection: new Date(
+        Date.now() - Math.random() * 60 * 24 * 60 * 60 * 1000
+      )
+        .toISOString()
+        .split('T')[0],
+      nextInspection: new Date(
+        Date.now() + Math.random() * 90 * 24 * 60 * 60 * 1000
+      )
+        .toISOString()
+        .split('T')[0],
     };
   }
 
   private getFallbackSafetyIncidents(): SafetyIncident[] {
-    const types = ['equipment', 'personnel', 'environmental', 'process'] as const;
+    const types = [
+      'equipment',
+      'personnel',
+      'environmental',
+      'process',
+    ] as const;
     const severities = ['critical', 'high', 'medium', 'low'] as const;
     const statuses = ['open', 'investigating', 'resolved'] as const;
-    
-    return Array.from({ length: Math.floor(Math.random() * 3) + 1 }, (_, i) => ({
-      id: `incident-${i + 1}`,
-      type: types[Math.floor(Math.random() * types.length)],
-      severity: severities[Math.floor(Math.random() * severities.length)],
-      description: `Safety incident detected in facility zone ${String.fromCharCode(65 + i)}`,
-      location: `Platform Alpha - Zone ${String.fromCharCode(65 + i)}`,
-      timestamp: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString(),
-      status: statuses[Math.floor(Math.random() * statuses.length)],
-      reportedBy: 'Safety Officer'
-    }));
+
+    return Array.from(
+      { length: Math.floor(Math.random() * 3) + 1 },
+      (_, i) => ({
+        id: `incident-${i + 1}`,
+        type: types[Math.floor(Math.random() * types.length)],
+        severity: severities[Math.floor(Math.random() * severities.length)],
+        description: `Safety incident detected in facility zone ${String.fromCharCode(65 + i)}`,
+        location: `Platform Alpha - Zone ${String.fromCharCode(65 + i)}`,
+        timestamp: new Date(
+          Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000
+        ).toISOString(),
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        reportedBy: 'Safety Officer',
+      })
+    );
   }
 
   private getFallbackEquipment(): EquipmentData[] {
-    const types = ['pump', 'compressor', 'valve', 'turbine', 'generator'] as const;
-    const statuses = ['operational', 'maintenance', 'failed', 'standby'] as const;
-    
+    const types = [
+      'pump',
+      'compressor',
+      'valve',
+      'turbine',
+      'generator',
+    ] as const;
+    const statuses = [
+      'operational',
+      'maintenance',
+      'failed',
+      'standby',
+    ] as const;
+
     return Array.from({ length: 8 }, (_, i) => ({
       id: `equip-${i + 1}`,
       name: `${types[i % types.length].charAt(0).toUpperCase() + types[i % types.length].slice(1)} ${String.fromCharCode(65 + i)}`,
@@ -479,14 +545,22 @@ export class DataService {
       status: statuses[Math.floor(Math.random() * statuses.length)],
       health: Math.floor(Math.random() * 30) + 70,
       location: `Platform Alpha - Zone ${String.fromCharCode(65 + Math.floor(i / 2))}`,
-      lastMaintenance: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      nextMaintenance: new Date(Date.now() + Math.random() * 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      lastMaintenance: new Date(
+        Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000
+      )
+        .toISOString()
+        .split('T')[0],
+      nextMaintenance: new Date(
+        Date.now() + Math.random() * 90 * 24 * 60 * 60 * 1000
+      )
+        .toISOString()
+        .split('T')[0],
       performance: {
         efficiency: Math.floor(Math.random() * 15) + 85,
         uptime: Math.floor(Math.random() * 10) + 90,
-        load: Math.floor(Math.random() * 40) + 60
+        load: Math.floor(Math.random() * 40) + 60,
       },
-      alerts: Math.floor(Math.random() * 3)
+      alerts: Math.floor(Math.random() * 3),
     }));
   }
 
@@ -497,31 +571,31 @@ export class DataService {
         methane: Math.floor(Math.random() * 10) + 30,
         nox: Math.floor(Math.random() * 5) + 15,
         sox: Math.floor(Math.random() * 5) + 8,
-        unit: 'tonnes/month'
+        unit: 'tonnes/month',
       },
       waste: {
         hazardous: Math.floor(Math.random() * 10) + 10,
         nonHazardous: Math.floor(Math.random() * 20) + 40,
         recycled: Math.floor(Math.random() * 15) + 20,
-        unit: 'tonnes/month'
+        unit: 'tonnes/month',
       },
       water: {
         consumption: Math.floor(Math.random() * 200) + 1100,
         discharge: Math.floor(Math.random() * 150) + 750,
         treatment: Math.floor(Math.random() * 100) + 950,
-        unit: 'm³/day'
+        unit: 'm³/day',
       },
       compliance: {
         airQuality: Math.floor(Math.random() * 5) + 95,
         waterQuality: Math.floor(Math.random() * 8) + 92,
         wasteManagement: Math.floor(Math.random() * 10) + 90,
-        overall: Math.floor(Math.random() * 6) + 94
+        overall: Math.floor(Math.random() * 6) + 94,
       },
       sustainability: {
         energyEfficiency: Math.floor(Math.random() * 8) + 88,
         renewableEnergy: Math.floor(Math.random() * 10) + 10,
-        carbonIntensity: Math.floor(Math.random() * 5) + 10
-      }
+        carbonIntensity: Math.floor(Math.random() * 5) + 10,
+      },
     };
   }
 }

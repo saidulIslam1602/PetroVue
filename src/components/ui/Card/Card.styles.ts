@@ -40,14 +40,16 @@ export const CardContainer = styled.div<CardProps>`
   border-radius: ${theme.borderRadius.lg};
   overflow: hidden;
   transition: all 0.2s ease-in-out;
-  
+
   ${({ variant }) => variant && cardVariants[variant]}
-  
+
   padding: ${({ padding }) => padding && paddingVariants[padding]};
-  
+
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow:
+      0 8px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 `;
 
@@ -55,8 +57,13 @@ export const CardHeader = styled.div`
   padding: ${theme.spacing.md} ${theme.spacing.md} 0 ${theme.spacing.md};
   border-bottom: 1px solid #f0f0f0;
   margin-bottom: ${theme.spacing.md};
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0 0 ${theme.spacing.sm} 0;
     color: #212121;
   }
@@ -65,7 +72,7 @@ export const CardHeader = styled.div`
 export const CardContent = styled.div`
   padding: 0 ${theme.spacing.md};
   flex: 1;
-  
+
   &:last-child {
     padding-bottom: ${theme.spacing.md};
   }
@@ -76,7 +83,7 @@ export const CardFooter = styled.div`
   border-top: 1px solid #f0f0f0;
   margin-top: ${theme.spacing.md};
   background-color: #fafafa;
-  
+
   display: flex;
   justify-content: flex-end;
   gap: ${theme.spacing.sm};

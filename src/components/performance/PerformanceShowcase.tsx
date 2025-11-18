@@ -36,9 +36,9 @@ const ProductionMetric = memo<{
   trend: 'up' | 'down' | 'stable';
 }>(({ label, value, unit, trend }) => {
   return (
-    <div className="production-metric">
-      <div className="metric-label">{label}</div>
-      <div className="metric-value">
+    <div className='production-metric'>
+      <div className='metric-label'>{label}</div>
+      <div className='metric-value'>
         {value.toLocaleString()} {unit}
       </div>
       <div className={`metric-trend trend-${trend}`}>
@@ -74,7 +74,7 @@ const VirtualizedProductionList: React.FC<{
   return (
     <div
       ref={parentRef}
-      className="virtual-list-container"
+      className='virtual-list-container'
       style={{ height: '400px', overflow: 'auto' }}
     >
       <div
@@ -84,7 +84,7 @@ const VirtualizedProductionList: React.FC<{
           position: 'relative',
         }}
       >
-        {virtualizer.getVirtualItems().map((virtualRow) => {
+        {virtualizer.getVirtualItems().map(virtualRow => {
           const item = data[virtualRow.index];
           return (
             <div
@@ -97,17 +97,16 @@ const VirtualizedProductionList: React.FC<{
                 height: `${virtualRow.size}px`,
                 transform: `translateY(${virtualRow.start}px)`,
               }}
-              className="virtual-list-item"
+              className='virtual-list-item'
               onClick={() => handleItemClick(item)}
             >
-              <div className="production-item">
-                <div className="facility-id">{item.facilityId}</div>
-                <div className="production-values">
-                  Oil: {item.oilProduction} bbl/day | 
-                  Gas: {item.gasProduction} mcf/day |
-                  Efficiency: {item.efficiency}%
+              <div className='production-item'>
+                <div className='facility-id'>{item.facilityId}</div>
+                <div className='production-values'>
+                  Oil: {item.oilProduction} bbl/day | Gas: {item.gasProduction}{' '}
+                  mcf/day | Efficiency: {item.efficiency}%
                 </div>
-                <div className="timestamp">
+                <div className='timestamp'>
                   {new Date(item.timestamp).toLocaleString('nb-NO')}
                 </div>
               </div>
@@ -128,11 +127,11 @@ const usePerformanceMonitoring = () => {
   React.useEffect(() => {
     // Monitor component render times
     const startTime = performance.now();
-    
+
     return () => {
       const endTime = performance.now();
       const renderTime = endTime - startTime;
-      
+
       setMetrics({
         renderTime,
         memoryUsage: (performance as any).memory?.usedJSHeapSize || 0,
@@ -164,9 +163,13 @@ const useDebounceSearch = (searchTerm: string, delay: number = 300) => {
 
 // Main performance showcase component
 const PerformanceShowcase: React.FC = () => {
-  const [productionData, setProductionData] = React.useState<ProductionData[]>([]);
+  const [productionData, setProductionData] = React.useState<ProductionData[]>(
+    []
+  );
   const [searchTerm, setSearchTerm] = React.useState('');
-  const [selectedView, setSelectedView] = React.useState<'list' | 'chart'>('list');
+  const [selectedView, setSelectedView] = React.useState<'list' | 'chart'>(
+    'list'
+  );
   const [showExportModal, setShowExportModal] = React.useState(false);
 
   const debouncedSearchTerm = useDebounceSearch(searchTerm);
@@ -175,7 +178,7 @@ const PerformanceShowcase: React.FC = () => {
   // Memoized filtered data to prevent unnecessary recalculations
   const filteredData = useMemo(() => {
     if (!debouncedSearchTerm) return productionData;
-    
+
     return productionData.filter(item =>
       item.facilityId.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     );
@@ -210,9 +213,12 @@ const PerformanceShowcase: React.FC = () => {
     // Implement item selection logic
   }, []);
 
-  const handleSearchChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  }, []);
+  const handleSearchChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(event.target.value);
+    },
+    []
+  );
 
   const handleViewChange = useCallback((view: 'list' | 'chart') => {
     setSelectedView(view);
@@ -229,19 +235,23 @@ const PerformanceShowcase: React.FC = () => {
       const chunkSize = 1000;
       const totalItems = 10000;
       const chunks = Math.ceil(totalItems / chunkSize);
-      
+
       for (let i = 0; i < chunks; i++) {
         const chunkData = Array.from({ length: chunkSize }, (_, index) => ({
           id: `prod-${i * chunkSize + index}`,
-          facilityId: `FACILITY-${Math.floor(Math.random() * 100).toString().padStart(3, '0')}`,
-          timestamp: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
+          facilityId: `FACILITY-${Math.floor(Math.random() * 100)
+            .toString()
+            .padStart(3, '0')}`,
+          timestamp: new Date(
+            Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000
+          ).toISOString(),
           oilProduction: Math.floor(Math.random() * 10000),
           gasProduction: Math.floor(Math.random() * 5000),
           efficiency: Math.floor(Math.random() * 40) + 60,
         }));
 
         setProductionData(prev => [...prev, ...chunkData]);
-        
+
         // Yield control back to browser to prevent blocking
         await new Promise(resolve => setTimeout(resolve, 0));
       }
@@ -251,30 +261,35 @@ const PerformanceShowcase: React.FC = () => {
   }, []);
 
   return (
-    <div className="performance-showcase">
-      <div className="showcase-header">
+    <div className='performance-showcase'>
+      <div className='showcase-header'>
         <h1>Performance & Scalability Demo</h1>
-        <div className="performance-metrics">
+        <div className='performance-metrics'>
           {performanceMetrics && (
             <>
               <span>Render: {performanceMetrics.renderTime.toFixed(2)}ms</span>
-              <span>Memory: {(performanceMetrics.memoryUsage / 1024 / 1024).toFixed(2)}MB</span>
-              <span>Cache: {(performanceMetrics.cacheHitRate * 100).toFixed(1)}%</span>
+              <span>
+                Memory:{' '}
+                {(performanceMetrics.memoryUsage / 1024 / 1024).toFixed(2)}MB
+              </span>
+              <span>
+                Cache: {(performanceMetrics.cacheHitRate * 100).toFixed(1)}%
+              </span>
             </>
           )}
         </div>
       </div>
 
       {/* Optimized search input */}
-      <div className="search-controls">
+      <div className='search-controls'>
         <input
-          type="text"
-          placeholder="Search facilities..."
+          type='text'
+          placeholder='Search facilities...'
           value={searchTerm}
           onChange={handleSearchChange}
-          className="search-input"
+          className='search-input'
         />
-        <div className="view-controls">
+        <div className='view-controls'>
           <button
             className={selectedView === 'list' ? 'active' : ''}
             onClick={() => handleViewChange('list')}
@@ -288,48 +303,50 @@ const PerformanceShowcase: React.FC = () => {
             Chart View
           </button>
         </div>
-        <button onClick={handleExportData} className="export-button">
+        <button onClick={handleExportData} className='export-button'>
           Export Data
         </button>
       </div>
 
       {/* Memoized metrics dashboard */}
-      <div className="metrics-dashboard">
+      <div className='metrics-dashboard'>
         <ProductionMetric
-          label="Total Oil Production"
+          label='Total Oil Production'
           value={aggregatedMetrics.totalOil}
-          unit="bbl/day"
-          trend="up"
+          unit='bbl/day'
+          trend='up'
         />
         <ProductionMetric
-          label="Total Gas Production"
+          label='Total Gas Production'
           value={aggregatedMetrics.totalGas}
-          unit="mcf/day"
-          trend="stable"
+          unit='mcf/day'
+          trend='stable'
         />
         <ProductionMetric
-          label="Average Efficiency"
+          label='Average Efficiency'
           value={aggregatedMetrics.avgEfficiency}
-          unit="%"
-          trend="up"
+          unit='%'
+          trend='up'
         />
         <ProductionMetric
-          label="Active Facilities"
+          label='Active Facilities'
           value={filteredData.length}
-          unit="units"
-          trend="stable"
+          unit='units'
+          trend='stable'
         />
       </div>
 
       {/* Conditional rendering with lazy loading */}
-      <div className="data-visualization">
+      <div className='data-visualization'>
         {selectedView === 'list' ? (
           <VirtualizedProductionList
             data={filteredData}
             onItemClick={handleItemClick}
           />
         ) : (
-          <Suspense fallback={<div className="chart-loading">Loading chart...</div>}>
+          <Suspense
+            fallback={<div className='chart-loading'>Loading chart...</div>}
+          >
             <HeavyChartComponent data={filteredData} />
           </Suspense>
         )}
@@ -337,7 +354,9 @@ const PerformanceShowcase: React.FC = () => {
 
       {/* Lazy loaded modal */}
       {showExportModal && (
-        <Suspense fallback={<div className="modal-loading">Loading export...</div>}>
+        <Suspense
+          fallback={<div className='modal-loading'>Loading export...</div>}
+        >
           <DataExportModal
             data={filteredData}
             onClose={() => setShowExportModal(false)}
@@ -346,17 +365,37 @@ const PerformanceShowcase: React.FC = () => {
       )}
 
       {/* Performance tips display */}
-      <div className="performance-tips">
+      <div className='performance-tips'>
         <h3>Performance Optimizations Applied:</h3>
         <ul>
-          <li><strong>Virtualized Lists</strong> - Rendering only visible items from {productionData.length.toLocaleString()} records</li>
-          <li><strong>Memoization</strong> - React.memo, useMemo, and useCallback to prevent unnecessary re-renders</li>
-          <li><strong>Lazy Loading</strong> - Code splitting for heavy components</li>
-          <li><strong>Debounced Search</strong> - Preventing excessive API calls</li>
-          <li><strong>Chunked Loading</strong> - Loading large datasets in manageable chunks</li>
-          <li><strong>Efficient State Updates</strong> - Optimized Redux patterns</li>
-          <li><strong>Image Optimization</strong> - WebP format with lazy loading</li>
-          <li><strong>Bundle Splitting</strong> - Webpack code splitting for smaller initial load</li>
+          <li>
+            <strong>Virtualized Lists</strong> - Rendering only visible items
+            from {productionData.length.toLocaleString()} records
+          </li>
+          <li>
+            <strong>Memoization</strong> - React.memo, useMemo, and useCallback
+            to prevent unnecessary re-renders
+          </li>
+          <li>
+            <strong>Lazy Loading</strong> - Code splitting for heavy components
+          </li>
+          <li>
+            <strong>Debounced Search</strong> - Preventing excessive API calls
+          </li>
+          <li>
+            <strong>Chunked Loading</strong> - Loading large datasets in
+            manageable chunks
+          </li>
+          <li>
+            <strong>Efficient State Updates</strong> - Optimized Redux patterns
+          </li>
+          <li>
+            <strong>Image Optimization</strong> - WebP format with lazy loading
+          </li>
+          <li>
+            <strong>Bundle Splitting</strong> - Webpack code splitting for
+            smaller initial load
+          </li>
         </ul>
       </div>
     </div>

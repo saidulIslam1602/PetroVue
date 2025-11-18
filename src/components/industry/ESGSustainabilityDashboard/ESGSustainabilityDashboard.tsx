@@ -5,11 +5,11 @@
  */
 
 import React, { useState } from 'react';
-import { 
-  Container, 
-  Card, 
-  CardContent, 
-  Typography, 
+import {
+  Container,
+  Card,
+  CardContent,
+  Typography,
   Box,
   Alert,
   Chip,
@@ -21,7 +21,7 @@ import {
   TableRow,
   Paper,
   Tabs,
-  Tab
+  Tab,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
@@ -36,7 +36,7 @@ import {
   CheckCircle,
   Warning,
   WindPower,
-  WbSunny
+  WbSunny,
 } from '@mui/icons-material';
 
 // Styled components for ESG metrics
@@ -276,7 +276,7 @@ const mockESGData: ESGMetrics[] = [
     operatorName: 'Equinor ASA',
     reportingPeriod: {
       year: 2024,
-      quarter: 'Q1'
+      quarter: 'Q1',
     },
     environmental: {
       emissions: {
@@ -287,38 +287,38 @@ const mockESGData: ESGMetrics[] = [
         intensity: 8.2,
         flaring: 1200000,
         venting: 450000,
-        fugitive: 650000
+        fugitive: 650000,
       },
       energy: {
         consumption: 28500,
         renewable: 4800,
         renewablePercentage: 16.8,
-        efficiency: 3.2
+        efficiency: 3.2,
       },
       water: {
         consumption: 185,
         recycled: 125,
         discharged: 45,
-        quality: 'good'
+        quality: 'good',
       },
       waste: {
         generated: 145000,
         recycled: 98000,
         hazardous: 28000,
-        recyclingRate: 67.6
+        recyclingRate: 67.6,
       },
       biodiversity: {
         protectedAreas: 850,
         restoration: 125,
         marineProtection: 2500,
-        impactAssessments: 25
+        impactAssessments: 25,
       },
       spills: {
         number: 3,
         volume: 0.8,
         severity: 'low',
-        recovered: 95
-      }
+        recovered: 95,
+      },
     },
     social: {
       workforce: {
@@ -326,63 +326,63 @@ const mockESGData: ESGMetrics[] = [
         norwegian: 65,
         female: 38,
         indigenous: 8,
-        contractors: 15000
+        contractors: 15000,
       },
       safety: {
         recordableInjuryRate: 1.2,
         lostTimeInjuryRate: 0.3,
         fatalities: 0,
         nearMisses: 1250,
-        safetyScore: 92
+        safetyScore: 92,
       },
       training: {
         hoursPerEmployee: 45,
         safetyTraining: 28,
         technicalTraining: 35,
-        leadershipTraining: 12
+        leadershipTraining: 12,
       },
       community: {
         investment: 285,
         localProcurement: 78,
         jobs: 12500,
-        education: 125
+        education: 125,
       },
       humanRights: {
         assessments: 15,
         grievances: 8,
         resolved: 87.5,
-        trainingHours: 18500
-      }
+        trainingHours: 18500,
+      },
     },
     governance: {
       boardComposition: {
         independence: 82,
         diversity: 45,
-        expertise: 38
+        expertise: 38,
       },
       ethics: {
         trainingCompletion: 98.5,
         violations: 12,
         investigations: 15,
-        resolved: 93.3
+        resolved: 93.3,
       },
       transparency: {
         reportingScore: 88,
         stakeholderEngagement: 45,
-        publicDisclosures: 125
+        publicDisclosures: 125,
       },
       riskManagement: {
         climateRiskAssessment: true,
         scenario2C: true,
         scenario15C: true,
-        tcfdCompliance: true
+        tcfdCompliance: true,
       },
       cybersecurity: {
         incidents: 28,
         resolved: 96.4,
         investmentMNOK: 485,
-        certifications: ['ISO 27001', 'NIST', 'SOC 2']
-      }
+        certifications: ['ISO 27001', 'NIST', 'SOC 2'],
+      },
     },
     carbonIntensity: {
       current: 8.2,
@@ -394,56 +394,56 @@ const mockESGData: ESGMetrics[] = [
         { year: 2021, intensity: 11.5, target: 11.8 },
         { year: 2022, intensity: 10.2, target: 10.8 },
         { year: 2023, intensity: 9.1, target: 9.8 },
-        { year: 2024, intensity: 8.2, target: 8.8 }
-      ]
+        { year: 2024, intensity: 8.2, target: 8.8 },
+      ],
     },
     renewableEnergy: {
       offshore: {
         wind: 2500,
         floating: 1500,
-        projects: ['Hywind Tampen', 'Dogger Bank', 'Empire Wind']
+        projects: ['Hywind Tampen', 'Dogger Bank', 'Empire Wind'],
       },
       onshore: {
         wind: 850,
         solar: 285,
-        hydro: 1250
+        hydro: 1250,
       },
       electrification: {
         platforms: 8,
         percentage: 35,
         cableLength: 185,
-        co2Reduction: 850000
+        co2Reduction: 850000,
       },
       hydrogen: {
         production: 125000,
         blue: 75,
         green: 25,
-        projects: ['H2morrow', 'Hydrogen to Europe', 'NortH2']
-      }
+        projects: ['H2morrow', 'Hydrogen to Europe', 'NortH2'],
+      },
     },
     climateGoals: {
       netZero: {
         target: 2050,
         scope1and2: 2030,
         scope3: 2050,
-        progress: 35.9
+        progress: 35.9,
       },
       parisAlignment: {
         scenario: '1.5C',
         aligned: true,
-        lastAssessment: new Date('2024-01-15')
+        lastAssessment: new Date('2024-01-15'),
       },
       carbonBudget: {
         allocated: 2500000000,
         used: 395600000,
         remaining: 2104400000,
-        percentage: 15.8
+        percentage: 15.8,
       },
       natureSolutions: {
         investment: 850,
         projects: 12,
-        co2Sequestration: 125000
-      }
+        co2Sequestration: 125000,
+      },
     },
     sustainability: {
       sdgAlignment: {
@@ -452,23 +452,23 @@ const mockESGData: ESGMetrics[] = [
         progress: [
           'SDG 7: Affordable and Clean Energy - Leading offshore wind development',
           'SDG 13: Climate Action - 36% reduction in carbon intensity since 2020',
-          'SDG 14: Life Below Water - Marine protection and restoration programs'
-        ]
+          'SDG 14: Life Below Water - Marine protection and restoration programs',
+        ],
       },
       esgRating: {
         msci: 'AA',
         sustainalytics: 18.5,
         cdp: 'A-',
-        djsi: true
+        djsi: true,
       },
       certifications: {
         iso14001: true,
         iso45001: true,
         iso50001: true,
-        ohsas18001: true
-      }
-    }
-  }
+        ohsas18001: true,
+      },
+    },
+  },
 ];
 
 interface TabPanelProps {
@@ -480,7 +480,7 @@ interface TabPanelProps {
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   return (
-    <div role="tabpanel" hidden={value !== index} {...other}>
+    <div role='tabpanel' hidden={value !== index} {...other}>
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
@@ -494,7 +494,9 @@ export const ESGSustainabilityDashboard: React.FC = () => {
     setActiveTab(newValue);
   };
 
-  const getESGRatingColor = (rating: string): 'success' | 'warning' | 'error' => {
+  const getESGRatingColor = (
+    rating: string
+  ): 'success' | 'warning' | 'error' => {
     if (['AAA', 'AA', 'A'].includes(rating)) return 'success';
     if (['BBB', 'BB'].includes(rating)) return 'warning';
     return 'error';
@@ -506,57 +508,76 @@ export const ESGSustainabilityDashboard: React.FC = () => {
     return 'error';
   };
 
-  const getWaterQualityColor = (quality: string): 'success' | 'warning' | 'error' => {
+  const getWaterQualityColor = (
+    quality: string
+  ): 'success' | 'warning' | 'error' => {
     switch (quality) {
-      case 'excellent': return 'success';
-      case 'good': return 'success';
-      case 'acceptable': return 'warning';
-      case 'poor': return 'error';
-      default: return 'warning';
+      case 'excellent':
+        return 'success';
+      case 'good':
+        return 'success';
+      case 'acceptable':
+        return 'warning';
+      case 'poor':
+        return 'error';
+      default:
+        return 'warning';
     }
   };
 
-  const getSpillSeverityColor = (severity: string): 'success' | 'warning' | 'error' => {
+  const getSpillSeverityColor = (
+    severity: string
+  ): 'success' | 'warning' | 'error' => {
     switch (severity) {
-      case 'low': return 'success';
-      case 'medium': return 'warning';
-      case 'high': return 'error';
-      default: return 'warning';
+      case 'low':
+        return 'success';
+      case 'medium':
+        return 'warning';
+      case 'high':
+        return 'error';
+      default:
+        return 'warning';
     }
   };
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
+    <Container maxWidth='xl' sx={{ py: 4 }}>
+      <Typography variant='h4' gutterBottom sx={{ mb: 4, fontWeight: 'bold' }}>
         ESG Sustainability Dashboard
       </Typography>
-      
-      <Typography variant="subtitle1" sx={{ mb: 4, color: 'text.secondary' }}>
-        Miljø, Sosial og Styring (ESG) overvåking for bærekraftig energiomstilling
+
+      <Typography variant='subtitle1' sx={{ mb: 4, color: 'text.secondary' }}>
+        Miljø, Sosial og Styring (ESG) overvåking for bærekraftig
+        energiomstilling
       </Typography>
 
       {/* ESG Overview Cards */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(4, 1fr)' }, gap: 3, mb: 4 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: 'repeat(4, 1fr)' },
+          gap: 3,
+          mb: 4,
+        }}
+      >
         <EnvironmentalCard>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Nature sx={{ mr: 1 }} />
-              <Typography variant="h6">
-                Karbon Intensitet
-              </Typography>
+              <Typography variant='h6'>Karbon Intensitet</Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 1 }}>
               {selectedOperator.carbonIntensity.current}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               kg CO₂e/foe
             </Typography>
-            <LinearProgress 
-              variant="determinate" 
+            <LinearProgress
+              variant='determinate'
               value={selectedOperator.carbonIntensity.reduction}
               sx={{ mt: 1, backgroundColor: 'rgba(255,255,255,0.3)' }}
             />
-            <Typography variant="caption" sx={{ opacity: 0.9 }}>
+            <Typography variant='caption' sx={{ opacity: 0.9 }}>
               {selectedOperator.carbonIntensity.reduction}% reduksjon fra 2020
             </Typography>
           </CardContent>
@@ -566,17 +587,15 @@ export const ESGSustainabilityDashboard: React.FC = () => {
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Groups sx={{ mr: 1 }} />
-              <Typography variant="h6">
-                Sikkerhet
-              </Typography>
+              <Typography variant='h6'>Sikkerhet</Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 1 }}>
               {selectedOperator.social.safety.safetyScore}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               sikkerhet score
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               RIR: {selectedOperator.social.safety.recordableInjuryRate}
             </Typography>
           </CardContent>
@@ -586,18 +605,17 @@ export const ESGSustainabilityDashboard: React.FC = () => {
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Security sx={{ mr: 1 }} />
-              <Typography variant="h6">
-                Styring
-              </Typography>
+              <Typography variant='h6'>Styring</Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 1 }}>
               {selectedOperator.governance.transparency.reportingScore}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               transparens score
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              Styre uavhengighet: {selectedOperator.governance.boardComposition.independence}%
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
+              Styre uavhengighet:{' '}
+              {selectedOperator.governance.boardComposition.independence}%
             </Typography>
           </CardContent>
         </GovernanceCard>
@@ -606,18 +624,19 @@ export const ESGSustainabilityDashboard: React.FC = () => {
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <EnergySavingsLeaf sx={{ mr: 1 }} />
-              <Typography variant="h6">
-                Fornybar Energi
-              </Typography>
+              <Typography variant='h6'>Fornybar Energi</Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+            <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 1 }}>
               {selectedOperator.environmental.energy.renewablePercentage}%
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
               av total energiforbruk
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              {(selectedOperator.environmental.energy.renewable / 1000).toFixed(1)} GWh
+            <Typography variant='body2' sx={{ opacity: 0.9 }}>
+              {(selectedOperator.environmental.energy.renewable / 1000).toFixed(
+                1
+              )}{' '}
+              GWh
             </Typography>
           </CardContent>
         </CarbonCard>
@@ -626,77 +645,97 @@ export const ESGSustainabilityDashboard: React.FC = () => {
       {/* Operator Information */}
       <Card sx={{ mb: 4 }}>
         <CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mb: 3,
+            }}
+          >
             <Box>
-              <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <Typography variant='h5' sx={{ fontWeight: 'bold', mb: 1 }}>
                 {selectedOperator.operatorName}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Rapporteringsperiode: {selectedOperator.reportingPeriod.year} {selectedOperator.reportingPeriod.quarter}
+              <Typography variant='body1' color='text.secondary'>
+                Rapporteringsperiode: {selectedOperator.reportingPeriod.year}{' '}
+                {selectedOperator.reportingPeriod.quarter}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Netto-null mål: {selectedOperator.climateGoals.netZero.target} • 
-                Paris-avtale: {selectedOperator.climateGoals.parisAlignment.scenario} • 
-                TCFD: {selectedOperator.governance.riskManagement.tcfdCompliance ? 'Compliant' : 'Non-compliant'}
+              <Typography variant='body2' color='text.secondary'>
+                Netto-null mål: {selectedOperator.climateGoals.netZero.target} •
+                Paris-avtale:{' '}
+                {selectedOperator.climateGoals.parisAlignment.scenario} • TCFD:{' '}
+                {selectedOperator.governance.riskManagement.tcfdCompliance
+                  ? 'Compliant'
+                  : 'Non-compliant'}
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1, flexDirection: 'column' }}>
-              <Chip 
+              <Chip
                 label={`MSCI: ${selectedOperator.sustainability.esgRating.msci}`}
-                color={getESGRatingColor(selectedOperator.sustainability.esgRating.msci)}
-                size="small"
+                color={getESGRatingColor(
+                  selectedOperator.sustainability.esgRating.msci
+                )}
+                size='small'
               />
-              <Chip 
+              <Chip
                 label={`CDP: ${selectedOperator.sustainability.esgRating.cdp}`}
-                color={getCDPColor(selectedOperator.sustainability.esgRating.cdp)}
-                size="small"
+                color={getCDPColor(
+                  selectedOperator.sustainability.esgRating.cdp
+                )}
+                size='small'
               />
               {selectedOperator.sustainability.esgRating.djsi && (
-                <Chip 
-                  label="DJSI Member"
-                  color="success"
-                  size="small"
-                />
+                <Chip label='DJSI Member' color='success' size='small' />
               )}
             </Box>
           </Box>
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(4, 1fr)' }, gap: 3 }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(4, 1fr)' },
+              gap: 3,
+            }}
+          >
             <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" color="text.secondary">
+              <Typography variant='subtitle2' color='text.secondary'>
                 Total Utslipp
               </Typography>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                {(selectedOperator.environmental.emissions.total / 1000000).toFixed(1)}M
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                {(
+                  selectedOperator.environmental.emissions.total / 1000000
+                ).toFixed(1)}
+                M
               </Typography>
-              <Typography variant="caption">
-                tonnes CO₂e
-              </Typography>
+              <Typography variant='caption'>tonnes CO₂e</Typography>
             </Paper>
             <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" color="text.secondary">
+              <Typography variant='subtitle2' color='text.secondary'>
                 Ansatte
               </Typography>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                {selectedOperator.social.workforce.total.toLocaleString('nb-NO')}
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                {selectedOperator.social.workforce.total.toLocaleString(
+                  'nb-NO'
+                )}
               </Typography>
-              <Typography variant="caption">
+              <Typography variant='caption'>
                 {selectedOperator.social.workforce.female}% kvinner
               </Typography>
             </Paper>
             <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" color="text.secondary">
+              <Typography variant='subtitle2' color='text.secondary'>
                 Samfunnsinvestering
               </Typography>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
                 {selectedOperator.social.community.investment} MNOK
               </Typography>
             </Paper>
             <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" color="text.secondary">
+              <Typography variant='subtitle2' color='text.secondary'>
                 SDG Score
               </Typography>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+              <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
                 {selectedOperator.sustainability.sdgAlignment.score}/100
               </Typography>
             </Paper>
@@ -708,89 +747,135 @@ export const ESGSustainabilityDashboard: React.FC = () => {
       <Card>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={activeTab} onChange={handleTabChange}>
-            <Tab label="Miljø (E)" icon={<Nature />} />
-            <Tab label="Sosial (S)" icon={<Groups />} />
-            <Tab label="Styring (G)" icon={<Security />} />
-            <Tab label="Klimamål" icon={<TrendingDown />} />
+            <Tab label='Miljø (E)' icon={<Nature />} />
+            <Tab label='Sosial (S)' icon={<Groups />} />
+            <Tab label='Styring (G)' icon={<Security />} />
+            <Tab label='Klimamål' icon={<TrendingDown />} />
           </Tabs>
         </Box>
 
         <TabPanel value={activeTab} index={0}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant='h6' gutterBottom>
             Miljøprestasjon
           </Typography>
-          
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3, mb: 3 }}>
+
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+              gap: 3,
+              mb: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   <Co2 sx={{ mr: 1, verticalAlign: 'middle' }} />
                   Karbon Utslipp
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Scope 1 (Direkte)</TableCell>
-                        <TableCell align="right">{(selectedOperator.environmental.emissions.scope1 / 1000000).toFixed(1)} Mt</TableCell>
+                        <TableCell align='right'>
+                          {(
+                            selectedOperator.environmental.emissions.scope1 /
+                            1000000
+                          ).toFixed(1)}{' '}
+                          Mt
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Scope 2 (Indirekte)</TableCell>
-                        <TableCell align="right">{(selectedOperator.environmental.emissions.scope2 / 1000000).toFixed(1)} Mt</TableCell>
+                        <TableCell align='right'>
+                          {(
+                            selectedOperator.environmental.emissions.scope2 /
+                            1000000
+                          ).toFixed(1)}{' '}
+                          Mt
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Scope 3 (Verdikjede)</TableCell>
-                        <TableCell align="right">{(selectedOperator.environmental.emissions.scope3 / 1000000).toFixed(0)} Mt</TableCell>
+                        <TableCell align='right'>
+                          {(
+                            selectedOperator.environmental.emissions.scope3 /
+                            1000000
+                          ).toFixed(0)}{' '}
+                          Mt
+                        </TableCell>
                       </TableRow>
                       <TableRow sx={{ backgroundColor: 'primary.light' }}>
                         <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
-                        <TableCell align="right" sx={{ fontWeight: 'bold' }}>
-                          {(selectedOperator.environmental.emissions.total / 1000000).toFixed(0)} Mt
+                        <TableCell align='right' sx={{ fontWeight: 'bold' }}>
+                          {(
+                            selectedOperator.environmental.emissions.total /
+                            1000000
+                          ).toFixed(0)}{' '}
+                          Mt
                         </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
-                
-                <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }}>
+
+                <Typography variant='subtitle2' sx={{ mt: 2, mb: 1 }}>
                   Utslippskilder
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                  <Chip label={`Fakkling: ${(selectedOperator.environmental.emissions.flaring / 1000000).toFixed(1)}Mt`} size="small" />
-                  <Chip label={`Venting: ${(selectedOperator.environmental.emissions.venting / 1000000).toFixed(1)}Mt`} size="small" />
-                  <Chip label={`Lekkasje: ${(selectedOperator.environmental.emissions.fugitive / 1000000).toFixed(1)}Mt`} size="small" />
+                  <Chip
+                    label={`Fakkling: ${(selectedOperator.environmental.emissions.flaring / 1000000).toFixed(1)}Mt`}
+                    size='small'
+                  />
+                  <Chip
+                    label={`Venting: ${(selectedOperator.environmental.emissions.venting / 1000000).toFixed(1)}Mt`}
+                    size='small'
+                  />
+                  <Chip
+                    label={`Lekkasje: ${(selectedOperator.environmental.emissions.fugitive / 1000000).toFixed(1)}Mt`}
+                    size='small'
+                  />
                 </Box>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   <WaterDrop sx={{ mr: 1, verticalAlign: 'middle' }} />
                   Vannforvalting
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Forbruk</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.water.consumption} Mm³</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.water.consumption} Mm³
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Resirkulert</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.water.recycled} Mm³</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.water.recycled} Mm³
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Utslipp</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.water.discharged} Mm³</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.water.discharged} Mm³
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Kvalitet</TableCell>
-                        <TableCell align="right">
-                          <Chip 
+                        <TableCell align='right'>
+                          <Chip
                             label={selectedOperator.environmental.water.quality}
-                            color={getWaterQualityColor(selectedOperator.environmental.water.quality)}
-                            size="small"
+                            color={getWaterQualityColor(
+                              selectedOperator.environmental.water.quality
+                            )}
+                            size='small'
                           />
                         </TableCell>
                       </TableRow>
@@ -798,9 +883,15 @@ export const ESGSustainabilityDashboard: React.FC = () => {
                   </Table>
                 </TableContainer>
 
-                <Alert severity="info" sx={{ mt: 2 }}>
-                  <Typography variant="body2">
-                    Resirkuleringsgrad: {((selectedOperator.environmental.water.recycled / selectedOperator.environmental.water.consumption) * 100).toFixed(1)}%
+                <Alert severity='info' sx={{ mt: 2 }}>
+                  <Typography variant='body2'>
+                    Resirkuleringsgrad:{' '}
+                    {(
+                      (selectedOperator.environmental.water.recycled /
+                        selectedOperator.environmental.water.consumption) *
+                      100
+                    ).toFixed(1)}
+                    %
                   </Typography>
                 </Alert>
               </CardContent>
@@ -808,69 +899,117 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   <RecyclingRounded sx={{ mr: 1, verticalAlign: 'middle' }} />
                   Avfallshåndtering
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Generert</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.waste.generated.toLocaleString('nb-NO')} t</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.waste.generated.toLocaleString(
+                            'nb-NO'
+                          )}{' '}
+                          t
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Resirkulert</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.waste.recycled.toLocaleString('nb-NO')} t</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.waste.recycled.toLocaleString(
+                            'nb-NO'
+                          )}{' '}
+                          t
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Farlig avfall</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.waste.hazardous.toLocaleString('nb-NO')} t</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.waste.hazardous.toLocaleString(
+                            'nb-NO'
+                          )}{' '}
+                          t
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Resirkuleringsgrad</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.waste.recyclingRate}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.waste.recyclingRate}%
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
 
                 <Box sx={{ mt: 2 }}>
-                  <Typography variant="body2" sx={{ mb: 1 }}>Resirkulering fremgang</Typography>
-                  <LinearProgress 
-                    variant="determinate" 
+                  <Typography variant='body2' sx={{ mb: 1 }}>
+                    Resirkulering fremgang
+                  </Typography>
+                  <LinearProgress
+                    variant='determinate'
                     value={selectedOperator.environmental.waste.recyclingRate}
-                    color="success"
+                    color='success'
                   />
                 </Box>
               </CardContent>
             </Card>
           </Box>
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+              gap: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Biologisk Mangfold
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Beskyttede områder</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.biodiversity.protectedAreas} km²</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.environmental.biodiversity
+                              .protectedAreas
+                          }{' '}
+                          km²
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Restaurering</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.biodiversity.restoration} km²</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.environmental.biodiversity
+                              .restoration
+                          }{' '}
+                          km²
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Marin beskyttelse</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.biodiversity.marineProtection} km²</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.environmental.biodiversity
+                              .marineProtection
+                          }{' '}
+                          km²
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Konsekvensutredninger</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.biodiversity.impactAssessments}</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.environmental.biodiversity
+                              .impactAssessments
+                          }
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -880,45 +1019,52 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Utslipp til Sjø
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <Typography variant="h4" sx={{ fontWeight: 'bold', mr: 2 }}>
+                  <Typography variant='h4' sx={{ fontWeight: 'bold', mr: 2 }}>
                     {selectedOperator.environmental.spills.number}
                   </Typography>
-                  <Chip 
+                  <Chip
                     label={selectedOperator.environmental.spills.severity}
-                    color={getSpillSeverityColor(selectedOperator.environmental.spills.severity)}
-                    size="small"
+                    color={getSpillSeverityColor(
+                      selectedOperator.environmental.spills.severity
+                    )}
+                    size='small'
                   />
                 </Box>
-                
+
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Volum</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.spills.volume} m³</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.spills.volume} m³
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Gjenvunnet</TableCell>
-                        <TableCell align="right">{selectedOperator.environmental.spills.recovered}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.environmental.spills.recovered}%
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
 
                 {selectedOperator.environmental.spills.number === 0 ? (
-                  <Alert severity="success" sx={{ mt: 2 }}>
-                    <Typography variant="body2">
+                  <Alert severity='success' sx={{ mt: 2 }}>
+                    <Typography variant='body2'>
                       Ingen betydelige utslipp rapportert denne perioden
                     </Typography>
                   </Alert>
                 ) : (
-                  <Alert severity="warning" sx={{ mt: 2 }}>
-                    <Typography variant="body2">
-                      {selectedOperator.environmental.spills.recovered}% gjenvunnet av utslippet
+                  <Alert severity='warning' sx={{ mt: 2 }}>
+                    <Typography variant='body2'>
+                      {selectedOperator.environmental.spills.recovered}%
+                      gjenvunnet av utslippet
                     </Typography>
                   </Alert>
                 )}
@@ -928,127 +1074,183 @@ export const ESGSustainabilityDashboard: React.FC = () => {
         </TabPanel>
 
         <TabPanel value={activeTab} index={1}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant='h6' gutterBottom>
             Sosial Prestasjon
           </Typography>
-          
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3, mb: 3 }}>
+
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+              gap: 3,
+              mb: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Arbeidsstyrke Profil
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Total ansatte</TableCell>
-                        <TableCell align="right">{selectedOperator.social.workforce.total.toLocaleString('nb-NO')}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.workforce.total.toLocaleString(
+                            'nb-NO'
+                          )}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Norske ansatte</TableCell>
-                        <TableCell align="right">{selectedOperator.social.workforce.norwegian}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.workforce.norwegian}%
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Kvinner</TableCell>
-                        <TableCell align="right">{selectedOperator.social.workforce.female}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.workforce.female}%
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Urbefolkning</TableCell>
-                        <TableCell align="right">{selectedOperator.social.workforce.indigenous}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.workforce.indigenous}%
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Kontraktører</TableCell>
-                        <TableCell align="right">{selectedOperator.social.workforce.contractors.toLocaleString('nb-NO')}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.workforce.contractors.toLocaleString(
+                            'nb-NO'
+                          )}
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
 
                 <Box sx={{ mt: 2 }}>
-                  <Typography variant="body2" sx={{ mb: 1 }}>Kjønnsmangfold</Typography>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={selectedOperator.social.workforce.female}
-                    color="primary"
-                  />
-                  <Typography variant="caption">
-                    Mål: 40% innen 2030
+                  <Typography variant='body2' sx={{ mb: 1 }}>
+                    Kjønnsmangfold
                   </Typography>
+                  <LinearProgress
+                    variant='determinate'
+                    value={selectedOperator.social.workforce.female}
+                    color='primary'
+                  />
+                  <Typography variant='caption'>Mål: 40% innen 2030</Typography>
                 </Box>
               </CardContent>
             </Card>
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Sikkerhetsprestasjon
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>RIR (Registrerbare skader)</TableCell>
-                        <TableCell align="right">{selectedOperator.social.safety.recordableInjuryRate}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.safety.recordableInjuryRate}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>LTIR (Tapt tid skader)</TableCell>
-                        <TableCell align="right">{selectedOperator.social.safety.lostTimeInjuryRate}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.safety.lostTimeInjuryRate}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Dødsfall</TableCell>
-                        <TableCell align="right">{selectedOperator.social.safety.fatalities}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.safety.fatalities}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Nesten-ulykker</TableCell>
-                        <TableCell align="right">{selectedOperator.social.safety.nearMisses.toLocaleString('nb-NO')}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.safety.nearMisses.toLocaleString(
+                            'nb-NO'
+                          )}
+                        </TableCell>
                       </TableRow>
                       <TableRow sx={{ backgroundColor: 'success.light' }}>
-                        <TableCell sx={{ fontWeight: 'bold' }}>Sikkerhet Score</TableCell>
-                        <TableCell align="right" sx={{ fontWeight: 'bold' }}>
+                        <TableCell sx={{ fontWeight: 'bold' }}>
+                          Sikkerhet Score
+                        </TableCell>
+                        <TableCell align='right' sx={{ fontWeight: 'bold' }}>
                           {selectedOperator.social.safety.safetyScore}/100
                         </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
-                
-                <Alert severity={selectedOperator.social.safety.fatalities === 0 ? 'success' : 'error'} sx={{ mt: 2 }}>
-                  <Typography variant="body2">
-                    {selectedOperator.social.safety.fatalities === 0 
+
+                <Alert
+                  severity={
+                    selectedOperator.social.safety.fatalities === 0
+                      ? 'success'
+                      : 'error'
+                  }
+                  sx={{ mt: 2 }}
+                >
+                  <Typography variant='body2'>
+                    {selectedOperator.social.safety.fatalities === 0
                       ? 'Null dødsfall denne perioden - Utmerket sikkerhetsprerasjon'
-                      : `${selectedOperator.social.safety.fatalities} dødsfall rapportert`
-                    }
+                      : `${selectedOperator.social.safety.fatalities} dødsfall rapportert`}
                   </Typography>
                 </Alert>
               </CardContent>
             </Card>
           </Box>
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+              gap: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Opplæring og Utvikling
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Timer per ansatt</TableCell>
-                        <TableCell align="right">{selectedOperator.social.training.hoursPerEmployee}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.training.hoursPerEmployee}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Sikkerhetsopplæring</TableCell>
-                        <TableCell align="right">{selectedOperator.social.training.safetyTraining} timer</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.training.safetyTraining}{' '}
+                          timer
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Teknisk opplæring</TableCell>
-                        <TableCell align="right">{selectedOperator.social.training.technicalTraining} timer</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.training.technicalTraining}{' '}
+                          timer
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Lederopplæring</TableCell>
-                        <TableCell align="right">{selectedOperator.social.training.leadershipTraining} timer</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.training.leadershipTraining}{' '}
+                          timer
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -1058,27 +1260,37 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Samfunnsengasjement
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Investering</TableCell>
-                        <TableCell align="right">{selectedOperator.social.community.investment} MNOK</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.community.investment} MNOK
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Lokal innkjøp</TableCell>
-                        <TableCell align="right">{selectedOperator.social.community.localProcurement}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.community.localProcurement}%
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Lokale arbeidsplasser</TableCell>
-                        <TableCell align="right">{selectedOperator.social.community.jobs.toLocaleString('nb-NO')}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.community.jobs.toLocaleString(
+                            'nb-NO'
+                          )}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Utdanningsprogrammer</TableCell>
-                        <TableCell align="right">{selectedOperator.social.community.education} MNOK</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.social.community.education} MNOK
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -1089,49 +1301,92 @@ export const ESGSustainabilityDashboard: React.FC = () => {
         </TabPanel>
 
         <TabPanel value={activeTab} index={2}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant='h6' gutterBottom>
             Styring og Ledelse
           </Typography>
-          
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3, mb: 3 }}>
+
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+              gap: 3,
+              mb: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Styre Sammensetning
                 </Typography>
                 <Box sx={{ mb: 2 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body2">Uavhengighet</Typography>
-                    <Typography variant="body2">{selectedOperator.governance.boardComposition.independence}%</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                    }}
+                  >
+                    <Typography variant='body2'>Uavhengighet</Typography>
+                    <Typography variant='body2'>
+                      {
+                        selectedOperator.governance.boardComposition
+                          .independence
+                      }
+                      %
+                    </Typography>
                   </Box>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={selectedOperator.governance.boardComposition.independence}
-                    color="primary"
+                  <LinearProgress
+                    variant='determinate'
+                    value={
+                      selectedOperator.governance.boardComposition.independence
+                    }
+                    color='primary'
                   />
                 </Box>
-                
+
                 <Box sx={{ mb: 2 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body2">Mangfold</Typography>
-                    <Typography variant="body2">{selectedOperator.governance.boardComposition.diversity}%</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                    }}
+                  >
+                    <Typography variant='body2'>Mangfold</Typography>
+                    <Typography variant='body2'>
+                      {selectedOperator.governance.boardComposition.diversity}%
+                    </Typography>
                   </Box>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={selectedOperator.governance.boardComposition.diversity}
-                    color="secondary"
+                  <LinearProgress
+                    variant='determinate'
+                    value={
+                      selectedOperator.governance.boardComposition.diversity
+                    }
+                    color='secondary'
                   />
                 </Box>
-                
+
                 <Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body2">Bærekraft Ekspertise</Typography>
-                    <Typography variant="body2">{selectedOperator.governance.boardComposition.expertise}%</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                    }}
+                  >
+                    <Typography variant='body2'>
+                      Bærekraft Ekspertise
+                    </Typography>
+                    <Typography variant='body2'>
+                      {selectedOperator.governance.boardComposition.expertise}%
+                    </Typography>
                   </Box>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={selectedOperator.governance.boardComposition.expertise}
-                    color="success"
+                  <LinearProgress
+                    variant='determinate'
+                    value={
+                      selectedOperator.governance.boardComposition.expertise
+                    }
+                    color='success'
                   />
                 </Box>
               </CardContent>
@@ -1139,35 +1394,49 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Etikk og Integritet
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Opplæring fullført</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.ethics.trainingCompletion}%</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.governance.ethics
+                              .trainingCompletion
+                          }
+                          %
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Brudd rapportert</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.ethics.violations}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.governance.ethics.violations}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Undersøkelser</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.ethics.investigations}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.governance.ethics.investigations}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Løst</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.ethics.resolved}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.governance.ethics.resolved}%
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
 
-                <Alert severity="success" sx={{ mt: 2 }}>
-                  <Typography variant="body2">
-                    Høy etikk-score med {selectedOperator.governance.ethics.trainingCompletion}% opplæring fullført
+                <Alert severity='success' sx={{ mt: 2 }}>
+                  <Typography variant='body2'>
+                    Høy etikk-score med{' '}
+                    {selectedOperator.governance.ethics.trainingCompletion}%
+                    opplæring fullført
                   </Typography>
                 </Alert>
               </CardContent>
@@ -1175,35 +1444,52 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Cybersikkerhet
                 </Typography>
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Sikkerhetshendelser</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.cybersecurity.incidents}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.governance.cybersecurity.incidents}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Løst</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.cybersecurity.resolved}%</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.governance.cybersecurity.resolved}%
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Investering</TableCell>
-                        <TableCell align="right">{selectedOperator.governance.cybersecurity.investmentMNOK} MNOK</TableCell>
+                        <TableCell align='right'>
+                          {
+                            selectedOperator.governance.cybersecurity
+                              .investmentMNOK
+                          }{' '}
+                          MNOK
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
 
-                <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }}>
+                <Typography variant='subtitle2' sx={{ mt: 2, mb: 1 }}>
                   Sertifiseringer
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
-                  {selectedOperator.governance.cybersecurity.certifications.map((cert, index) => (
-                    <Chip key={index} label={cert} color="primary" size="small" />
-                  ))}
+                  {selectedOperator.governance.cybersecurity.certifications.map(
+                    (cert, index) => (
+                      <Chip
+                        key={index}
+                        label={cert}
+                        color='primary'
+                        size='small'
+                      />
+                    )
+                  )}
                 </Box>
               </CardContent>
             </Card>
@@ -1211,57 +1497,107 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
           <Card>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant='h6' gutterBottom>
                 Risikostyring og Transparens
               </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+                  gap: 3,
+                }}
+              >
                 <Box>
-                  <Typography variant="subtitle2" gutterBottom>
+                  <Typography variant='subtitle2' gutterBottom>
                     Klimarisiko Vurdering
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
-                    <Chip 
-                      label="Klimarisiko"
-                      color={selectedOperator.governance.riskManagement.climateRiskAssessment ? 'success' : 'error'}
-                      icon={selectedOperator.governance.riskManagement.climateRiskAssessment ? <CheckCircle /> : <Warning />}
-                      size="small"
+                  <Box
+                    sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}
+                  >
+                    <Chip
+                      label='Klimarisiko'
+                      color={
+                        selectedOperator.governance.riskManagement
+                          .climateRiskAssessment
+                          ? 'success'
+                          : 'error'
+                      }
+                      icon={
+                        selectedOperator.governance.riskManagement
+                          .climateRiskAssessment ? (
+                          <CheckCircle />
+                        ) : (
+                          <Warning />
+                        )
+                      }
+                      size='small'
                     />
-                    <Chip 
-                      label="2°C Scenario"
-                      color={selectedOperator.governance.riskManagement.scenario2C ? 'success' : 'error'}
-                      size="small"
+                    <Chip
+                      label='2°C Scenario'
+                      color={
+                        selectedOperator.governance.riskManagement.scenario2C
+                          ? 'success'
+                          : 'error'
+                      }
+                      size='small'
                     />
-                    <Chip 
-                      label="1.5°C Scenario"
-                      color={selectedOperator.governance.riskManagement.scenario15C ? 'success' : 'error'}
-                      size="small"
+                    <Chip
+                      label='1.5°C Scenario'
+                      color={
+                        selectedOperator.governance.riskManagement.scenario15C
+                          ? 'success'
+                          : 'error'
+                      }
+                      size='small'
                     />
-                    <Chip 
-                      label="TCFD"
-                      color={selectedOperator.governance.riskManagement.tcfdCompliance ? 'success' : 'error'}
-                      size="small"
+                    <Chip
+                      label='TCFD'
+                      color={
+                        selectedOperator.governance.riskManagement
+                          .tcfdCompliance
+                          ? 'success'
+                          : 'error'
+                      }
+                      size='small'
                     />
                   </Box>
                 </Box>
 
                 <Box>
-                  <Typography variant="subtitle2" gutterBottom>
+                  <Typography variant='subtitle2' gutterBottom>
                     Transparens Metrics
                   </Typography>
                   <TableContainer>
-                    <Table size="small">
+                    <Table size='small'>
                       <TableBody>
                         <TableRow>
                           <TableCell>Rapportering Score</TableCell>
-                          <TableCell align="right">{selectedOperator.governance.transparency.reportingScore}/100</TableCell>
+                          <TableCell align='right'>
+                            {
+                              selectedOperator.governance.transparency
+                                .reportingScore
+                            }
+                            /100
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>Interessent Møter</TableCell>
-                          <TableCell align="right">{selectedOperator.governance.transparency.stakeholderEngagement}/år</TableCell>
+                          <TableCell align='right'>
+                            {
+                              selectedOperator.governance.transparency
+                                .stakeholderEngagement
+                            }
+                            /år
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>Offentlige Rapporter</TableCell>
-                          <TableCell align="right">{selectedOperator.governance.transparency.publicDisclosures}</TableCell>
+                          <TableCell align='right'>
+                            {
+                              selectedOperator.governance.transparency
+                                .publicDisclosures
+                            }
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
@@ -1273,47 +1609,77 @@ export const ESGSustainabilityDashboard: React.FC = () => {
         </TabPanel>
 
         <TabPanel value={activeTab} index={3}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant='h6' gutterBottom>
             Klimamål og Energiomstilling
           </Typography>
-          
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3, mb: 3 }}>
+
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+              gap: 3,
+              mb: 3,
+            }}
+          >
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Netto-null Progresjon
                 </Typography>
                 <Box sx={{ mb: 3 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                    <Typography variant="body2">Progresjon mot {selectedOperator.climateGoals.netZero.target}</Typography>
-                    <Typography variant="body2">{selectedOperator.climateGoals.netZero.progress}%</Typography>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 1,
+                    }}
+                  >
+                    <Typography variant='body2'>
+                      Progresjon mot{' '}
+                      {selectedOperator.climateGoals.netZero.target}
+                    </Typography>
+                    <Typography variant='body2'>
+                      {selectedOperator.climateGoals.netZero.progress}%
+                    </Typography>
                   </Box>
-                  <LinearProgress 
-                    variant="determinate" 
+                  <LinearProgress
+                    variant='determinate'
                     value={selectedOperator.climateGoals.netZero.progress}
-                    color="success"
+                    color='success'
                     sx={{ height: 8, borderRadius: 4 }}
                   />
                 </Box>
 
                 <TableContainer>
-                  <Table size="small">
+                  <Table size='small'>
                     <TableBody>
                       <TableRow>
                         <TableCell>Scope 1 & 2 mål</TableCell>
-                        <TableCell align="right">{selectedOperator.climateGoals.netZero.scope1and2}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.climateGoals.netZero.scope1and2}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Scope 3 mål</TableCell>
-                        <TableCell align="right">{selectedOperator.climateGoals.netZero.scope3}</TableCell>
+                        <TableCell align='right'>
+                          {selectedOperator.climateGoals.netZero.scope3}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Paris-avtal</TableCell>
-                        <TableCell align="right">
-                          <Chip 
-                            label={selectedOperator.climateGoals.parisAlignment.scenario}
-                            color={selectedOperator.climateGoals.parisAlignment.aligned ? 'success' : 'error'}
-                            size="small"
+                        <TableCell align='right'>
+                          <Chip
+                            label={
+                              selectedOperator.climateGoals.parisAlignment
+                                .scenario
+                            }
+                            color={
+                              selectedOperator.climateGoals.parisAlignment
+                                .aligned
+                                ? 'success'
+                                : 'error'
+                            }
+                            size='small'
                           />
                         </TableCell>
                       </TableRow>
@@ -1325,40 +1691,68 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
             <Card>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant='h6' gutterBottom>
                   Fornybar Energi Investeringer
                 </Typography>
-                <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, mb: 2 }}>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    gap: 2,
+                    mb: 2,
+                  }}
+                >
                   <Paper sx={{ p: 2, textAlign: 'center' }}>
-                    <WindPower sx={{ fontSize: 40, color: 'primary.main', mb: 1 }} />
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    <WindPower
+                      sx={{ fontSize: 40, color: 'primary.main', mb: 1 }}
+                    />
+                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
                       {selectedOperator.renewableEnergy.offshore.wind}
                     </Typography>
-                    <Typography variant="caption">MW Offshore Vind</Typography>
+                    <Typography variant='caption'>MW Offshore Vind</Typography>
                   </Paper>
-                  
+
                   <Paper sx={{ p: 2, textAlign: 'center' }}>
-                    <WbSunny sx={{ fontSize: 40, color: 'warning.main', mb: 1 }} />
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                      {selectedOperator.renewableEnergy.hydrogen.production / 1000}K
+                    <WbSunny
+                      sx={{ fontSize: 40, color: 'warning.main', mb: 1 }}
+                    />
+                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                      {selectedOperator.renewableEnergy.hydrogen.production /
+                        1000}
+                      K
                     </Typography>
-                    <Typography variant="caption">tonn Hydrogen/år</Typography>
+                    <Typography variant='caption'>tonn Hydrogen/år</Typography>
                   </Paper>
                 </Box>
 
-                <Typography variant="subtitle2" gutterBottom>
+                <Typography variant='subtitle2' gutterBottom>
                   Større Prosjekter
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mb: 2 }}>
-                  {selectedOperator.renewableEnergy.offshore.projects.map((project, index) => (
-                    <Chip key={index} label={project} color="primary" size="small" />
-                  ))}
+                <Box
+                  sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mb: 2 }}
+                >
+                  {selectedOperator.renewableEnergy.offshore.projects.map(
+                    (project, index) => (
+                      <Chip
+                        key={index}
+                        label={project}
+                        color='primary'
+                        size='small'
+                      />
+                    )
+                  )}
                 </Box>
 
-                <Alert severity="info">
-                  <Typography variant="body2">
-                    Elektrifisering av {selectedOperator.renewableEnergy.electrification.platforms} plattformer 
-                    reduserer utslipp med {(selectedOperator.renewableEnergy.electrification.co2Reduction / 1000).toFixed(0)}k tonn CO₂e/år
+                <Alert severity='info'>
+                  <Typography variant='body2'>
+                    Elektrifisering av{' '}
+                    {selectedOperator.renewableEnergy.electrification.platforms}{' '}
+                    plattformer reduserer utslipp med{' '}
+                    {(
+                      selectedOperator.renewableEnergy.electrification
+                        .co2Reduction / 1000
+                    ).toFixed(0)}
+                    k tonn CO₂e/år
                   </Typography>
                 </Alert>
               </CardContent>
@@ -1367,40 +1761,79 @@ export const ESGSustainabilityDashboard: React.FC = () => {
 
           <Card>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant='h6' gutterBottom>
                 Karbon Budsjett og Naturbaserte Løsninger
               </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' },
+                  gap: 3,
+                }}
+              >
                 <Box>
-                  <Typography variant="subtitle2" gutterBottom>
+                  <Typography variant='subtitle2' gutterBottom>
                     Karbon Budsjett Status
                   </Typography>
                   <Box sx={{ mb: 2 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                      <Typography variant="body2">Forbrukt</Typography>
-                      <Typography variant="body2">{selectedOperator.climateGoals.carbonBudget.percentage}%</Typography>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        mb: 1,
+                      }}
+                    >
+                      <Typography variant='body2'>Forbrukt</Typography>
+                      <Typography variant='body2'>
+                        {selectedOperator.climateGoals.carbonBudget.percentage}%
+                      </Typography>
                     </Box>
-                    <LinearProgress 
-                      variant="determinate" 
-                      value={selectedOperator.climateGoals.carbonBudget.percentage}
-                      color={selectedOperator.climateGoals.carbonBudget.percentage < 50 ? 'success' : 'warning'}
+                    <LinearProgress
+                      variant='determinate'
+                      value={
+                        selectedOperator.climateGoals.carbonBudget.percentage
+                      }
+                      color={
+                        selectedOperator.climateGoals.carbonBudget.percentage <
+                        50
+                          ? 'success'
+                          : 'warning'
+                      }
                     />
                   </Box>
-                  
+
                   <TableContainer>
-                    <Table size="small">
+                    <Table size='small'>
                       <TableBody>
                         <TableRow>
                           <TableCell>Tildelt</TableCell>
-                          <TableCell align="right">{(selectedOperator.climateGoals.carbonBudget.allocated / 1000000000).toFixed(1)} Gt</TableCell>
+                          <TableCell align='right'>
+                            {(
+                              selectedOperator.climateGoals.carbonBudget
+                                .allocated / 1000000000
+                            ).toFixed(1)}{' '}
+                            Gt
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>Brukt</TableCell>
-                          <TableCell align="right">{(selectedOperator.climateGoals.carbonBudget.used / 1000000).toFixed(0)} Mt</TableCell>
+                          <TableCell align='right'>
+                            {(
+                              selectedOperator.climateGoals.carbonBudget.used /
+                              1000000
+                            ).toFixed(0)}{' '}
+                            Mt
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>Gjenværende</TableCell>
-                          <TableCell align="right">{(selectedOperator.climateGoals.carbonBudget.remaining / 1000000000).toFixed(1)} Gt</TableCell>
+                          <TableCell align='right'>
+                            {(
+                              selectedOperator.climateGoals.carbonBudget
+                                .remaining / 1000000000
+                            ).toFixed(1)}{' '}
+                            Gt
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
@@ -1408,31 +1841,53 @@ export const ESGSustainabilityDashboard: React.FC = () => {
                 </Box>
 
                 <Box>
-                  <Typography variant="subtitle2" gutterBottom>
+                  <Typography variant='subtitle2' gutterBottom>
                     Naturbaserte Løsninger
                   </Typography>
                   <TableContainer>
-                    <Table size="small">
+                    <Table size='small'>
                       <TableBody>
                         <TableRow>
                           <TableCell>Investering</TableCell>
-                          <TableCell align="right">{selectedOperator.climateGoals.natureSolutions.investment} MNOK</TableCell>
+                          <TableCell align='right'>
+                            {
+                              selectedOperator.climateGoals.natureSolutions
+                                .investment
+                            }{' '}
+                            MNOK
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>Prosjekter</TableCell>
-                          <TableCell align="right">{selectedOperator.climateGoals.natureSolutions.projects}</TableCell>
+                          <TableCell align='right'>
+                            {
+                              selectedOperator.climateGoals.natureSolutions
+                                .projects
+                            }
+                          </TableCell>
                         </TableRow>
                         <TableRow>
                           <TableCell>CO₂ Lagring</TableCell>
-                          <TableCell align="right">{(selectedOperator.climateGoals.natureSolutions.co2Sequestration / 1000).toFixed(0)}k t/år</TableCell>
+                          <TableCell align='right'>
+                            {(
+                              selectedOperator.climateGoals.natureSolutions
+                                .co2Sequestration / 1000
+                            ).toFixed(0)}
+                            k t/år
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
                   </TableContainer>
 
-                  <Alert severity="success" sx={{ mt: 2 }}>
-                    <Typography variant="body2">
-                      Naturbaserte løsninger bidrar til {(selectedOperator.climateGoals.natureSolutions.co2Sequestration / 1000).toFixed(0)}k tonn CO₂ lagring per år
+                  <Alert severity='success' sx={{ mt: 2 }}>
+                    <Typography variant='body2'>
+                      Naturbaserte løsninger bidrar til{' '}
+                      {(
+                        selectedOperator.climateGoals.natureSolutions
+                          .co2Sequestration / 1000
+                      ).toFixed(0)}
+                      k tonn CO₂ lagring per år
                     </Typography>
                   </Alert>
                 </Box>

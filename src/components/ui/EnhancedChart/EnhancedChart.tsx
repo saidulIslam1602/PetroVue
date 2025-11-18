@@ -78,13 +78,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
           border: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
-        <Typography variant="body2" sx={{ color: 'white', mb: 1, fontWeight: 600 }}>
+        <Typography
+          variant='body2'
+          sx={{ color: 'white', mb: 1, fontWeight: 600 }}
+        >
           {label}
         </Typography>
         {payload.map((entry: any, index: number) => (
           <Typography
             key={index}
-            variant="body2"
+            variant='body2'
             sx={{
               color: entry.color,
               display: 'flex',
@@ -142,26 +145,46 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
     switch (type) {
       case 'line':
         return (
-          <ResponsiveContainer width="100%" height={height}>
+          <ResponsiveContainer width='100%' height={height}>
             <LineChart {...commonProps}>
               {gradient && (
                 <defs>
                   {dataKeys.map((key, index) => (
-                    <linearGradient key={key} id={`gradient-${key}`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor={colors[index % colors.length]} stopOpacity={0.8} />
-                      <stop offset="95%" stopColor={colors[index % colors.length]} stopOpacity={0.1} />
+                    <linearGradient
+                      key={key}
+                      id={`gradient-${key}`}
+                      x1='0'
+                      y1='0'
+                      x2='0'
+                      y2='1'
+                    >
+                      <stop
+                        offset='5%'
+                        stopColor={colors[index % colors.length]}
+                        stopOpacity={0.8}
+                      />
+                      <stop
+                        offset='95%'
+                        stopColor={colors[index % colors.length]}
+                        stopOpacity={0.1}
+                      />
                     </linearGradient>
                   ))}
                 </defs>
               )}
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />}
-              <XAxis 
-                dataKey="name" 
-                stroke="rgba(255,255,255,0.5)"
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray='3 3'
+                  stroke='rgba(255,255,255,0.1)'
+                />
+              )}
+              <XAxis
+                dataKey='name'
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
-              <YAxis 
-                stroke="rgba(255,255,255,0.5)"
+              <YAxis
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
               <Tooltip content={<CustomTooltip />} />
@@ -169,11 +192,15 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
               {dataKeys.map((key, index) => (
                 <Line
                   key={key}
-                  type="monotone"
+                  type='monotone'
                   dataKey={key}
                   stroke={colors[index % colors.length]}
                   strokeWidth={3}
-                  dot={{ r: 6, strokeWidth: 2, fill: colors[index % colors.length] }}
+                  dot={{
+                    r: 6,
+                    strokeWidth: 2,
+                    fill: colors[index % colors.length],
+                  }}
                   activeDot={{ r: 8 }}
                   animationDuration={showAnimation ? 1500 : 0}
                   animationBegin={index * 200}
@@ -185,24 +212,44 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
 
       case 'area':
         return (
-          <ResponsiveContainer width="100%" height={height}>
+          <ResponsiveContainer width='100%' height={height}>
             <AreaChart {...commonProps}>
               <defs>
                 {dataKeys.map((key, index) => (
-                  <linearGradient key={key} id={`areaGradient-${key}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={colors[index % colors.length]} stopOpacity={0.8} />
-                    <stop offset="95%" stopColor={colors[index % colors.length]} stopOpacity={0.1} />
+                  <linearGradient
+                    key={key}
+                    id={`areaGradient-${key}`}
+                    x1='0'
+                    y1='0'
+                    x2='0'
+                    y2='1'
+                  >
+                    <stop
+                      offset='5%'
+                      stopColor={colors[index % colors.length]}
+                      stopOpacity={0.8}
+                    />
+                    <stop
+                      offset='95%'
+                      stopColor={colors[index % colors.length]}
+                      stopOpacity={0.1}
+                    />
                   </linearGradient>
                 ))}
               </defs>
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />}
-              <XAxis 
-                dataKey="name" 
-                stroke="rgba(255,255,255,0.5)"
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray='3 3'
+                  stroke='rgba(255,255,255,0.1)'
+                />
+              )}
+              <XAxis
+                dataKey='name'
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
-              <YAxis 
-                stroke="rgba(255,255,255,0.5)"
+              <YAxis
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
               <Tooltip content={<CustomTooltip />} />
@@ -210,7 +257,7 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
               {dataKeys.map((key, index) => (
                 <Area
                   key={key}
-                  type="monotone"
+                  type='monotone'
                   dataKey={key}
                   stroke={colors[index % colors.length]}
                   fill={`url(#areaGradient-${key})`}
@@ -225,16 +272,21 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
 
       case 'bar':
         return (
-          <ResponsiveContainer width="100%" height={height}>
+          <ResponsiveContainer width='100%' height={height}>
             <BarChart {...commonProps}>
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />}
-              <XAxis 
-                dataKey="name" 
-                stroke="rgba(255,255,255,0.5)"
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray='3 3'
+                  stroke='rgba(255,255,255,0.1)'
+                />
+              )}
+              <XAxis
+                dataKey='name'
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
-              <YAxis 
-                stroke="rgba(255,255,255,0.5)"
+              <YAxis
+                stroke='rgba(255,255,255,0.5)'
                 style={{ fontSize: '12px' }}
               />
               <Tooltip content={<CustomTooltip />} />
@@ -255,24 +307,27 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
 
       case 'pie':
         return (
-          <ResponsiveContainer width="100%" height={height}>
+          <ResponsiveContainer width='100%' height={height}>
             <PieChart>
               <Pie
                 data={data}
-                cx="50%"
-                cy="50%"
+                cx='50%'
+                cy='50%'
                 labelLine={false}
                 label={(props: any) => {
                   const { name, percent } = props;
                   return `${name}: ${(percent * 100).toFixed(0)}%`;
                 }}
                 outerRadius={120}
-                fill="#8884d8"
-                dataKey="value"
+                fill='#8884d8'
+                dataKey='value'
                 animationDuration={showAnimation ? 1000 : 0}
               >
                 {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={colors[index % colors.length]}
+                  />
                 ))}
               </Pie>
               <Tooltip content={<CustomTooltip />} />
@@ -282,15 +337,15 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
 
       case 'radar':
         return (
-          <ResponsiveContainer width="100%" height={height}>
-            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-              <PolarGrid stroke="rgba(255,255,255,0.2)" />
-              <PolarAngleAxis 
-                dataKey="subject" 
-                stroke="rgba(255,255,255,0.7)"
+          <ResponsiveContainer width='100%' height={height}>
+            <RadarChart cx='50%' cy='50%' outerRadius='80%' data={data}>
+              <PolarGrid stroke='rgba(255,255,255,0.2)' />
+              <PolarAngleAxis
+                dataKey='subject'
+                stroke='rgba(255,255,255,0.7)'
                 style={{ fontSize: '12px' }}
               />
-              <PolarRadiusAxis stroke="rgba(255,255,255,0.5)" />
+              <PolarRadiusAxis stroke='rgba(255,255,255,0.5)' />
               {dataKeys.map((key, index) => (
                 <Radar
                   key={key}
@@ -314,15 +369,11 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
   };
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
+    <motion.div variants={containerVariants} initial='hidden' animate='visible'>
       <ChartContainer elevation={0}>
         {title && (
           <Typography
-            variant="h6"
+            variant='h6'
             sx={{
               mb: 3,
               color: 'white',
@@ -339,4 +390,3 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
 };
 
 export default EnhancedChart;
-

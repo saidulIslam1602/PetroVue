@@ -67,7 +67,8 @@ export const InputContainer = styled.div`
 export const InputLabel = styled.label<{ hasError: boolean }>`
   font-size: ${theme.typography.fontSize.sm};
   font-weight: ${theme.typography.fontWeight.medium};
-  color: ${({ hasError }) => (hasError ? theme.palette.semantic.error : '#374151')};
+  color: ${({ hasError }) =>
+    hasError ? theme.palette.semantic.error : '#374151'};
   margin-bottom: 0.25rem;
 `;
 
@@ -83,7 +84,7 @@ export const InputField = styled.input<{
   font-family: ${theme.typography.fontFamily.primary};
   transition: all 0.2s ease-in-out;
   outline: none;
-  
+
   ${({ inputSize }) => sizeVariants[inputSize]}
   ${({ variant }) => variantStyles[variant]}
   
@@ -110,7 +111,7 @@ export const InputField = styled.input<{
     color: #9ca3af;
     cursor: not-allowed;
   }
-  
+
   &::placeholder {
     color: #9ca3af;
   }

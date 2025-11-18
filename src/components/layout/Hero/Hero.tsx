@@ -8,7 +8,12 @@ import { motion } from 'framer-motion';
 import { Box, Container, Typography, Button } from '@mui/material';
 import { GridLegacy as Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { TrendingUp, Nature, Assessment, ArrowForward } from '@mui/icons-material';
+import {
+  TrendingUp,
+  Nature,
+  Assessment,
+  ArrowForward,
+} from '@mui/icons-material';
 import { AnimatedCounter } from '../../ui/AnimatedCounter/AnimatedCounter';
 
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -25,7 +30,8 @@ const HeroSection = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)',
+    background:
+      'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)',
     pointerEvents: 'none',
   },
   '&::after': {
@@ -35,7 +41,8 @@ const HeroSection = styled(Box)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
+    background:
+      'radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)',
     pointerEvents: 'none',
   },
 }));
@@ -107,17 +114,17 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 
   return (
     <HeroSection>
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth='lg' sx={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial='hidden'
+          animate='visible'
         >
-          <Grid container spacing={4} alignItems="center">
+          <Grid container spacing={4} alignItems='center'>
             <Grid item xs={12} md={7}>
               <motion.div variants={itemVariants}>
                 <Typography
-                  variant="overline"
+                  variant='overline'
                   sx={{
                     color: 'rgba(16, 185, 129, 1)',
                     fontSize: '0.9rem',
@@ -133,7 +140,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 
               <motion.div variants={itemVariants}>
                 <Typography
-                  variant="h1"
+                  variant='h1'
                   sx={{
                     color: 'white',
                     fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
@@ -142,10 +149,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     mb: 3,
                   }}
                 >
-                  Real-Time{' '}
-                  <GradientText>
-                    Environmental
-                  </GradientText>
+                  Real-Time <GradientText>Environmental</GradientText>
                   <br />
                   Data Intelligence
                 </Typography>
@@ -153,7 +157,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 
               <motion.div variants={itemVariants}>
                 <Typography
-                  variant="h6"
+                  variant='h6'
                   sx={{
                     color: 'rgba(255, 255, 255, 0.7)',
                     mb: 4,
@@ -162,20 +166,21 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                   }}
                 >
                   Advanced analytics platform for carbon footprint tracking,
-                  environmental reporting, and sustainability management.
-                  Built for the modern energy transition.
+                  environmental reporting, and sustainability management. Built
+                  for the modern energy transition.
                 </Typography>
               </motion.div>
 
               <motion.div variants={itemVariants}>
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                   <Button
-                    variant="contained"
-                    size="large"
+                    variant='contained'
+                    size='large'
                     endIcon={<ArrowForward />}
                     onClick={onExplore}
                     sx={{
-                      background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                      background:
+                        'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                       color: 'white',
                       px: 4,
                       py: 1.5,
@@ -185,7 +190,8 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                       textTransform: 'none',
                       boxShadow: '0 4px 14px rgba(16, 185, 129, 0.4)',
                       '&:hover': {
-                        background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                        background:
+                          'linear-gradient(135deg, #059669 0%, #047857 100%)',
                         boxShadow: '0 6px 20px rgba(16, 185, 129, 0.6)',
                         transform: 'translateY(-2px)',
                       },
@@ -195,8 +201,8 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     Explore Dashboard
                   </Button>
                   <Button
-                    variant="outlined"
-                    size="large"
+                    variant='outlined'
+                    size='large'
                     sx={{
                       borderColor: 'rgba(255, 255, 255, 0.3)',
                       color: 'white',
@@ -228,13 +234,28 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     right: '10%',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      mb: 1,
+                    }}
+                  >
                     <Nature sx={{ color: '#10b981' }} />
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                    <Typography
+                      variant='caption'
+                      sx={{ color: 'rgba(255,255,255,0.7)' }}
+                    >
                       Carbon Reduction
                     </Typography>
                   </Box>
-                  <AnimatedCounter value={45} suffix="%" variant="h4" color="white" />
+                  <AnimatedCounter
+                    value={45}
+                    suffix='%'
+                    variant='h4'
+                    color='white'
+                  />
                 </FloatingCard>
 
                 <FloatingCard
@@ -247,13 +268,28 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     right: '30%',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      mb: 1,
+                    }}
+                  >
                     <TrendingUp sx={{ color: '#3b82f6' }} />
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                    <Typography
+                      variant='caption'
+                      sx={{ color: 'rgba(255,255,255,0.7)' }}
+                    >
                       Efficiency Gain
                     </Typography>
                   </Box>
-                  <AnimatedCounter value={87} suffix="%" variant="h4" color="white" />
+                  <AnimatedCounter
+                    value={87}
+                    suffix='%'
+                    variant='h4'
+                    color='white'
+                  />
                 </FloatingCard>
 
                 <FloatingCard
@@ -266,13 +302,28 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     right: '5%',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      mb: 1,
+                    }}
+                  >
                     <Assessment sx={{ color: '#f59e0b' }} />
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                    <Typography
+                      variant='caption'
+                      sx={{ color: 'rgba(255,255,255,0.7)' }}
+                    >
                       Reports Generated
                     </Typography>
                   </Box>
-                  <AnimatedCounter value={1250} suffix="+" variant="h4" color="white" />
+                  <AnimatedCounter
+                    value={1250}
+                    suffix='+'
+                    variant='h4'
+                    color='white'
+                  />
                 </FloatingCard>
 
                 {/* Background decoration */}
@@ -285,7 +336,8 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                     width: 400,
                     height: 400,
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)',
+                    background:
+                      'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)',
                     filter: 'blur(40px)',
                   }}
                 />
@@ -301,14 +353,17 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <AnimatedCounter 
-                    value={15000} 
-                    suffix="+" 
-                    variant="h4" 
-                    color="white"
+                  <AnimatedCounter
+                    value={15000}
+                    suffix='+'
+                    variant='h4'
+                    color='white'
                     decimals={0}
                   />
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}>
+                  <Typography
+                    variant='body2'
+                    sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}
+                  >
                     Tonnes CO₂e Tracked
                   </Typography>
                 </StatCard>
@@ -318,13 +373,16 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <AnimatedCounter 
-                    value={42} 
-                    suffix="%" 
-                    variant="h4" 
-                    color="white"
+                  <AnimatedCounter
+                    value={42}
+                    suffix='%'
+                    variant='h4'
+                    color='white'
                   />
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}>
+                  <Typography
+                    variant='body2'
+                    sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}
+                  >
                     Renewable Energy
                   </Typography>
                 </StatCard>
@@ -334,14 +392,17 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <AnimatedCounter 
-                    value={98.5} 
-                    suffix="%" 
-                    variant="h4" 
-                    color="white"
+                  <AnimatedCounter
+                    value={98.5}
+                    suffix='%'
+                    variant='h4'
+                    color='white'
                     decimals={1}
                   />
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}>
+                  <Typography
+                    variant='body2'
+                    sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}
+                  >
                     Compliance Rate
                   </Typography>
                 </StatCard>
@@ -351,13 +412,16 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <AnimatedCounter 
-                    value={24} 
-                    suffix="/7" 
-                    variant="h4" 
-                    color="white"
+                  <AnimatedCounter
+                    value={24}
+                    suffix='/7'
+                    variant='h4'
+                    color='white'
                   />
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}>
+                  <Typography
+                    variant='body2'
+                    sx={{ color: 'rgba(255,255,255,0.7)', mt: 1 }}
+                  >
                     Real-Time Monitoring
                   </Typography>
                 </StatCard>
@@ -371,4 +435,3 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
 };
 
 export default Hero;
-

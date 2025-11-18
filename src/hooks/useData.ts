@@ -14,7 +14,7 @@ import {
   SafetyIncident,
   WellData,
   EquipmentData,
-  EnvironmentalMetrics
+  EnvironmentalMetrics,
 } from '../services/dataService';
 
 // Generic data fetching hook
@@ -39,7 +39,7 @@ function useData<T>(
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  
+
   const fetchFnRef = useRef(fetchFn);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -53,9 +53,10 @@ function useData<T>(
       setData(result);
       setLastUpdated(new Date());
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : 'An error occurred';
       setError(errorMessage);
-      
+
       if (!options.retryOnError) {
         // eslint-disable-next-line no-console
         console.error('Data fetch error:', errorMessage);
@@ -85,7 +86,7 @@ function useData<T>(
     loading,
     error,
     refetch: fetchData,
-    lastUpdated
+    lastUpdated,
   };
 }
 
@@ -98,16 +99,18 @@ export function useFacilities(): UseDataResult<FacilityData[]> {
   );
 }
 
-export function useFacility(facilityId: string): UseDataResult<FacilityData | null> {
-  return useData(
-    () => dataService.getFacility(facilityId),
-    [facilityId],
-    { refreshInterval: 300000 }
-  );
+export function useFacility(
+  facilityId: string
+): UseDataResult<FacilityData | null> {
+  return useData(() => dataService.getFacility(facilityId), [facilityId], {
+    refreshInterval: 300000,
+  });
 }
 
 // Operational data hooks
-export function useOperationalMetrics(facilityId: string): UseDataResult<OperationalMetrics> {
+export function useOperationalMetrics(
+  facilityId: string
+): UseDataResult<OperationalMetrics> {
   return useData(
     () => dataService.getOperationalMetrics(facilityId),
     [facilityId],
@@ -116,79 +119,71 @@ export function useOperationalMetrics(facilityId: string): UseDataResult<Operati
 }
 
 export function useAlerts(facilityId?: string): UseDataResult<AlertData[]> {
-  return useData(
-    () => dataService.getAlerts(facilityId),
-    [facilityId],
-    { 
-      refreshInterval: 30000, // 30 seconds
-      initialData: []
-    }
-  );
+  return useData(() => dataService.getAlerts(facilityId), [facilityId], {
+    refreshInterval: 30000, // 30 seconds
+    initialData: [],
+  });
 }
 
 // Production hooks
 export function useProductionData(
-  facilityId: string, 
+  facilityId: string,
   period: string = '7d'
 ): UseDataResult<ProductionData[]> {
   return useData(
     () => dataService.getProductionData(facilityId, period),
     [facilityId, period],
-    { 
+    {
       refreshInterval: 120000, // 2 minutes
-      initialData: []
+      initialData: [],
     }
   );
 }
 
 export function useWells(facilityId: string): UseDataResult<WellData[]> {
-  return useData(
-    () => dataService.getWells(facilityId),
-    [facilityId],
-    { 
-      refreshInterval: 300000, // 5 minutes
-      initialData: []
-    }
-  );
+  return useData(() => dataService.getWells(facilityId), [facilityId], {
+    refreshInterval: 300000, // 5 minutes
+    initialData: [],
+  });
 }
 
 // Safety hooks
-export function useSafetyMetrics(facilityId: string): UseDataResult<SafetyMetrics> {
-  return useData(
-    () => dataService.getSafetyMetrics(facilityId),
-    [facilityId],
-    { refreshInterval: 300000 }
-  );
+export function useSafetyMetrics(
+  facilityId: string
+): UseDataResult<SafetyMetrics> {
+  return useData(() => dataService.getSafetyMetrics(facilityId), [facilityId], {
+    refreshInterval: 300000,
+  });
 }
 
 export function useSafetyIncidents(
-  facilityId: string, 
+  facilityId: string,
   limit: number = 50
 ): UseDataResult<SafetyIncident[]> {
   return useData(
     () => dataService.getSafetyIncidents(facilityId, limit),
     [facilityId, limit],
-    { 
+    {
       refreshInterval: 180000, // 3 minutes
-      initialData: []
+      initialData: [],
     }
   );
 }
 
 // Equipment hooks
-export function useEquipment(facilityId: string): UseDataResult<EquipmentData[]> {
-  return useData(
-    () => dataService.getEquipment(facilityId),
-    [facilityId],
-    { 
-      refreshInterval: 120000, // 2 minutes
-      initialData: []
-    }
-  );
+export function useEquipment(
+  facilityId: string
+): UseDataResult<EquipmentData[]> {
+  return useData(() => dataService.getEquipment(facilityId), [facilityId], {
+    refreshInterval: 120000, // 2 minutes
+    initialData: [],
+  });
 }
 
 // Environmental hooks
-export function useEnvironmentalMetrics(facilityId: string): UseDataResult<EnvironmentalMetrics> {
+export function useEnvironmentalMetrics(
+  facilityId: string
+): UseDataResult<EnvironmentalMetrics> {
   return useData(
     () => dataService.getEnvironmentalMetrics(facilityId),
     [facilityId],
@@ -205,23 +200,23 @@ export function useRealTimeData<T>(
   const [loading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  
+
   const wsRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
     // Try to establish WebSocket connection for real-time updates
     const wsUrl = process.env.REACT_APP_WS_URL || 'ws://localhost:3001';
-    
+
     try {
       wsRef.current = new WebSocket(`${wsUrl}${endpoint}`);
-      
+
       wsRef.current.onopen = () => {
         // eslint-disable-next-line no-console
         console.log(`WebSocket connected to ${endpoint}`);
         setError(null);
       };
-      
-      wsRef.current.onmessage = (event) => {
+
+      wsRef.current.onmessage = event => {
         try {
           const newData = JSON.parse(event.data);
           setData(newData);
@@ -231,18 +226,17 @@ export function useRealTimeData<T>(
           console.error('Error parsing WebSocket data:', err);
         }
       };
-      
-      wsRef.current.onerror = (err) => {
+
+      wsRef.current.onerror = err => {
         // eslint-disable-next-line no-console
         console.error('WebSocket error:', err);
         setError('Real-time connection failed');
       };
-      
+
       wsRef.current.onclose = () => {
         // eslint-disable-next-line no-console
         console.log('WebSocket connection closed');
       };
-      
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error('Failed to establish WebSocket connection:', err);
@@ -269,7 +263,7 @@ export function useRealTimeData<T>(
     loading,
     error,
     refetch,
-    lastUpdated
+    lastUpdated,
   };
 }
 
