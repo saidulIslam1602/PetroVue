@@ -239,23 +239,8 @@ const App: React.FC = () => {
 
   const renderActiveView = () => {
     console.log('Current activeView:', activeView);
-    
-    if (!selectedFacility && activeView !== 'dashboard') {
-      return (
-        <Box sx={{ 
-          padding: '4rem 2rem', 
-          textAlign: 'center',
-          color: 'white'
-        }}>
-          <Typography variant="h5" gutterBottom>
-            Loading Demo Data...
-          </Typography>
-          <Typography variant="body2" color="rgba(255,255,255,0.7)">
-            Using simulated data for demonstration
-          </Typography>
-        </Box>
-      );
-    }
+    console.log('selectedFacility:', selectedFacility);
+    console.log('facilities:', facilities);
 
     switch (activeView) {
       case 'dashboard':
