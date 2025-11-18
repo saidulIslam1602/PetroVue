@@ -207,15 +207,15 @@ const App: React.FC = () => {
   ];
 
   const sidebarItems = [
-    { id: 'dashboard', icon: 'dashboard', label: 'Dashboard', active: activeView === 'dashboard', onClick: () => { console.log('Navigating to dashboard'); setActiveView('dashboard'); } },
-    { id: 'operations', icon: 'settings', label: 'Operations', active: activeView === 'operations', onClick: () => { console.log('Navigating to operations'); setActiveView('operations'); } },
-    { id: 'safety', icon: 'security', label: 'Safety', active: activeView === 'safety', onClick: () => { console.log('Navigating to safety'); setActiveView('safety'); } },
-    { id: 'production', icon: 'analytics', label: 'Production', active: activeView === 'production', onClick: () => { console.log('Navigating to production'); setActiveView('production'); } },
-    { id: 'environmental', icon: 'eco', label: 'Environmental', active: activeView === 'environmental', onClick: () => { console.log('Navigating to environmental'); setActiveView('environmental'); } },
-    { id: 'equipment', icon: 'build', label: 'Equipment', active: activeView === 'equipment', onClick: () => { console.log('Navigating to equipment'); setActiveView('equipment'); } },
-    { id: 'sustainability', icon: 'eco', label: 'Sustainability Insights', active: activeView === 'sustainability', onClick: () => { console.log('Navigating to sustainability'); setActiveView('sustainability'); } },
-    { id: 'carbon', icon: 'calculate', label: 'Carbon Calculator', active: activeView === 'carbon', onClick: () => { console.log('Navigating to carbon'); setActiveView('carbon'); } },
-    { id: 'reports', icon: 'description', label: 'Reports', active: activeView === 'reports', onClick: () => { console.log('Navigating to reports'); setActiveView('reports'); } },
+    { id: 'dashboard', label: 'Dashboard', active: activeView === 'dashboard', onClick: () => { console.log('Navigating to dashboard'); setActiveView('dashboard'); } },
+    { id: 'operations', label: 'Operations', active: activeView === 'operations', onClick: () => { console.log('Navigating to operations'); setActiveView('operations'); } },
+    { id: 'safety', label: 'Safety', active: activeView === 'safety', onClick: () => { console.log('Navigating to safety'); setActiveView('safety'); } },
+    { id: 'production', label: 'Production', active: activeView === 'production', onClick: () => { console.log('Navigating to production'); setActiveView('production'); } },
+    { id: 'environmental', label: 'Environmental', active: activeView === 'environmental', onClick: () => { console.log('Navigating to environmental'); setActiveView('environmental'); } },
+    { id: 'equipment', label: 'Equipment', active: activeView === 'equipment', onClick: () => { console.log('Navigating to equipment'); setActiveView('equipment'); } },
+    { id: 'sustainability', label: 'Sustainability Insights', active: activeView === 'sustainability', onClick: () => { console.log('Navigating to sustainability'); setActiveView('sustainability'); } },
+    { id: 'carbon', label: 'Carbon Calculator', active: activeView === 'carbon', onClick: () => { console.log('Navigating to carbon'); setActiveView('carbon'); } },
+    { id: 'reports', label: 'Reports', active: activeView === 'reports', onClick: () => { console.log('Navigating to reports'); setActiveView('reports'); } },
   ];
 
   const user = {
