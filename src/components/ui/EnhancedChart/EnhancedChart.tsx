@@ -27,7 +27,7 @@ import {
   PolarRadiusAxis,
   Radar,
 } from 'recharts';
-import { Box, Paper, Typography, useTheme } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export type ChartType = 'line' | 'area' | 'bar' | 'pie' | 'radar';
@@ -121,8 +121,6 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
   showAnimation = true,
   gradient = true,
 }) => {
-  const theme = useTheme();
-
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: {

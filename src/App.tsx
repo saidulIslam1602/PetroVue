@@ -7,13 +7,6 @@ import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, Box, Typography, Card as MuiCard } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { Button } from './components/ui/Button';
-import { Card, CardHeader, CardContent, CardFooter } from './components/ui/Card';
-import { Input } from './components/ui/Input';
-import { Select } from './components/ui/Select';
-import { Alert } from './components/ui/Alert';
-import { MetricCard } from './components/ui/MetricCard';
-import { Chart } from './components/ui/Chart';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { OperationalDashboard } from './components/industry/OperationalDashboard';
@@ -25,10 +18,7 @@ import { CarbonFootprintCalculator } from './components/industry/CarbonFootprint
 import { ReportGenerator } from './components/industry/ReportGenerator';
 import { SustainabilityInsights } from './components/industry/SustainabilityInsights';
 import { Hero } from './components/layout/Hero';
-import { AnimatedCard } from './components/ui/AnimatedCard';
-import { AnimatedCounter } from './components/ui/AnimatedCounter';
 import { EnhancedChart } from './components/ui/EnhancedChart';
-import { LoadingSkeleton } from './components/ui/LoadingSkeleton';
 import { Logo } from './components/ui/Logo';
 import { APP_CONFIG } from './constants';
 import {
@@ -109,7 +99,7 @@ const muiTheme = createTheme({
 const App: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [activeView, setActiveView] = React.useState('dashboard');
-  const [selectedFacilityId, setSelectedFacilityId] = React.useState('PLT-001');
+  const [selectedFacilityId] = React.useState('PLT-001');
   
   // Data hooks
   const { data: facilities } = useFacilities();
@@ -144,15 +134,6 @@ const App: React.FC = () => {
     }));
   }, [prodData]);
 
-  // Create fallback metrics for dashboard
-  const dashboardMetrics = React.useMemo(() => {
-    return {
-      oil: operationalData?.production.oil || 1250,
-      gas: operationalData?.production.gas || 2100,
-      water: operationalData?.production.water || 850,
-      safety: safetyData?.overallScore || 98.5
-    };
-  }, [operationalData, safetyData]);
 
   // Type adapters to convert between data service types and component types
   const adaptSafetyIncidents = (incidents: typeof incidentsData) => {
@@ -207,15 +188,15 @@ const App: React.FC = () => {
   ];
 
   const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard', active: activeView === 'dashboard', onClick: () => { console.log('Navigating to dashboard'); setActiveView('dashboard'); } },
-    { id: 'operations', label: 'Operations', active: activeView === 'operations', onClick: () => { console.log('Navigating to operations'); setActiveView('operations'); } },
-    { id: 'safety', label: 'Safety', active: activeView === 'safety', onClick: () => { console.log('Navigating to safety'); setActiveView('safety'); } },
-    { id: 'production', label: 'Production', active: activeView === 'production', onClick: () => { console.log('Navigating to production'); setActiveView('production'); } },
-    { id: 'environmental', label: 'Environmental', active: activeView === 'environmental', onClick: () => { console.log('Navigating to environmental'); setActiveView('environmental'); } },
-    { id: 'equipment', label: 'Equipment', active: activeView === 'equipment', onClick: () => { console.log('Navigating to equipment'); setActiveView('equipment'); } },
-    { id: 'sustainability', label: 'Sustainability Insights', active: activeView === 'sustainability', onClick: () => { console.log('Navigating to sustainability'); setActiveView('sustainability'); } },
-    { id: 'carbon', label: 'Carbon Calculator', active: activeView === 'carbon', onClick: () => { console.log('Navigating to carbon'); setActiveView('carbon'); } },
-    { id: 'reports', label: 'Reports', active: activeView === 'reports', onClick: () => { console.log('Navigating to reports'); setActiveView('reports'); } },
+    { id: 'dashboard', label: 'Dashboard', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
+    { id: 'operations', label: 'Operations', active: activeView === 'operations', onClick: () => setActiveView('operations') },
+    { id: 'safety', label: 'Safety', active: activeView === 'safety', onClick: () => setActiveView('safety') },
+    { id: 'production', label: 'Production', active: activeView === 'production', onClick: () => setActiveView('production') },
+    { id: 'environmental', label: 'Environmental', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
+    { id: 'equipment', label: 'Equipment', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
+    { id: 'sustainability', label: 'Sustainability Insights', active: activeView === 'sustainability', onClick: () => setActiveView('sustainability') },
+    { id: 'carbon', label: 'Carbon Calculator', active: activeView === 'carbon', onClick: () => setActiveView('carbon') },
+    { id: 'reports', label: 'Reports', active: activeView === 'reports', onClick: () => setActiveView('reports') },
   ];
 
   const user = {
@@ -223,25 +204,12 @@ const App: React.FC = () => {
     role: 'Operations Manager',
   };
 
-  // Transform facilities data for Select component
-  const facilityOptions = React.useMemo(() => {
-    if (!facilities) return [];
-    return facilities.map(facility => ({
-      value: facility.id,
-      label: facility.name
-    }));
-  }, [facilities]);
-
   // Get selected facility data
   const selectedFacility = React.useMemo(() => {
     return facilities?.find(f => f.id === selectedFacilityId) || null;
   }, [facilities, selectedFacilityId]);
 
   const renderActiveView = () => {
-    console.log('Current activeView:', activeView);
-    console.log('selectedFacility:', selectedFacility);
-    console.log('facilities:', facilities);
-
     switch (activeView) {
       case 'dashboard':
         return renderDashboard();
@@ -386,258 +354,6 @@ const App: React.FC = () => {
           gradient
         />
       </Box>
-    </div>
-  );
-
-  // Keep backup of the old render for compatibility
-  const renderLegacyDashboard = () => (
-    <div style={{ padding: '2rem' }}>
-      <section style={{ marginBottom: '3rem' }}>
-        <h2
-          style={{
-            color: '#212121',
-            marginBottom: '1rem',
-            fontSize: '2rem',
-          }}
-        >
-          Modern Oil & Gas Operations Dashboard
-        </h2>
-        <p
-          style={{
-            color: '#666',
-            lineHeight: 1.6,
-            fontSize: '1.1rem',
-            marginBottom: '2rem',
-          }}
-        >
-          Built with React, TypeScript, and Material-UI following industry
-          standards for clean, maintainable, and scalable code architecture.
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
-            marginTop: '2rem',
-          }}
-        >
-          <Card variant="elevated">
-            <CardHeader>
-              <h3 style={{ color: '#0066cc', marginBottom: '1rem' }}>
-                Clean Architecture
-              </h3>
-            </CardHeader>
-            <CardContent>
-              <p style={{ color: '#666', lineHeight: 1.5 }}>
-                Organized folder structure, TypeScript types, and
-                component-based design following industry best practices.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" size="sm">
-                Learn More
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card variant="elevated">
-            <CardHeader>
-              <h3 style={{ color: '#ff6600', marginBottom: '1rem' }}>
-                Type Safety
-              </h3>
-            </CardHeader>
-            <CardContent>
-              <p style={{ color: '#666', lineHeight: 1.5 }}>
-                Comprehensive TypeScript implementation with strict typing for
-                better development experience and fewer runtime errors.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" size="sm">
-                View Types
-              </Button>
-            </CardFooter>
-          </Card>
-
-          <Card variant="elevated">
-            <CardHeader>
-              <h3 style={{ color: '#4caf50', marginBottom: '1rem' }}>
-                Accessibility
-              </h3>
-            </CardHeader>
-            <CardContent>
-              <p style={{ color: '#666', lineHeight: 1.5 }}>
-                WCAG 2.1 AA compliant components with proper ARIA labels,
-                keyboard navigation, and screen reader support.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" size="sm">
-                Explore Components
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      </section>
-
-      <section
-        style={{
-          padding: '2rem',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '8px',
-        }}
-      >
-        <h3 style={{ color: '#212121', marginBottom: '1rem', textAlign: 'center' }}>
-          Component Examples
-        </h3>
-        
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ color: '#212121', marginBottom: '1rem' }}>
-            System Alerts
-          </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Alert
-              type="critical"
-              title="High Pressure Alert"
-              message="Pressure reading exceeds safety threshold in Platform Alpha. Immediate attention required."
-              dismissible
-            />
-            <Alert
-              type="warning"
-              title="Maintenance Due"
-              message="Scheduled maintenance for Refinery North is due in 48 hours."
-              dismissible
-            />
-            <Alert
-              type="success"
-              title="Production Target Met"
-              message="Daily production target achieved across all facilities."
-            />
-          </div>
-        </div>
-
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ color: '#212121', marginBottom: '1rem' }}>
-            Operational Metrics
-          </h3>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-            gap: '1rem' 
-          }}>
-            <MetricCard
-              title="Oil Production"
-              value={dashboardMetrics.oil}
-              unit="bbl/day"
-              change={{ value: 5.2, type: 'increase', period: 'vs last month' }}
-              status="success"
-              trend="up"
-            />
-            <MetricCard
-              title="Gas Production"
-              value={dashboardMetrics.gas}
-              unit="mcf/day"
-              change={{ value: 2.1, type: 'increase', period: 'vs last month' }}
-              status="normal"
-              trend="up"
-            />
-            <MetricCard
-              title="Water Production"
-              value={dashboardMetrics.water}
-              unit="bbl/day"
-              change={{ value: 1.5, type: 'decrease', period: 'vs last month' }}
-              status="warning"
-              trend="down"
-            />
-            <MetricCard
-              title="Safety Score"
-              value={dashboardMetrics.safety}
-              unit="%"
-              change={{ value: 0.8, type: 'increase', period: 'vs last month' }}
-              status="success"
-              trend="up"
-            />
-          </div>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
-          <Card>
-            <CardHeader>
-              <h4>Production Trends</h4>
-            </CardHeader>
-            <CardContent>
-              <Chart
-                type="line"
-                data={chartData}
-                height={300}
-                showLegend
-                showGrid
-              />
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <h4>Facility Management</h4>
-            </CardHeader>
-            <CardContent>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <Select
-                  label="Select Facility"
-                  options={facilityOptions}
-                  placeholder="Choose a facility"
-                  searchable
-                  value={selectedFacilityId}
-                  onChange={(value) => setSelectedFacilityId(String(value))}
-                />
-                <Input
-                  label="Production Rate"
-                  placeholder="Enter daily production"
-                  helperText="Production rate in barrels per day"
-                  value={dashboardMetrics.oil.toString()}
-                  readOnly
-                />
-                <Input
-                  label="Pressure Reading"
-                  placeholder="Enter pressure"
-                  helperText="Current system pressure"
-                  value="850 PSI"
-                  readOnly
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button variant="outline" size="sm">
-                Cancel
-              </Button>
-              <Button variant="primary" size="sm">
-                Save
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-
-        <Card>
-          <CardHeader>
-            <h4>Development Tools</h4>
-          </CardHeader>
-          <CardContent>
-            <p style={{ color: '#666', marginBottom: '1rem' }}>
-              Access development tools and documentation for the PetroVue application.
-            </p>
-          </CardContent>
-          <CardFooter>
-            <Button
-              variant='primary'
-              size='sm'
-              onClick={() => window.open('http://localhost:6006', '_blank')}
-            >
-              Open Storybook
-            </Button>
-          </CardFooter>
-        </Card>
-      </section>
     </div>
   );
 

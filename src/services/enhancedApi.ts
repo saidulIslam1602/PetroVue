@@ -105,6 +105,7 @@ class EnhancedApiClient {
         return config;
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.error('Request interceptor error:', error);
         return Promise.reject(error);
       }

@@ -189,6 +189,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching facility:', handleApiError(error));
       const facilities = this.getFallbackFacilities();
       return facilities.find(f => f.id === id) || null;
@@ -203,6 +204,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching operational metrics:', handleApiError(error));
       return this.getFallbackOperationalMetrics();
     }
@@ -216,6 +218,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching alerts:', handleApiError(error));
       return this.getFallbackAlerts();
     }
@@ -229,6 +232,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching production data:', handleApiError(error));
       return this.getFallbackProductionData();
     }
@@ -241,6 +245,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching wells:', handleApiError(error));
       return this.getFallbackWells();
     }
@@ -254,6 +259,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching safety metrics:', handleApiError(error));
       return this.getFallbackSafetyMetrics();
     }
@@ -267,6 +273,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching safety incidents:', handleApiError(error));
       return this.getFallbackSafetyIncidents();
     }
@@ -280,6 +287,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching equipment:', handleApiError(error));
       return this.getFallbackEquipment();
     }
@@ -293,6 +301,7 @@ export class DataService {
       );
       return response.data;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching environmental metrics:', handleApiError(error));
       return this.getFallbackEnvironmentalMetrics();
     }

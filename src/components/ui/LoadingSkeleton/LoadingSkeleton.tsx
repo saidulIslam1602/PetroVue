@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Box, Skeleton as MuiSkeleton } from '@mui/material';
+import { Box } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 
 const shimmer = keyframes`

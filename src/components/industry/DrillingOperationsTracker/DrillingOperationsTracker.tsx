@@ -4,7 +4,7 @@
  * Demonstrates expertise in drilling engineering and North Sea operations
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Card, 
@@ -27,19 +27,13 @@ import {
 import { styled } from '@mui/material/styles';
 import {
   Speed,
-  Thermostat,
-  Timeline,
   Construction,
   Psychology,
   TrendingUp,
-  Warning,
-  CheckCircle,
   Engineering,
-  Layers,
-  Compress,
-  LocalGasStation
+  Layers
 } from '@mui/icons-material';
-import { norwegianTranslations, petroleumTerminology } from '../../../constants/norwegianLocalization';
+import { norwegianTranslations } from '../../../constants/norwegianLocalization';
 
 // Styled components
 const DrillingCard = styled(Card)(({ theme }) => ({
@@ -203,6 +197,7 @@ interface DrillingCosts {
 }
 
 // Mock data for Norwegian Continental Shelf drilling operations
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockDrillingData: DrillingOperation[] = [
   {
     wellId: 'NCS-16/2-A12',
@@ -399,8 +394,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 export const DrillingOperationsTracker: React.FC = () => {
-  const [operations, setOperations] = useState<DrillingOperation[]>(mockDrillingData);
-  const [selectedOperation, setSelectedOperation] = useState<DrillingOperation>(mockDrillingData[0]);
+  const [selectedOperation] = useState<DrillingOperation>(mockDrillingData[0]);
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

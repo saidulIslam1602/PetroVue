@@ -3,8 +3,6 @@
  * Centralized API communication for PetroVue application
  */
 
-import { APP_CONFIG } from '../constants';
-
 // Base API configuration
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 const API_TIMEOUT = 30000; // 30 seconds

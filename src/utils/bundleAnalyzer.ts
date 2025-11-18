@@ -21,6 +21,7 @@ export const analyzeBundleSize = () => {
     const src = script.getAttribute('src');
     if (src && src.includes('static/js')) {
       // This is a simplified approach - in reality, you'd need to fetch the actual file size
+      // eslint-disable-next-line no-console
       console.log(`Script: ${src}`);
     }
   });
@@ -28,11 +29,14 @@ export const analyzeBundleSize = () => {
   stylesheets.forEach(link => {
     const href = link.getAttribute('href');
     if (href && href.includes('static/css')) {
+      // eslint-disable-next-line no-console
       console.log(`Stylesheet: ${href}`);
     }
   });
   
+  // eslint-disable-next-line no-console
   console.log(`Total script size: ${totalScriptSize} bytes`);
+  // eslint-disable-next-line no-console
   console.log(`Total style size: ${totalStyleSize} bytes`);
 };
 

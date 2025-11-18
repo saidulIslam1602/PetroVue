@@ -10,7 +10,6 @@ import {
   CardContent, 
   Typography, 
   Box,
-  Alert,
   Chip,
   LinearProgress,
   List,
@@ -189,16 +188,15 @@ const regulatoryFrameworks: RegulatoryFramework[] = [
 ];
 
 export const RegulatoryComplianceDashboard: React.FC = () => {
-  const [complianceData, setComplianceData] = useState<ComplianceRequirement[]>(mockComplianceData);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [overallCompliance, setOverallCompliance] = useState<number>(0);
 
   useEffect(() => {
     // Calculate overall compliance score
-    const compliantItems = complianceData.filter(item => item.status === 'compliant').length;
-    const totalItems = complianceData.length;
+    const compliantItems = mockComplianceData.filter(item => item.status === 'compliant').length;
+    const totalItems = mockComplianceData.length;
     setOverallCompliance((compliantItems / totalItems) * 100);
-  }, [complianceData]);
+  }, []);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -241,8 +239,8 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
   };
 
   const filteredData = selectedCategory === 'all' 
-    ? complianceData 
-    : complianceData.filter(item => item.category === selectedCategory);
+    ? mockComplianceData 
+    : mockComplianceData.filter(item => item.category === selectedCategory);
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
@@ -281,7 +279,7 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              {complianceData.filter(item => item.status === 'compliant').length} av {complianceData.length} krav oppfylt
+              {mockComplianceData.filter(item => item.status === 'compliant').length} av {mockComplianceData.length} krav oppfylt
             </Typography>
           </CardContent>
         </ComplianceCard>
@@ -306,7 +304,7 @@ export const RegulatoryComplianceDashboard: React.FC = () => {
               Forestående Revisjoner
             </Typography>
             <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 1 }}>
-              {complianceData.filter(item => 
+              {mockComplianceData.filter(item => 
                 new Date(item.nextReview).getTime() - Date.now() < 30 * 24 * 60 * 60 * 1000
               ).length}
             </Typography>

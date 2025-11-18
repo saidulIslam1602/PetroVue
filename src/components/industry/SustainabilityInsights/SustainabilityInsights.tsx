@@ -15,9 +15,6 @@ import {
   LinearProgress,
   Avatar,
   Button,
-  IconButton,
-  Tooltip,
-  Divider,
 } from '@mui/material';
 import { GridLegacy as Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -30,11 +27,8 @@ import {
   RecyclingRounded,
   Co2,
   Assessment,
-  Info,
   ArrowForward,
   CheckCircle,
-  Warning,
-  Error as ErrorIcon,
 } from '@mui/icons-material';
 
 // Styled components

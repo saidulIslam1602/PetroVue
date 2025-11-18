@@ -16,7 +16,6 @@ import {
   Chip,
   Alert,
   FormControl,
-  FormLabel,
   RadioGroup,
   Radio,
   Checkbox,
@@ -30,9 +29,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
-  IconButton,
-  Tooltip,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
@@ -49,7 +45,6 @@ import {
   TrendingUp,
   CloudDownload,
   Email,
-  Print,
   Share,
 } from '@mui/icons-material';
 
@@ -63,12 +58,6 @@ const HeaderCard = styled(Card)(({ theme }) => ({
   background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
   color: 'white',
   marginBottom: theme.spacing(4),
-}));
-
-const PreviewCard = styled(Card)(({ theme }) => ({
-  border: `2px dashed ${theme.palette.divider}`,
-  minHeight: '400px',
-  padding: theme.spacing(3),
 }));
 
 interface ReportConfig {

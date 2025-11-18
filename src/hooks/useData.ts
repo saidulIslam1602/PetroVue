@@ -57,6 +57,7 @@ function useData<T>(
       setError(errorMessage);
       
       if (!options.retryOnError) {
+        // eslint-disable-next-line no-console
         console.error('Data fetch error:', errorMessage);
       }
     } finally {
@@ -201,7 +202,7 @@ export function useRealTimeData<T>(
   initialData: T
 ): UseDataResult<T> {
   const [data, setData] = useState<T>(initialData);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   
@@ -215,6 +216,7 @@ export function useRealTimeData<T>(
       wsRef.current = new WebSocket(`${wsUrl}${endpoint}`);
       
       wsRef.current.onopen = () => {
+        // eslint-disable-next-line no-console
         console.log(`WebSocket connected to ${endpoint}`);
         setError(null);
       };
@@ -225,20 +227,24 @@ export function useRealTimeData<T>(
           setData(newData);
           setLastUpdated(new Date());
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.error('Error parsing WebSocket data:', err);
         }
       };
       
       wsRef.current.onerror = (err) => {
+        // eslint-disable-next-line no-console
         console.error('WebSocket error:', err);
         setError('Real-time connection failed');
       };
       
       wsRef.current.onclose = () => {
+        // eslint-disable-next-line no-console
         console.log('WebSocket connection closed');
       };
       
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error('Failed to establish WebSocket connection:', err);
       setError('Real-time connection unavailable');
     }
@@ -281,6 +287,7 @@ export function useChartData<T>(
         const transformed = transformer(data);
         setChartData(transformed);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error transforming chart data:', error);
         setChartData([]);
       } finally {
@@ -308,6 +315,7 @@ export function useAggregatedData<T, R>(
         const result = aggregator(data);
         setAggregatedData(result);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error aggregating data:', error);
         setAggregatedData(defaultValue);
       }

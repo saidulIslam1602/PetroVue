@@ -4,7 +4,7 @@
  * Demonstrates understanding of midstream operations
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Card, 
@@ -27,7 +27,6 @@ import { styled } from '@mui/material/styles';
 import {
   Timeline,
   Speed,
-  Thermostat,
   Compress,
   Warning,
   CheckCircle,
@@ -113,11 +112,11 @@ interface PipelineData {
     system: 'SCADA' | 'fiber-optic' | 'acoustic' | 'pressure-wave';
     sensitivity: number; // m³/h minimum detectable
     lastCalibration: Date;
-    alerts: Alert[];
+    alerts: PipelineAlert[];
   };
 }
 
-interface Alert {
+interface PipelineAlert {
   id: string;
   timestamp: Date;
   severity: 'low' | 'medium' | 'high' | 'critical';
@@ -356,11 +355,10 @@ const mockPipelineData: PipelineData[] = [
 ];
 
 export const PipelineOperationsDashboard: React.FC = () => {
-  const [pipelines, setPipelines] = useState<PipelineData[]>(mockPipelineData);
   const [selectedPipeline, setSelectedPipeline] = useState<PipelineData>(mockPipelineData[0]);
 
   // Calculate system totals
-  const systemTotals = pipelines.reduce((totals, pipeline) => ({
+  const systemTotals = mockPipelineData.reduce((totals, pipeline) => ({
     totalFlow: totals.totalFlow + pipeline.operatingData.flowRate,
     avgCapacity: totals.avgCapacity + pipeline.operatingData.capacity.current,
     activePipelines: totals.activePipelines + (pipeline.status === 'operational' ? 1 : 0),
@@ -449,7 +447,7 @@ export const PipelineOperationsDashboard: React.FC = () => {
               </Typography>
             </Box>
             <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
-              {systemTotals.activePipelines}/{pipelines.length}
+              {systemTotals.activePipelines}/{mockPipelineData.length}
             </Typography>
             <Typography variant="body2" sx={{ opacity: 0.9 }}>
               Operasjonelle
@@ -499,7 +497,7 @@ export const PipelineOperationsDashboard: React.FC = () => {
             Velg Rørledning for Detaljert Analyse
           </Typography>
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            {pipelines.map((pipeline) => (
+            {mockPipelineData.map((pipeline) => (
               <Chip
                 key={pipeline.pipelineId}
                 label={`${pipeline.name} (${pipeline.type.toUpperCase()})`}

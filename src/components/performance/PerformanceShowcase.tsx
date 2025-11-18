@@ -205,6 +205,7 @@ const PerformanceShowcase: React.FC = () => {
 
   // Optimized event handlers
   const handleItemClick = useCallback((item: ProductionData) => {
+    // eslint-disable-next-line no-console
     console.log('Selected production item:', item);
     // Implement item selection logic
   }, []);

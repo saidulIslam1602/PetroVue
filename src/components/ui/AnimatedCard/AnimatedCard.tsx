@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card as MuiCard, CardContent, CardProps } from '@mui/material';
+import { Card as MuiCard, CardProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface AnimatedCardProps extends CardProps {

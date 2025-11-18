@@ -4,7 +4,7 @@
  * Demonstrates commitment to sustainable energy transition and climate goals
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Card, 
@@ -18,12 +18,10 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
   Tabs,
-  Tab,
-  IconButton
+  Tab
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
@@ -34,16 +32,12 @@ import {
   RecyclingRounded,
   Groups,
   Security,
-  Assessment,
   TrendingDown,
-  TrendingUp,
   CheckCircle,
   Warning,
   WindPower,
-  WbSunny,
-  Waves
+  WbSunny
 } from '@mui/icons-material';
-import { norwegianTranslations, petroleumTerminology } from '../../../constants/norwegianLocalization';
 
 // Styled components for ESG metrics
 const EnvironmentalCard = styled(Card)(({ theme }) => ({
@@ -275,6 +269,7 @@ interface SustainabilityTargets {
 }
 
 // Mock data for Norwegian petroleum ESG performance
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockESGData: ESGMetrics[] = [
   {
     operatorId: 'EQN-001',
@@ -492,8 +487,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 export const ESGSustainabilityDashboard: React.FC = () => {
-  const [esgData, setESGData] = useState<ESGMetrics[]>(mockESGData);
-  const [selectedOperator, setSelectedOperator] = useState<ESGMetrics>(mockESGData[0]);
+  const [selectedOperator] = useState<ESGMetrics>(mockESGData[0]);
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

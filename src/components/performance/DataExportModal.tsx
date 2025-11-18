@@ -71,6 +71,7 @@ const DataExportModal: React.FC<DataExportModalProps> = ({ data, onClose }) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Export failed:', error);
       alert('Export failed. Please try again.');
     } finally {

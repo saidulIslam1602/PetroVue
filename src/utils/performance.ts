@@ -55,6 +55,7 @@ export const measurePerformance = (name: string, fn: () => void) => {
   const start = performance.now();
   fn();
   const end = performance.now();
+  // eslint-disable-next-line no-console
   console.log(`${name} took ${end - start} milliseconds`);
 };
 

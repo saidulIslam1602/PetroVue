@@ -4,7 +4,7 @@
  * Aligned with Norwegian petroleum industry standards
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Card, 
@@ -18,7 +18,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
   Tabs,
@@ -30,7 +29,6 @@ import {
   TrendingDown,
   Speed,
   Opacity,
-  Thermostat,
   Compress
 } from '@mui/icons-material';
 import { norwegianTranslations, petroleumTerminology } from '../../../constants/norwegianLocalization';
@@ -101,14 +99,6 @@ interface WellData {
     mudViscosity: number; // cP
     flowRate: number; // l/min
   };
-}
-
-interface ProductionTrend {
-  date: Date;
-  oil: number;
-  gas: number;
-  water: number;
-  efficiency: number;
 }
 
 // Mock data for Norwegian Continental Shelf wells
@@ -261,12 +251,11 @@ const mockWellData: WellData[] = [
 ];
 
 export const WellPerformanceAnalytics: React.FC = () => {
-  const [wells, setWells] = useState<WellData[]>(mockWellData);
   const [selectedWell, setSelectedWell] = useState<WellData>(mockWellData[0]);
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
   // Calculate field totals
-  const fieldTotals = wells.reduce((totals, well) => ({
+  const fieldTotals = mockWellData.reduce((totals, well) => ({
     oil: totals.oil + well.currentProduction.oil,
     gas: totals.gas + well.currentProduction.gas,
     water: totals.water + well.currentProduction.water,
@@ -391,7 +380,7 @@ export const WellPerformanceAnalytics: React.FC = () => {
             Velg Brønn for Detaljert Analyse
           </Typography>
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 3 }}>
-            {wells.map((well) => (
+            {mockWellData.map((well) => (
               <Chip
                 key={well.wellId}
                 label={`${well.wellName} (${well.wellId})`}

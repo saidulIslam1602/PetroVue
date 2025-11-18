@@ -4,7 +4,7 @@
  * Demonstrates expertise in reservoir engineering and production optimization
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Card, 
@@ -22,30 +22,18 @@ import {
   TableRow,
   Paper,
   Tabs,
-  Tab,
-  Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem
+  Tab
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
   TrendingDown,
-  Timeline,
   BarChart,
   Calculate,
   Assessment,
-  Engineering,
   Speed,
   LocalGasStation,
-  Compress,
-  Thermostat,
-  Psychology,
   TrendingUp
 } from '@mui/icons-material';
-import { norwegianTranslations, petroleumTerminology } from '../../../constants/norwegianLocalization';
 
 // Styled components
 const ReservoirCard = styled(Card)(({ theme }) => ({
@@ -230,6 +218,7 @@ interface RecoveryFactorData {
 }
 
 // Mock data for Norwegian Continental Shelf reservoirs
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockReservoirData: ReservoirField[] = [
   {
     fieldId: 'NCS-JOH-SVR',
@@ -444,8 +433,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 export const ReservoirEngineeringTools: React.FC = () => {
-  const [fields, setFields] = useState<ReservoirField[]>(mockReservoirData);
-  const [selectedField, setSelectedField] = useState<ReservoirField>(mockReservoirData[0]);
+  const [selectedField] = useState<ReservoirField>(mockReservoirData[0]);
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

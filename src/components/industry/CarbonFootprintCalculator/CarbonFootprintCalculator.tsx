@@ -12,7 +12,6 @@ import {
   Typography, 
   Box,
   TextField,
-  Button,
   Chip,
   LinearProgress,
   Table,
@@ -32,9 +31,7 @@ import { styled } from '@mui/material/styles';
 import {
   Calculate,
   TrendingDown,
-  TrendingUp,
   Nature,
-  Info,
   Download,
   Refresh,
   EnergySavingsLeaf

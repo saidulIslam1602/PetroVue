@@ -113,6 +113,7 @@ class AdvancedPerformanceMonitor {
       const endTime = performance.now();
       const duration = endTime - startTime;
       
+      // eslint-disable-next-line no-console
       console.log(`API ${apiName} latency: ${duration.toFixed(2)}ms`);
       this.checkPerformanceBudget('api', duration);
       
@@ -120,6 +121,7 @@ class AdvancedPerformanceMonitor {
     } catch (error) {
       const endTime = performance.now();
       const duration = endTime - startTime;
+      // eslint-disable-next-line no-console
       console.error(`API ${apiName} failed after ${duration.toFixed(2)}ms:`, error);
       throw error;
     }
@@ -129,6 +131,7 @@ class AdvancedPerformanceMonitor {
     if ('memory' in performance) {
       const memory = (performance as any).memory;
       const usage = memory.usedJSHeapSize / 1024 / 1024; // MB
+      // eslint-disable-next-line no-console
       console.log(`Memory usage: ${usage.toFixed(2)}MB`);
       this.checkPerformanceBudget('memory', usage);
       return usage;
@@ -160,6 +163,7 @@ class AdvancedPerformanceMonitor {
     }
 
     if (exceeded) {
+      // eslint-disable-next-line no-console
       console.warn(`Performance budget exceeded for ${metric}: ${value} > ${budget}`);
       this.reportBudgetViolation(metric, value, budget);
     }
@@ -168,6 +172,7 @@ class AdvancedPerformanceMonitor {
   private reportBudgetViolation(metric: string, actual: number, budget: number) {
     // Send alert to monitoring service
     if (process.env.NODE_ENV === 'production') {
+      // eslint-disable-next-line no-console
       console.error(`PERFORMANCE ALERT: ${metric} exceeded budget`, {
         metric,
         actual,
@@ -263,6 +268,7 @@ export class OilGasPerformanceDashboard {
       `FacilityDashboard-${facilityId}`,
       () => {
         // Component render logic would go here
+        // eslint-disable-next-line no-console
         console.log(`Rendering dashboard for facility ${facilityId}`);
       }
     );
@@ -338,6 +344,7 @@ export function usePerformanceTracking(componentName: string) {
       const endTime = performance.now();
       const duration = endTime - startTime;
       setRenderTime(duration);
+      // eslint-disable-next-line no-console
       console.log(`${componentName} total lifecycle: ${duration.toFixed(2)}ms`);
     };
   }, [componentName]);
@@ -347,12 +354,18 @@ export function usePerformanceTracking(componentName: string) {
 
 // Bundle analysis script
 export const analyzeBundlePerformance = () => {
+  // eslint-disable-next-line no-console
   console.log('Bundle Performance Analysis');
+  // eslint-disable-next-line no-console
   console.log('================================');
   
   const analysis = performanceMonitor.getBundleAnalysis();
+  // eslint-disable-next-line no-console
   console.log('Total Bundle Size:', (analysis.totalSize / 1024).toFixed(2), 'KB');
+  // eslint-disable-next-line no-console
   console.log('Chunk Breakdown:', analysis.chunks);
+  // eslint-disable-next-line no-console
   console.log('Duplicate Modules:', analysis.duplicates);
+  // eslint-disable-next-line no-console
   console.log('Recommendations:', analysis.recommendations);
 };

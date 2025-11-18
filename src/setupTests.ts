@@ -48,6 +48,7 @@ const originalError = console.error;
 const originalWarn = console.warn;
 
 beforeAll(() => {
+  // eslint-disable-next-line no-console
   console.error = (...args: any[]) => {
     if (
       typeof args[0] === 'string' &&
@@ -58,6 +59,7 @@ beforeAll(() => {
     originalError.call(console, ...args);
   };
 
+  // eslint-disable-next-line no-console
   console.warn = (...args: any[]) => {
     if (
       typeof args[0] === 'string' &&
@@ -71,6 +73,8 @@ beforeAll(() => {
 });
 
 afterAll(() => {
+  // eslint-disable-next-line no-console
   console.error = originalError;
+  // eslint-disable-next-line no-console
   console.warn = originalWarn;
 });

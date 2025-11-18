@@ -369,8 +369,12 @@ export const petroleumTerminology = {
   bigDataAnalytics: 'stordata-analyse',
   blockchainTechnology: 'blokkjede-teknologi',
   cybersecurity: 'cybersikkerhet',
-};export default {
+};
+
+const norwegianLocalization = {
   translations: norwegianTranslations,
   formatting: norwegianFormatting,
   terminology: petroleumTerminology
 };
+
+export default norwegianLocalization;
