@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, Box, Typography } from '@mui/material';
+import { CssBaseline, Box, Typography, Card as MuiCard } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { Button } from './components/ui/Button';
 import { Card, CardHeader, CardContent, CardFooter } from './components/ui/Card';
@@ -259,7 +259,7 @@ const App: React.FC = () => {
       case 'dashboard':
         return renderDashboard();
       case 'operations':
-        return operationalData && alertsData ? (
+        return operationalData && alertsData && selectedFacility ? (
           <OperationalDashboard
             facilityId={selectedFacilityId}
             facilityName={selectedFacility.name}
@@ -351,41 +351,41 @@ const App: React.FC = () => {
           gap: 3,
           mb: 6
         }}>
-          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+          <MuiCard sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
             <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
               Active Facilities
             </Typography>
             <Typography variant="h3" sx={{ color: 'white', fontWeight: 'bold', mt: 1 }}>
               {facilities?.length || 0}
             </Typography>
-          </Card>
+          </MuiCard>
           
-          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+          <MuiCard sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
             <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
               Production (bbl/d)
             </Typography>
             <Typography variant="h3" sx={{ color: '#10b981', fontWeight: 'bold', mt: 1 }}>
               {operationalData?.production.oil.toLocaleString() || '0'}
             </Typography>
-          </Card>
+          </MuiCard>
           
-          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+          <MuiCard sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
             <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
               Safety Score
             </Typography>
             <Typography variant="h3" sx={{ color: '#3b82f6', fontWeight: 'bold', mt: 1 }}>
               {operationalData?.safety.score || '0'}%
             </Typography>
-          </Card>
+          </MuiCard>
           
-          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+          <MuiCard sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
             <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
               Active Alerts
             </Typography>
             <Typography variant="h3" sx={{ color: '#f59e0b', fontWeight: 'bold', mt: 1 }}>
               {alertsData?.filter(a => !a.resolved).length || '0'}
             </Typography>
-          </Card>
+          </MuiCard>
         </Box>
 
         <EnhancedChart
