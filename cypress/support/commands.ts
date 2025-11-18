@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-// Simplified Cypress utilities for PetroVue testing
+// Cypress custom commands and utilities for PetroVue testing
 
-// Helper functions for E2E tests
+// Helper functions for E2E tests (can be imported in test files)
 export const loginUser = (email: string, password: string) => {
   cy.get('[data-testid="email-input"]').type(email);
   cy.get('[data-testid="password-input"]').type(password);
