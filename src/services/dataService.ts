@@ -177,8 +177,8 @@ export class DataService {
       return response.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Failed to fetch facilities:', error);
-      throw error;
+      console.error('Failed to fetch facilities, using fallback data:', error);
+      return this.getFallbackFacilities();
     }
   }
 

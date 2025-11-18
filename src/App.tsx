@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, Box } from '@mui/material';
+import { CssBaseline, Box, Typography } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { Button } from './components/ui/Button';
 import { Card, CardHeader, CardContent, CardFooter } from './components/ui/Card';
@@ -238,11 +238,26 @@ const App: React.FC = () => {
   }, [facilities, selectedFacilityId]);
 
   const renderActiveView = () => {
-    if (!selectedFacility) {
-      return <div style={{ padding: '2rem', textAlign: 'center' }}>Loading facility data...</div>;
+    if (!selectedFacility && activeView !== 'dashboard') {
+      return (
+        <Box sx={{ 
+          padding: '4rem 2rem', 
+          textAlign: 'center',
+          color: 'white'
+        }}>
+          <Typography variant="h5" gutterBottom>
+            Loading Demo Data...
+          </Typography>
+          <Typography variant="body2" color="rgba(255,255,255,0.7)">
+            Using simulated data for demonstration
+          </Typography>
+        </Box>
+      );
     }
 
     switch (activeView) {
+      case 'dashboard':
+        return renderDashboard();
       case 'operations':
         return operationalData && alertsData ? (
           <OperationalDashboard
@@ -314,9 +329,65 @@ const App: React.FC = () => {
 
   const renderDashboard = () => (
     <div style={{ background: '#0f172a', minHeight: '100vh' }}>
+      {/* Demo Data Banner */}
+      <Box sx={{ 
+        background: 'linear-gradient(90deg, #10b981 0%, #059669 100%)',
+        py: 1,
+        px: 3,
+        textAlign: 'center'
+      }}>
+        <Typography variant="caption" sx={{ color: 'white', fontWeight: 600 }}>
+          🎯 Demo Mode - Using Simulated Industry Data
+        </Typography>
+      </Box>
+
       <Hero onExplore={() => setActiveView('sustainability')} />
 
       <Box sx={{ py: 8, px: 4, maxWidth: 1400, mx: 'auto' }}>
+        {/* Quick Stats */}
+        <Box sx={{ 
+          display: 'grid', 
+          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
+          gap: 3,
+          mb: 6
+        }}>
+          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+            <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
+              Active Facilities
+            </Typography>
+            <Typography variant="h3" sx={{ color: 'white', fontWeight: 'bold', mt: 1 }}>
+              {facilities?.length || 0}
+            </Typography>
+          </Card>
+          
+          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+            <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
+              Production (bbl/d)
+            </Typography>
+            <Typography variant="h3" sx={{ color: '#10b981', fontWeight: 'bold', mt: 1 }}>
+              {operationalData?.production.oil.toLocaleString() || '0'}
+            </Typography>
+          </Card>
+          
+          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+            <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
+              Safety Score
+            </Typography>
+            <Typography variant="h3" sx={{ color: '#3b82f6', fontWeight: 'bold', mt: 1 }}>
+              {operationalData?.safety.score || '0'}%
+            </Typography>
+          </Card>
+          
+          <Card sx={{ p: 3, background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+            <Typography variant="overline" sx={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>
+              Active Alerts
+            </Typography>
+            <Typography variant="h3" sx={{ color: '#f59e0b', fontWeight: 'bold', mt: 1 }}>
+              {alertsData?.filter(a => !a.resolved).length || '0'}
+            </Typography>
+          </Card>
+        </Box>
+
         <EnhancedChart
           data={chartData}
           type="area"
