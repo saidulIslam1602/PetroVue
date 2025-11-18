@@ -195,15 +195,15 @@ const App: React.FC = () => {
   };
   
   const navigationItems = [
-    { label: 'Dashboard', href: '/dashboard', active: activeView === 'dashboard' },
-    { label: 'Operations', href: '/operations', active: activeView === 'operations' },
-    { label: 'Safety', href: '/safety', active: activeView === 'safety' },
-    { label: 'Production', href: '/production', active: activeView === 'production' },
-    { label: 'Environmental', href: '/environmental', active: activeView === 'environmental' },
-    { label: 'Equipment', href: '/equipment', active: activeView === 'equipment' },
-    { label: 'Sustainability', href: '/sustainability', active: activeView === 'sustainability' },
-    { label: 'Carbon Calculator', href: '/carbon', active: activeView === 'carbon' },
-    { label: 'Reports', href: '/reports', active: activeView === 'reports' },
+    { label: 'Dashboard', href: '#', active: activeView === 'dashboard', onClick: () => setActiveView('dashboard') },
+    { label: 'Operations', href: '#', active: activeView === 'operations', onClick: () => setActiveView('operations') },
+    { label: 'Safety', href: '#', active: activeView === 'safety', onClick: () => setActiveView('safety') },
+    { label: 'Production', href: '#', active: activeView === 'production', onClick: () => setActiveView('production') },
+    { label: 'Environmental', href: '#', active: activeView === 'environmental', onClick: () => setActiveView('environmental') },
+    { label: 'Equipment', href: '#', active: activeView === 'equipment', onClick: () => setActiveView('equipment') },
+    { label: 'Sustainability', href: '#', active: activeView === 'sustainability', onClick: () => setActiveView('sustainability') },
+    { label: 'Carbon Calculator', href: '#', active: activeView === 'carbon', onClick: () => setActiveView('carbon') },
+    { label: 'Reports', href: '#', active: activeView === 'reports', onClick: () => setActiveView('reports') },
   ];
 
   const sidebarItems = [

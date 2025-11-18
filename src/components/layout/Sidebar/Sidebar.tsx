@@ -96,12 +96,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: collapsed ? '0' : '0.75rem',
+          gap: '0.75rem',
           flex: 1,
           minWidth: 0,
           overflow: 'hidden'
         }}>
-          {icon && (
+          {icon && !collapsed && (
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -126,6 +126,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }}>
               {item.label}
             </span>
+          )}
+          {icon && collapsed && (
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              width: '20px',
+              height: '20px',
+              flexShrink: 0
+            }}>
+              {icon}
+            </div>
           )}
         </div>
         {!collapsed && item.badge && (

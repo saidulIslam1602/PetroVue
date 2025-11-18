@@ -20,6 +20,7 @@ export interface HeaderProps {
     label: string;
     href: string;
     active?: boolean;
+    onClick?: () => void;
   }>;
 }
 
@@ -53,6 +54,10 @@ export const Header: React.FC<HeaderProps> = ({
             <a
               key={index}
               href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                item.onClick?.();
+              }}
               style={{
                 color: item.active ? '#0066cc' : '#666',
                 textDecoration: 'none',
@@ -60,6 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
                 borderRadius: '4px',
                 fontWeight: item.active ? '600' : '400',
                 transition: 'all 0.2s ease',
+                cursor: 'pointer',
               }}
             >
               {item.label}
