@@ -21,14 +21,14 @@ export const SidebarContainer = styled.aside<{ collapsed: boolean }>`
 `;
 
 export const SidebarHeader = styled.div<{ collapsed: boolean }>`
-  padding: 1.5rem 1rem 1rem 1rem;
+  padding: ${({ collapsed }) => collapsed ? '1rem' : '1.5rem 1rem'};
   border-bottom: 1px solid #f3f4f6;
   position: relative;
-  
-  ${({ collapsed }) => collapsed && `
-    padding: 1rem 0.5rem;
-    text-align: center;
-  `}
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: ${({ collapsed }) => collapsed ? 'center' : 'flex-start'};
 `;
 
 export const SidebarContent = styled.nav`
@@ -54,8 +54,8 @@ export const SidebarItem = styled.button<{
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
+  justify-content: ${({ collapsed }) => collapsed ? 'center' : 'space-between'};
+  padding: ${({ collapsed }) => collapsed ? '0.75rem 0.5rem' : '0.75rem 1rem'};
   margin: 0.125rem 0;
   background: none;
   border: none;
@@ -67,11 +67,8 @@ export const SidebarItem = styled.button<{
   font-size: 0.875rem;
   transition: all 0.2s ease;
   border-radius: 0;
-  
-  ${({ collapsed }) => collapsed && `
-    padding: 0.75rem 0.5rem;
-    justify-content: center;
-  `}
+  text-align: left;
+  overflow: hidden;
   
   ${({ active }) => active && `
     background-color: #e6f3ff;

@@ -29,6 +29,7 @@ import { AnimatedCard } from './components/ui/AnimatedCard';
 import { AnimatedCounter } from './components/ui/AnimatedCounter';
 import { EnhancedChart } from './components/ui/EnhancedChart';
 import { LoadingSkeleton } from './components/ui/LoadingSkeleton';
+import { Logo } from './components/ui/Logo';
 import { APP_CONFIG } from './constants';
 import {
   useFacilities,
@@ -586,12 +587,13 @@ const App: React.FC = () => {
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
       <Box sx={{ display: 'flex', minHeight: '100vh', background: '#0f172a' }}>
-        <Sidebar
-          items={sidebarItems}
-          user={user}
-          collapsed={sidebarCollapsed}
-          onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-        />
+            <Sidebar
+              items={sidebarItems}
+              user={user}
+              collapsed={sidebarCollapsed}
+              onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+              logo={<Logo collapsed={sidebarCollapsed} />}
+            />
         
         <Box sx={{ 
           flex: 1, 

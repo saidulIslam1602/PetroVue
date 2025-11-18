@@ -93,7 +93,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         collapsed={collapsed}
         onClick={() => handleItemClick(item)}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: collapsed ? '0' : '0.75rem',
+          flex: 1,
+          minWidth: 0,
+          overflow: 'hidden'
+        }}>
           {icon && (
             <div style={{ 
               display: 'flex', 
@@ -110,7 +117,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span style={{ 
               fontSize: '0.875rem', 
               fontWeight: item.active ? '600' : '400',
-              color: item.disabled ? '#9ca3af' : 'inherit'
+              color: item.disabled ? '#9ca3af' : 'inherit',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              flex: 1,
+              minWidth: 0
             }}>
               {item.label}
             </span>
@@ -137,39 +149,47 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <SidebarContainer collapsed={collapsed} className={className} data-testid={testId}>
       <SidebarHeader collapsed={collapsed}>
-        {logo && (
-          <div style={{ marginBottom: '1rem' }}>
-            {logo}
-          </div>
-        )}
-        {!collapsed && (
-          <h2 style={{ 
-            fontSize: '1.25rem', 
-            fontWeight: '700', 
-            color: '#0066cc',
-            margin: 0
-          }}>
-            {title}
-          </h2>
-        )}
+        <div style={{ 
+          width: '100%',
+          display: 'flex',
+          justifyContent: collapsed ? 'center' : 'flex-start',
+          alignItems: 'center'
+        }}>
+          {logo || (
+            <div style={{
+              fontSize: collapsed ? '1.5rem' : '1.25rem',
+              fontWeight: '700',
+              color: '#0066cc',
+              textAlign: collapsed ? 'center' : 'left',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {collapsed ? 'PV' : title}
+            </div>
+          )}
+        </div>
         {onToggle && (
           <button
             onClick={onToggle}
             style={{
               position: 'absolute',
               top: '1rem',
-              right: '1rem',
+              right: collapsed ? '50%' : '1rem',
+              transform: collapsed ? 'translateX(50%)' : 'none',
+              marginTop: collapsed ? '2.5rem' : '0',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
               padding: '0.5rem',
               borderRadius: '4px',
-              color: '#6b7280'
+              color: '#6b7280',
+              transition: 'all 0.3s ease'
             }}
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <path d={collapsed ? "M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8zM4 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 4zm0 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z" : "M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"} />
+              <path d={collapsed ? "M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" : "M2.5 8a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"} />
             </svg>
           </button>
         )}
@@ -219,17 +239,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
             )}
             {!collapsed && (
-              <div>
+              <div style={{
+                flex: 1,
+                minWidth: 0,
+                overflow: 'hidden'
+              }}>
                 <div style={{ 
                   fontSize: '0.875rem', 
                   fontWeight: '600', 
-                  color: '#111827' 
+                  color: '#111827',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}>
                   {user.name}
                 </div>
                 <div style={{ 
                   fontSize: '0.75rem', 
-                  color: '#6b7280' 
+                  color: '#6b7280',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}>
                   {user.role}
                 </div>
