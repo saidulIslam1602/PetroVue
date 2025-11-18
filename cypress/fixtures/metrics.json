@@ -1,0 +1,25 @@
+{
+  "production": {
+    "oil": 1250,
+    "gas": 2100,
+    "water": 850,
+    "efficiency": 92
+  },
+  "safety": {
+    "score": 98,
+    "incidents": 0,
+    "lastInspection": "2024-01-15"
+  },
+  "equipment": {
+    "totalUnits": 45,
+    "operational": 42,
+    "maintenance": 2,
+    "critical": 1
+  },
+  "environmental": {
+    "emissions": 1200,
+    "waste": 85,
+    "compliance": 96
+  }
+}
+

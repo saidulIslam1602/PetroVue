@@ -1,0 +1,23 @@
+{
+  "emissions": {
+    "co2": 1200,
+    "methane": 85,
+    "nox": 45
+  },
+  "waste": {
+    "hazardous": 25,
+    "nonHazardous": 60,
+    "recycled": 40
+  },
+  "water": {
+    "consumption": 5000,
+    "discharge": 4500,
+    "recycled": 800
+  },
+  "compliance": {
+    "score": 96,
+    "violations": 0,
+    "lastAudit": "2024-01-10"
+  }
+}
+

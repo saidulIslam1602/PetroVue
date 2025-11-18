@@ -10,9 +10,12 @@ export const loginUser = (email: string, password: string) => {
 };
 
 export const mockApiResponses = () => {
+  // Mock API responses with fixtures if available, otherwise use empty responses
   cy.intercept('GET', '/api/facilities', { fixture: 'facilities.json' }).as('getFacilities');
   cy.intercept('GET', '/api/operational-metrics/*', { fixture: 'metrics.json' }).as('getMetrics');
   cy.intercept('GET', '/api/environmental/*', { fixture: 'environmental.json' }).as('getEnvironmental');
+  // Also intercept dataService calls
+  cy.intercept('GET', '**/facilities', { fixture: 'facilities.json' }).as('getFacilitiesAlt');
 };
 
 export const setupDashboardTest = () => {

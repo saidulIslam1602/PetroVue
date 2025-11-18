@@ -1,0 +1,31 @@
+[
+  {
+    "id": "PLT-001",
+    "name": "Platform Alpha",
+    "type": "offshore",
+    "status": "operational",
+    "location": {
+      "latitude": 60.4720,
+      "longitude": 4.4850
+    },
+    "capacity": {
+      "oil": 50000,
+      "gas": 100000
+    }
+  },
+  {
+    "id": "PLT-002",
+    "name": "Platform Beta",
+    "type": "offshore",
+    "status": "operational",
+    "location": {
+      "latitude": 61.4720,
+      "longitude": 5.4850
+    },
+    "capacity": {
+      "oil": 45000,
+      "gas": 95000
+    }
+  }
+]
+

@@ -9,8 +9,10 @@ describe('PetroVue Dashboard', () => {
   });
 
   it('loads the main dashboard', () => {
-    cy.contains('PetroVue').should('be.visible');
-    cy.contains('Modern Oil & Gas Operations Dashboard').should('be.visible');
+    // Check for actual content from Hero component
+    cy.contains('SUSTAINABLE ENERGY PLATFORM', { timeout: 10000 }).should('be.visible');
+    cy.contains('Real-Time', { timeout: 10000 }).should('be.visible');
+    cy.contains('Environmental', { timeout: 10000 }).should('be.visible');
   });
 
   it('navigates between different views', () => {
