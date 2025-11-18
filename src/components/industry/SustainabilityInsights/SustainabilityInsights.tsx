@@ -11,7 +11,6 @@ import {
   CardContent,
   Typography,
   Box,
-  Grid,
   Chip,
   LinearProgress,
   Avatar,
@@ -20,9 +19,10 @@ import {
   Tooltip,
   Divider,
 } from '@mui/material';
+import { GridLegacy as Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
-  Eco,
+  Nature,
   TrendingDown,
   TrendingUp,
   EnergySavingsLeaf,
@@ -255,7 +255,7 @@ const getCategoryIcon = (category: string) => {
     case 'waste':
       return <RecyclingRounded />;
     default:
-      return <Eco />;
+      return <Nature />;
   }
 };
 
@@ -295,7 +295,7 @@ export const SustainabilityInsights: React.FC = () => {
       {/* Header */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Eco fontSize="large" color="success" />
+          <Nature fontSize="large" color="success" />
           Sustainability Insights
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">

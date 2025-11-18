@@ -33,7 +33,7 @@ import {
   Calculate,
   TrendingDown,
   TrendingUp,
-  Eco,
+  Nature,
   Info,
   Download,
   Refresh,
@@ -633,7 +633,7 @@ export const CarbonFootprintCalculator: React.FC = () => {
                   <TableRow key={index}>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Eco color="success" />
+                        <Nature color="success" />
                         <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                           {rec.title}
                         </Typography>

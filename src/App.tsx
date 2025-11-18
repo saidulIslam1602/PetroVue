@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Box } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { Button } from './components/ui/Button';
 import { Card, CardHeader, CardContent, CardFooter } from './components/ui/Card';
@@ -24,6 +24,11 @@ import { EquipmentStatus } from './components/industry/EquipmentStatus';
 import { CarbonFootprintCalculator } from './components/industry/CarbonFootprintCalculator';
 import { ReportGenerator } from './components/industry/ReportGenerator';
 import { SustainabilityInsights } from './components/industry/SustainabilityInsights';
+import { Hero } from './components/layout/Hero';
+import { AnimatedCard } from './components/ui/AnimatedCard';
+import { AnimatedCounter } from './components/ui/AnimatedCounter';
+import { EnhancedChart } from './components/ui/EnhancedChart';
+import { LoadingSkeleton } from './components/ui/LoadingSkeleton';
 import { APP_CONFIG } from './constants';
 import {
   useFacilities,
@@ -41,11 +46,61 @@ import './styles/globals.css';
 // Create Material-UI theme based on our design system
 const muiTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#0066cc',
+      main: '#10b981',
+      light: '#34d399',
+      dark: '#059669',
     },
     secondary: {
-      main: '#ff6600',
+      main: '#3b82f6',
+      light: '#60a5fa',
+      dark: '#2563eb',
+    },
+    background: {
+      default: '#0f172a',
+      paper: '#1e293b',
+    },
+    success: {
+      main: '#10b981',
+    },
+    warning: {
+      main: '#f59e0b',
+    },
+    error: {
+      main: '#ef4444',
+    },
+  },
+  typography: {
+    fontFamily: '"Inter", "Segoe UI", "Roboto", "Arial", sans-serif',
+    h1: {
+      fontWeight: 800,
+    },
+    h2: {
+      fontWeight: 700,
+    },
+    h3: {
+      fontWeight: 700,
+    },
+  },
+  shape: {
+    borderRadius: 12,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+        },
+      },
     },
   },
 });
@@ -257,63 +312,27 @@ const App: React.FC = () => {
   };
 
   const renderDashboard = () => (
+    <div style={{ background: '#0f172a', minHeight: '100vh' }}>
+      <Hero onExplore={() => setActiveView('sustainability')} />
+
+      <Box sx={{ py: 8, px: 4, maxWidth: 1400, mx: 'auto' }}>
+        <EnhancedChart
+          data={chartData}
+          type="area"
+          title="Environmental Performance Trends"
+          height={350}
+          dataKeys={['oil', 'gas', 'water']}
+          showGrid
+          showLegend
+          gradient
+        />
+      </Box>
+    </div>
+  );
+
+  // Keep backup of the old render for compatibility
+  const renderLegacyDashboard = () => (
     <div style={{ padding: '2rem' }}>
-      <header
-        style={{
-          padding: '2rem',
-          textAlign: 'center',
-          backgroundColor: '#f8fafc',
-          borderBottom: '1px solid #e2e8f0',
-          marginBottom: '2rem',
-        }}
-      >
-        <h1
-          style={{
-            color: '#0066cc',
-            marginBottom: '0.5rem',
-            fontSize: '2.5rem',
-            fontWeight: 600,
-          }}
-        >
-          {APP_CONFIG.name}
-        </h1>
-        <p
-          style={{
-            color: '#666',
-            fontSize: '1.1rem',
-            marginBottom: '2rem',
-          }}
-        >
-          {APP_CONFIG.description}
-        </p>
-
-        <div
-          style={{
-            display: 'flex',
-            gap: '1rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: '2rem',
-          }}
-        >
-          <Button variant='primary' size='lg' onClick={() => setActiveView('operations')}>
-            Operations Dashboard
-          </Button>
-          <Button variant='outline' size='lg' onClick={() => setActiveView('safety')}>
-            Safety Monitor
-          </Button>
-          <Button variant='secondary' size='lg' onClick={() => setActiveView('production')}>
-            Production Tracker
-          </Button>
-          <Button variant='secondary' size='lg' onClick={() => setActiveView('sustainability')}>
-            Sustainability Insights
-          </Button>
-          <Button variant='outline' size='lg' onClick={() => setActiveView('carbon')}>
-            Carbon Calculator
-          </Button>
-        </div>
-      </header>
-
       <section style={{ marginBottom: '3rem' }}>
         <h2
           style={{
@@ -566,7 +585,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
-      <div className='App' style={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', minHeight: '100vh', background: '#0f172a' }}>
         <Sidebar
           items={sidebarItems}
           user={user}
@@ -574,10 +593,11 @@ const App: React.FC = () => {
           onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
         />
         
-        <div style={{ 
+        <Box sx={{ 
           flex: 1, 
           marginLeft: sidebarCollapsed ? '64px' : '256px',
-          transition: 'margin-left 0.3s ease'
+          transition: 'margin-left 0.3s ease',
+          background: '#0f172a'
         }}>
           <Header
             title={APP_CONFIG.name}
@@ -585,11 +605,11 @@ const App: React.FC = () => {
             user={user}
           />
         
-          <main style={{ padding: '0', flex: 1 }}>
+          <Box component="main" sx={{ padding: '0', flex: 1, background: '#0f172a' }}>
             {renderActiveView()}
-          </main>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 };
