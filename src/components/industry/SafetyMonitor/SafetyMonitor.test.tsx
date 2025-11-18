@@ -147,11 +147,9 @@ describe('SafetyMonitor', () => {
       />
     );
 
-    const incidentCard = screen.getByText('Minor valve leak detected in Zone A').closest('div');
-    expect(incidentCard).toBeInTheDocument();
-    if (incidentCard) {
-      await user.click(incidentCard);
-    }
+    // Click directly on the incident description - the onClick is on the parent div
+    const incidentDescription = screen.getByText('Minor valve leak detected in Zone A');
+    await user.click(incidentDescription);
     expect(handleIncidentClick).toHaveBeenCalledWith(mockIncidents[0]);
   });
 

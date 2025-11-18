@@ -99,12 +99,12 @@ describe('ButtonGroup Component', () => {
 
   it('applies custom className', () => {
     render(
-      <ButtonGroup className="custom-group">
+      <ButtonGroup className="custom-group" data-testid="button-group">
         <Button>Button 1</Button>
       </ButtonGroup>
     );
     
-    const group = screen.getByRole('button').parentElement;
+    const group = screen.getByTestId('button-group');
     expect(group).toBeInTheDocument();
     expect(group).toHaveClass('custom-group');
   });

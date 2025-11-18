@@ -63,11 +63,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
 });
 
 // Button Group Component
-export const ButtonGroup: React.FC<{ children: React.ReactNode; className?: string }> = ({
+export const ButtonGroup: React.FC<{ 
+  children: React.ReactNode; 
+  className?: string;
+  'data-testid'?: string;
+}> = ({
   children,
   className,
+  'data-testid': testId,
 }) => {
-  return <ButtonGroupContainer className={className}>{children}</ButtonGroupContainer>;
+  return <ButtonGroupContainer className={className} data-testid={testId}>{children}</ButtonGroupContainer>;
 };
 
 export default Button;
