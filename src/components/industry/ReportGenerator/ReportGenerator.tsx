@@ -399,7 +399,7 @@ export const ReportGenerator: React.FC = () => {
                     onChange={e =>
                       setConfig(prev => ({
                         ...prev,
-                        period: e.target.value as any,
+                        period: e.target.value as ReportConfig['period'],
                       }))
                     }
                   >
@@ -454,7 +454,7 @@ export const ReportGenerator: React.FC = () => {
                     onChange={e =>
                       setConfig(prev => ({
                         ...prev,
-                        format: e.target.value as any,
+                        format: e.target.value as ReportConfig['format'],
                       }))
                     }
                   >

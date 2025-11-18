@@ -133,7 +133,7 @@ export const withRetry = async <T>(
   maxRetries: number = 3,
   delay: number = 1000
 ): Promise<T> => {
-  let lastError: Error;
+  let lastError: Error = new Error('Request failed');
 
   for (let i = 0; i < maxRetries; i++) {
     try {
@@ -149,5 +149,5 @@ export const withRetry = async <T>(
     }
   }
 
-  throw lastError!;
+  throw lastError;
 };

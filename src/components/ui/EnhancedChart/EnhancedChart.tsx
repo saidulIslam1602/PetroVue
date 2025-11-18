@@ -33,6 +33,7 @@ import { styled } from '@mui/material/styles';
 export type ChartType = 'line' | 'area' | 'bar' | 'pie' | 'radar';
 
 interface EnhancedChartProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
   type: ChartType;
   title?: string;
@@ -66,6 +67,7 @@ const DEFAULT_COLORS = [
   '#6366f1', // Indigo
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -84,6 +86,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         >
           {label}
         </Typography>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {payload.map((entry: any, index: number) => (
           <Typography
             key={index}
@@ -314,7 +317,10 @@ export const EnhancedChart: React.FC<EnhancedChartProps> = ({
                 cx='50%'
                 cy='50%'
                 labelLine={false}
-                label={(props: any) => {
+                label={(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  props: any
+                ) => {
                   const { name, percent } = props;
                   return `${name}: ${(percent * 100).toFixed(0)}%`;
                 }}

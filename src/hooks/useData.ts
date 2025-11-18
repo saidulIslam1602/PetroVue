@@ -79,6 +79,7 @@ function useData<T>(
         clearInterval(intervalRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...dependencies, fetchData, options.refreshInterval]);
 
   return {
@@ -336,6 +337,7 @@ export function useFilteredData<T>(
     } else {
       setFilteredData([]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, filterFn, ...dependencies]);
 
   return filteredData;
