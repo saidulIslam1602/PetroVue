@@ -1,13 +1,13 @@
 # PetroVue - Sustainable Energy Data Platform
 
-> **Pioneering environmental data visualization for the energy transition**
+> **Modern environmental data visualization for the energy transition**
 
-A modern React application demonstrating expertise in building sustainable, data-driven solutions for environmental reporting and carbon management. Built with React 19, TypeScript, and cloud-ready architecture.
+A React application demonstrating expertise in building sustainable, data-driven solutions for environmental reporting and carbon management. Built with React 19, TypeScript, and Material-UI.
 
 [![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Material-UI](https://img.shields.io/badge/Material--UI-7.3.4-007FFF?logo=mui)](https://mui.com/)
-[![AWS Ready](https://img.shields.io/badge/AWS-Ready-FF9900?logo=amazon-aws)](https://aws.amazon.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.23-ff69b4?logo=framer)](https://www.framer.com/motion/)
 
 ---
 
@@ -17,113 +17,133 @@ This platform showcases how technology can drive environmental accountability an
 
 ### Key Sustainability Features
 
-- **Carbon Footprint Tracking** - Real-time carbon intensity monitoring with Scope 1, 2, and 3 emissions
-- **Environmental Reporting** - Automated compliance reports aligned with international standards
+- **Carbon Footprint Tracking** - Interactive calculator with Scope 1, 2, and 3 emissions
+- **Environmental Reporting** - Automated report generation for compliance
 - **ESG Dashboard** - Comprehensive Environmental, Social, and Governance metrics
-- **Renewable Energy Integration** - Track renewable energy adoption and electrification progress
+- **Renewable Energy Integration** - Track renewable energy adoption and progress
 - **Waste & Water Management** - Monitor resource consumption and recycling rates
 
 ---
 
 ## 🚀 Technology Stack
 
-### Frontend Excellence
-- **React 19.2.0** - Latest features with concurrent rendering
-- **TypeScript 4.9.5** - Strict type safety for reliability
-- **Material-UI 7.3.4** - Enterprise-grade component library
-- **Recharts** - Data visualization for environmental metrics
-- **Redux Toolkit** - Predictable state management
+### Frontend
+- **React 19.2.0** - Latest React with concurrent rendering
+- **TypeScript 4.9.5** - Strict type safety
+- **Material-UI 7.3.4** - Enterprise component library
+- **Framer Motion 12.23** - Smooth animations and micro-interactions
+- **Recharts** - Data visualization
+- **Redux Toolkit 2.9.0** - State management
+- **Emotion** - CSS-in-JS styling
 
-### Cloud & DevOps
-- **AWS-Ready Architecture** - Deployment configurations for cloud scalability
-- **Docker** - Containerized deployment
-- **CloudFormation** - Infrastructure as Code
-- **CI/CD Pipeline** - Automated testing and deployment
-
-### Quality & Testing
-- **Jest** - Comprehensive unit testing
-- **Cypress** - End-to-end testing
+### Development & Quality
+- **Jest** - Unit testing
 - **React Testing Library** - Component testing
-- **85%+ Test Coverage** - Ensuring reliability
+- **Cypress** - End-to-end testing
+- **ESLint** - Code quality
+- **Prettier** - Code formatting
+- **Husky** - Git hooks
+- **Webpack 5** - Custom build configuration
+- **Babel** - JavaScript compilation
+
+### Architecture Patterns
+- Component-based architecture
+- Custom hooks for data fetching
+- Service layer for API interactions
+- Centralized state management
+- TypeScript interfaces for type safety
+- Performance optimization utilities
+- Accessibility utilities (WCAG 2.1 AA)
 
 ---
 
 ## 💼 For the Norwegian Market
 
-This project demonstrates deep understanding of:
-- Norwegian environmental regulations and reporting standards
-- Sustainability requirements for modern energy companies
+This project demonstrates alignment with Norwegian energy sector requirements:
+- Norwegian environmental regulations awareness
+- Sustainability focus for modern energy companies
 - Real-time environmental data visualization
-- Cloud infrastructure for enterprise applications
+- Professional localization approach
 
 ### Norwegian Localization
-- Complete Norwegian (nb-NO) language support
+- Norwegian (nb-NO) terminology support
 - 100+ industry-specific Norwegian terms
-- Compliance with Norwegian data standards
-- Cultural alignment with Norwegian business practices
+- References to Oljedirektoratet and Petroleumstilsynet
+- Norwegian Continental Shelf (NCS) terminology
 
 ---
 
 ## 📊 Core Features
 
-### 1. Environmental Monitoring
-Real-time tracking of environmental metrics with automated alerts and compliance monitoring.
+### 1. Dashboard
+Modern landing page with:
+- Hero section with gradient backgrounds and animations
+- Real-time statistics with animated counters
+- Environmental performance trend charts
+- Quick access to all modules
+- Demo data indicator
 
-**Features:**
-- CO₂, methane, NOx, SOx emissions tracking
-- Water consumption and discharge monitoring
-- Waste generation and recycling rates
-- Air and water quality compliance scores
+### 2. Environmental Monitoring
+Real-time environmental metrics tracking:
+- CO₂, methane, NOx, SOx emissions
+- Water consumption and discharge
+- Waste generation and recycling
+- Compliance scores
 
-### 2. Carbon Management
-Comprehensive carbon footprint analysis with reduction recommendations.
-
-**Features:**
+### 3. Carbon Footprint Calculator
+Interactive carbon management tool:
 - Scope 1, 2, and 3 emissions breakdown
-- Carbon intensity calculations (kg CO₂e/unit)
-- Net-zero progress tracking
-- Paris Agreement alignment monitoring
-- Carbon budget management
+- Carbon intensity calculations
+- Reduction recommendations
+- Historical tracking
 
-### 3. ESG Sustainability Dashboard
-Complete Environmental, Social, and Governance reporting.
-
-**Features:**
+### 4. ESG Sustainability Dashboard
+Comprehensive ESG reporting:
 - Environmental performance metrics
 - Social responsibility indicators
-- Governance transparency scores
-- Renewable energy integration tracking
-- Climate goals and targets
+- Governance transparency
+- Renewable energy tracking
+- Climate goals monitoring
+- Paris Agreement alignment
 
-### 4. Operational Excellence
-Industry-specific operational dashboards for energy facilities.
+### 5. Operational Dashboards
+Industry-specific operational views:
+- **Operations** - Real-time operational metrics
+- **Safety** - Incident tracking and safety scores
+- **Production** - Production efficiency and well performance
+- **Equipment** - Equipment health and maintenance
 
-**Features:**
-- Real-time operational metrics
-- Safety monitoring and incident tracking
-- Production efficiency analytics
-- Equipment health monitoring
-- Predictive maintenance alerts
+### 6. Report Generator
+Automated environmental reporting:
+- Environmental compliance reports
+- ESG performance reports
+- Operational summary reports
+- Customizable templates
 
 ---
 
-## 🎯 Built For
+## 🎯 Modern UI/UX Features
 
-### Energy & Sustainability Companies
-Perfect for companies focused on:
-- Environmental reporting and compliance
-- Carbon footprint reduction
-- ESG performance tracking
-- Renewable energy transition
-- Sustainable operations
+### Design Elements
+- **Dark Theme** - Professional dark mode with gradient accents
+- **Glassmorphism** - Modern frosted glass effects
+- **Smooth Animations** - Framer Motion powered transitions
+- **Micro-interactions** - Engaging user feedback
+- **Loading States** - Skeleton screens and loading indicators
+- **Responsive Design** - Mobile, tablet, and desktop support
 
-### Technical Requirements Match
-- ✅ **Vue 3 / React / Angular** - Built with React, architecture supports Vue migration
-- ✅ **Frontend Leadership** - Comprehensive component architecture and design patterns
-- ✅ **UX Focus** - User-centered design with accessibility compliance
-- ✅ **Testing & QA** - 85%+ coverage with Jest, Cypress, and E2E tests
-- ✅ **AWS Cloud** - Cloud-ready deployment with Docker and CloudFormation
-- ✅ **Sustainability Focus** - Environmental data at the core of every feature
+### Navigation
+- **Dual Navigation** - Header and sidebar navigation
+- **Active Indicators** - Clear visual feedback
+- **Professional Logo** - Custom hexagonal oil & gas icon
+- **Collapsible Sidebar** - Space-efficient design
+
+### Components
+- **Enhanced Charts** - Advanced Recharts with gradients
+- **Animated Cards** - Entrance and hover animations
+- **Animated Counters** - Smooth number transitions
+- **Metric Cards** - KPI displays with trend indicators
+- **Modern Hero Section** - Full-screen landing with animations
 
 ---
 
@@ -133,7 +153,6 @@ Perfect for companies focused on:
 ```bash
 Node.js 18+
 npm or yarn
-Docker (optional)
 ```
 
 ### Installation
@@ -158,182 +177,206 @@ npm start
 npm start          # Development server with hot reload
 npm run build      # Production build (optimized)
 npm test           # Run unit tests with Jest
-npm run test:e2e   # Run Cypress E2E tests
+npm run test:e2e   # Run Cypress E2E tests (when configured)
 npm run lint       # ESLint code quality check
-npm run analyze    # Bundle size analysis
+npm run format     # Prettier code formatting
 ```
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Project Structure
 
 ```
 src/
 ├── components/
-│   ├── industry/              # Sustainability & operational components
+│   ├── industry/              # Domain-specific components
 │   │   ├── ESGSustainabilityDashboard/
 │   │   ├── EnvironmentalMonitor/
-│   │   ├── CarbonFootprintCalculator/  # Coming soon
-│   │   └── ReportGenerator/            # Coming soon
+│   │   ├── CarbonFootprintCalculator/
+│   │   ├── ReportGenerator/
+│   │   ├── SustainabilityInsights/
+│   │   ├── OperationalDashboard/
+│   │   ├── SafetyMonitor/
+│   │   ├── ProductionTracker/
+│   │   ├── EquipmentStatus/
+│   │   └── WellPerformanceAnalytics/
 │   ├── ui/                    # Reusable UI components
-│   └── layout/                # Application layout
+│   │   ├── Button/
+│   │   ├── Card/
+│   │   ├── Chart/
+│   │   ├── Input/
+│   │   ├── AnimatedCard/
+│   │   ├── AnimatedCounter/
+│   │   ├── EnhancedChart/
+│   │   ├── LoadingSkeleton/
+│   │   └── Logo/
+│   └── layout/                # Layout components
+│       ├── Header/
+│       ├── Sidebar/
+│       └── Hero/
 ├── services/
 │   ├── api.ts                 # API client with retry logic
-│   ├── dataService.ts         # Business logic layer
-│   └── enhancedApi.ts         # Advanced API with caching
+│   ├── enhancedApi.ts         # Advanced API with caching
+│   └── dataService.ts         # Business logic and mock data
 ├── hooks/                     # Custom React hooks
+│   └── useData.ts            # Data fetching hooks
 ├── store/                     # Redux state management
+│   └── index.ts              # Redux store configuration
 ├── utils/
 │   ├── performance.ts         # Performance optimization
-│   └── accessibility.ts       # WCAG 2.1 AA compliance
-└── types/                     # TypeScript definitions
+│   └── accessibility.ts       # WCAG 2.1 AA utilities
+├── constants/
+│   ├── index.ts              # App constants
+│   └── norwegianLocalization.ts  # Norwegian terminology
+├── types/                     # TypeScript definitions
+│   └── index.ts              # Type definitions
+└── themes/                    # Theme configuration
+    └── index.ts              # Design system theme
 ```
-
----
-
-## ☁️ AWS Deployment
-
-### Docker Deployment
-
-```bash
-# Build Docker image
-docker build -t petrovue:latest .
-
-# Run container
-docker run -p 3000:3000 petrovue:latest
-```
-
-### AWS CloudFormation
-
-```bash
-# Deploy to AWS
-aws cloudformation deploy \
-  --template-file aws-deployment/cloudformation.yml \
-  --stack-name petrovue-stack \
-  --capabilities CAPABILITY_IAM
-```
-
-**AWS Services Utilized:**
-- **S3** - Static hosting and data storage
-- **CloudFront** - CDN for global performance
-- **Lambda** - Serverless functions
-- **CloudWatch** - Monitoring and logging
-- **API Gateway** - API management
 
 ---
 
 ## 🎨 Design Philosophy
 
 ### User Experience First
-- Clean, intuitive interface inspired by modern SaaS applications
-- Accessibility-first approach (WCAG 2.1 AA compliant)
-- Responsive design for desktop, tablet, and mobile
-- Dark mode support for reduced eye strain
+- Clean, intuitive interface
+- Accessibility-first approach (WCAG 2.1 AA utilities)
+- Responsive design for all devices
+- Dark theme for professional appearance
+- Smooth animations for better UX
 
 ### Performance Optimized
-- Bundle size: 212KB gzipped
-- First Contentful Paint: <1.5s
-- Time to Interactive: <3s
-- Code splitting and lazy loading
+- Code splitting with lazy loading
+- Memoization for expensive calculations
+- Optimized bundle with Webpack 5
 - Advanced caching strategies
+- Virtual scrolling for large datasets
 
-### Sustainability in Design
-- Optimized for low bandwidth (offshore/remote access)
-- Energy-efficient rendering
-- Minimal resource consumption
-- Progressive enhancement
-
----
-
-## 🧪 Testing Strategy
-
-### Unit Testing
-- **Jest** - Component and utility testing
-- **React Testing Library** - User-centric testing
-- **85%+ Coverage** - Comprehensive test suite
-
-### Integration Testing
-- API integration tests
-- Data flow validation
-- State management testing
-
-### End-to-End Testing
-- **Cypress** - Real user journey testing
-- Critical path validation
-- Cross-browser compatibility
-
-### Quality Assurance
-- TypeScript strict mode
-- ESLint with industry best practices
-- Prettier for consistent formatting
-- Pre-commit hooks with Husky
+### Developer Experience
+- Strict TypeScript for type safety
+- Component-driven architecture
+- Custom hooks for reusability
+- Comprehensive prop types
+- Organized folder structure
+- Consistent code style
 
 ---
 
-## 📈 Performance Metrics
+## 🧪 Testing & Quality
 
-| Metric | Target | Achieved |
-|--------|--------|----------|
-| Bundle Size | <250KB | 212KB ✅ |
-| First Contentful Paint | <1.5s | 1.2s ✅ |
-| Time to Interactive | <3s | 2.8s ✅ |
-| Lighthouse Score | >90 | 94 ✅ |
-| Test Coverage | >80% | 85% ✅ |
+### Testing Infrastructure
+- **Jest** - Unit and integration testing framework
+- **React Testing Library** - Component testing utilities
+- **Cypress** - E2E testing configuration
+- **jest-axe** - Accessibility testing
 
----
-
-## 🔒 Security & Compliance
-
-- **HTTPS Only** - Encrypted communications
-- **JWT Authentication** - Secure token-based auth
-- **Input Sanitization** - XSS prevention
-- **CSRF Protection** - Security best practices
-- **GDPR Compliant** - Data privacy standards
-- **ISO 27001** - Information security alignment
+### Code Quality
+- **TypeScript** - Strict mode enabled
+- **ESLint** - Airbnb style guide with custom rules
+- **Prettier** - Consistent code formatting
+- **Husky** - Pre-commit hooks
+- **Git hooks** - Automated quality checks
 
 ---
 
-## 🌍 Sustainability Impact
+## 📱 Demo Mode
 
-This platform helps organizations:
-- **Reduce Carbon Footprint** - Track and minimize emissions
-- **Improve ESG Scores** - Transparent reporting and accountability
-- **Meet Compliance** - Automated regulatory reporting
-- **Drive Innovation** - Data-driven sustainability decisions
-- **Support Net-Zero Goals** - Progress tracking and insights
+The application currently runs in **demo mode** with simulated data:
+- Mock data service with realistic values
+- Fallback data for all API calls
+- Randomized metrics for demonstration
+- No backend required for testing
 
----
-
-## 📚 Documentation
-
-- [Architecture Guide](./ARCHITECTURE.md) - Technical architecture overview
-- [Sustainability Focus](./docs/SUSTAINABILITY_FOCUS.md) - Environmental features
-- [UX Design Principles](./docs/UX_DESIGN.md) - Design philosophy
-- [Testing Guide](./docs/TESTING.md) - Testing strategy and coverage
-- [Framework Comparison](./docs/FRAMEWORK_COMPARISON.md) - React vs Vue insights
-- [AWS Deployment](./docs/DEPLOYMENT.md) - Cloud deployment guide
+### Demo Data Features
+- 2 sample facilities (Platform Alpha & Beta)
+- Real-time metrics simulation
+- Safety incidents
+- Well performance data
+- Environmental metrics
+- Equipment status
+- Active alerts
 
 ---
 
-## 🤝 Contributing
+## 🔧 Configuration
 
-This is a portfolio project showcasing best practices in:
-- React and TypeScript development
-- Sustainability-focused application design
-- Cloud-ready architecture
-- Modern testing practices
-- Accessibility standards
+### Build Configuration
+- Custom Webpack 5 configuration
+- Babel for modern JavaScript features
+- Code splitting for vendors and libraries
+- CSS extraction and minification
+- Compression plugin for production
+- Source maps for debugging
+
+### Environment Support
+- Development mode with hot reload
+- Production mode with optimizations
+- TypeScript compilation
+- SCSS/CSS module support
+- SVG and image handling
 
 ---
 
-## 👨‍💻 About the Developer
+## 📚 Key Components
+
+### Industry Components
+- **OperationalDashboard** - Real-time operations overview
+- **SafetyMonitor** - Safety performance tracking
+- **ProductionTracker** - Production metrics and well status
+- **EnvironmentalMonitor** - Environmental metrics
+- **EquipmentStatus** - Equipment health monitoring
+- **ESGSustainabilityDashboard** - Comprehensive ESG reporting
+- **CarbonFootprintCalculator** - Interactive carbon calculator
+- **ReportGenerator** - Automated report creation
+- **SustainabilityInsights** - Real-time sustainability metrics
+
+### UI Components
+- **AnimatedCard** - Cards with hover and entrance animations
+- **AnimatedCounter** - Smooth number counting animations
+- **EnhancedChart** - Advanced charts with gradients
+- **LoadingSkeleton** - Loading state indicators
+- **Logo** - Professional branded logo component
+- **Button, Card, Input, Select** - Form components
+- **Alert, Modal, Table** - Utility components
+- **MetricCard** - KPI display cards
+
+---
+
+## 🌍 Sustainability Features
+
+### Environmental Tracking
+- **Emissions Monitoring** - Track all emission sources
+- **Water Management** - Consumption and discharge tracking
+- **Waste Tracking** - Generation and recycling metrics
+- **Compliance Scoring** - Real-time compliance status
+
+### Carbon Management
+- **Scope 1, 2, 3** - Complete emissions breakdown
+- **Carbon Intensity** - Per-unit calculations
+- **Reduction Tracking** - Progress toward targets
+- **Net-Zero Planning** - Goal tracking and insights
+
+### ESG Reporting
+- **Environmental** - Full environmental metrics
+- **Social** - Workforce and community impact
+- **Governance** - Transparency and ethics
+- **Renewable Energy** - Clean energy adoption
+- **Climate Goals** - Paris Agreement alignment
+
+---
+
+## 👨‍💻 About This Project
 
 Built to demonstrate expertise in:
-- **Frontend Development** - React, TypeScript, Material-UI
-- **Cloud Architecture** - AWS, Docker, CI/CD
-- **Sustainability Tech** - Environmental data visualization
-- **Norwegian Market** - Localization and cultural alignment
-- **Quality Focus** - Testing, accessibility, performance
+- **Modern React Development** - React 19 with hooks and concurrent features
+- **TypeScript** - Strict type safety and interfaces
+- **UI/UX Design** - Modern animations and professional design
+- **Component Architecture** - Reusable, maintainable components
+- **State Management** - Redux Toolkit patterns
+- **Performance** - Optimization techniques and best practices
+- **Testing** - Comprehensive testing infrastructure
+- **Accessibility** - WCAG 2.1 AA compliance utilities
+- **Norwegian Market** - Localization and industry terminology
 
 ---
 
@@ -343,11 +386,9 @@ MIT License - See [LICENSE](./LICENSE) for details
 
 ---
 
-## 🔗 Connect
+## 🔗 Repository
 
-- **Portfolio** - [Your Portfolio URL]
-- **LinkedIn** - [Your LinkedIn]
-- **GitHub** - [github.com/saidulIslam1602](https://github.com/saidulIslam1602)
+**GitHub** - [github.com/saidulIslam1602/PetroVue](https://github.com/saidulIslam1602/PetroVue)
 
 ---
 
