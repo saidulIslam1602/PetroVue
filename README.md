@@ -262,6 +262,49 @@ src/
 
 ---
 
+## 🐳 Docker Support
+
+The project includes Docker configuration for containerized deployment:
+
+```bash
+# Build Docker image
+docker build -t petrovue:latest .
+
+# Run container
+docker run -p 3000:80 petrovue:latest
+
+# Or use docker-compose
+docker-compose up
+```
+
+**Included Files:**
+- `Dockerfile` - Multi-stage build for optimized production image
+- `docker-compose.yml` - Container orchestration configuration
+
+---
+
+## ☁️ AWS Deployment
+
+AWS CloudFormation templates are included for cloud deployment:
+
+```bash
+# Deploy using provided script
+cd aws-deployment
+./deploy.sh
+
+# Or manually with AWS CLI
+aws cloudformation deploy \
+  --template-file aws-deployment/cloudformation.yml \
+  --stack-name petrovue-stack \
+  --capabilities CAPABILITY_IAM
+```
+
+**Included Files:**
+- `aws-deployment/cloudformation.yml` - Infrastructure as Code template
+- `aws-deployment/deploy.sh` - Automated deployment script
+
+---
+
 ## 🧪 Testing & Quality
 
 ### Testing Infrastructure
